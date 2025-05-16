@@ -1,0 +1,64 @@
+body{
+    background:linear-gradient(rgb(255, 2, 2), rgb(255, 125, 3), rgb(255, 208, 0));
+    height: 100vh;
+    overflow: hidden;
+}
+
+.column{
+    position:absolute;
+    left:40%;
+    top:30%;
+}
+
+.create{
+    background-color: white;
+    color: black;
+    width: 300px;
+    height:80px;
+    font-size: 30px;
+    font-family: "Limelight", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 50px;
+    border: 5px solid;
+    border-radius: 5px;
+    border-left: double 1px transparent;
+    border-right: double 1px transparent;
+    border-top: double 5px transparent;
+    border-bottom: double 5px transparent;
+    background-image: linear-gradient(white, white),
+    linear-gradient(45deg, #f3ec78, #af4261);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.join{
+    background-color: white;
+    color: black;
+    width: 300px;
+    height:80px;
+    font-size: 30px;
+    font-family: "Limelight", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    border: 5px solid;
+    border-radius: 5px;
+    border-left: double 1px transparent;
+    border-right: double 1px transparent;
+    border-top: double 5px transparent;
+    border-bottom: double 5px transparent;
+    background-image: linear-gradient(white, white),
+    linear-gradient(45deg,#af4261, #f3ec78);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.create:hover{
+    box-shadow: 5px 5px 5px black;
+    transition: 0.15s linear;
+}
+
+.join:hover{
+    box-shadow: 5px 5px 5px black;
+    transition: 0.15s linear;
+}

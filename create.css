@@ -1,0 +1,80 @@
+body{
+    background-color: white;
+    height: 100vh;
+}
+
+#destination {
+  width: 500px;
+  height: 100px;
+  padding-left: 12px;
+  padding-top: 12px;
+  margin: 20px;
+  box-sizing: border-box;
+  border: 2px dashed #2f69d4;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 40px;
+  font-family:'Courier New', Courier, monospace;
+  font-weight: bold;
+  resize: none;
+}
+
+#box-activities{
+    width: 800px;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-left: 20px;
+    margin-top: 40px;
+    padding:12px;
+}
+
+
+#title-activities{
+    font-size: 40px;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+#add-activity{
+    width: 500px;
+    height: 60px;
+    margin: 0px;
+    box-sizing: border-box;
+    border: 5px solid #ffffff;
+    border-radius: 50px;
+    background-color: #000000;
+    color: white;
+    font-size: 20px;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    resize: none;
+}
+
+#label-departure{
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 32px;
+}
+
+#departure{
+    width: 300px;
+    height: 80px;
+    font-size: 30px;
+    margin-left: 30px;
+    border-radius: 10px;
+}
+
+
+#label-return{
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 32px;
+}
+
+#return{
+    width: 300px;
+    height: 80px;
+    font-size: 30px;
+    margin-left: 30px;
+    border-radius: 10px;
+}
