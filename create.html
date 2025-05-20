@@ -6,17 +6,55 @@
     <title>Create</title>
     <link rel="stylesheet" href="create.css">
     <script src="create.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Limelight&family=Playwrite+AU+SA:wght@100..400&display=swap" rel="stylesheet">
 </head>
-<body>
-    <textarea id="destination" placeholder="Destination"></textarea>
-    <br>
-    <label id="label-departure">Departure date</label> <input type="date" id="departure">
-    <br><br>
-    <label id="label-return">Return date</label> <input type="date" id="return">
-    <div id="box-activities">
-        <h3 id="title-activities">Activities</h3>
-        <button id="add-activity" onclick="addActivity()">Add activity</button>
+<body onload="setData()">
+    <div id="blur">
+        <textarea id="destination" placeholder="Destination"></textarea>
+        <br>
+        <label id="label-departure">Departure date</label> <input type="date" id="departure">
+        <br><br>
+        <label id="label-return">Return date</label> <input type="date" id="return">
+        <div id="box-activities">
+            <h3 id="title-activities">Activities</h3>
+            <button id="add-activity" onclick="addActivity()">Add activity</button>
+        </div>
+        <div id="box-info">
+            <h3 id="title-info">Useful info</h3>
+            <textarea id="info" placeholder="Insert info that may be useful"></textarea>
+        </div>
     </div>
+    <div id="map"></div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmUXakG6rMSMpscP9U9UTMguvyBvh8LnY&callback=initMap" async defer></script>
+    <script>
+        let map;
+        let marker;
+        let geocoder;
+
+        function initMap() {
+        geocoder = new google.maps.Geocoder();
+
+        map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 5,
+            center: { lat: 41.9028, lng: 12.4964 } // Rome as default
+        });
+        }
+    </script>
+
+       
+
+    <div id="bottom-right-corner">
+        <div id="box-code">
+            <label id="code-title">Access code</label>
+            <br>
+            <textarea id="code-area"></textarea>
+        </div>
+
+        <button id="save">Save</button>
+    </div>
+
 
 </body>
 </html>
