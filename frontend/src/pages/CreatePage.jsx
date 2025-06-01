@@ -4,10 +4,12 @@ import { useTripStore } from '../store/trip';
 const CreatePage = () => {
   // State to hold the generated code
   const [accessCode, setAccessCode] = useState('');
+
   const [newTrip, setNewTrip] = useState({
     destination: "",
     departureDate: "",
-    returnDate: ""
+    returnDate: "",
+    accessCode:"",
   });
 
   const {createTrip}=useTripStore();
@@ -22,7 +24,7 @@ const CreatePage = () => {
     // Generate random access code once on mount
     const code = parseInt(Math.random() * 100000000);
     setAccessCode(code.toString());
-
+    setNewTrip({ ...newTrip, accessCode: code.toString() });
     // Check if script already loaded
     if (!window.google || !window.google.maps) {
       // Load Google Maps API script dynamically

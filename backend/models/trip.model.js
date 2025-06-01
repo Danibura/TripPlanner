@@ -13,6 +13,10 @@ const tripSchema= new mongoose.Schema({
     returnDate:{
         type: String,
         required:true
+    },
+    accessCode:{
+        type: String,
+        required:true
     }
 }, {
     timestamps: true
