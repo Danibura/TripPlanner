@@ -17,6 +17,10 @@ const tripSchema= new mongoose.Schema({
     accessCode:{
         type: String,
         required:true
+    },
+    usefulInfo:{
+        type: String,
+        required:false
     }
 }, {
     timestamps: true
