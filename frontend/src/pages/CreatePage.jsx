@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./css/create.css";
 import { useTripStore } from "../store/trip";
+import { useParams } from "react-router-dom";
+import MapComponent from "../components/MapComponent";
+import { OpenStreetMapProvider } from "leaflet-geosearch";
+
+const provider = new OpenStreetMapProvider();
+
 const CreatePage = () => {
-  // State to hold the generated code
-  const [accessCode, setAccessCode] = useState("");
-  const selectedCode = useTripStore((state) => state.selectedCode);
+  const { tripCode } = useParams();
+
   const [newTrip, setNewTrip] = useState({
     destination: "",
     departureDate: "",
@@ -13,91 +18,65 @@ const CreatePage = () => {
     usefulInfo: "",
   });
 
-  const { createTrip } = useTripStore();
+  const [coords, setCoords] = useState(null);
+  const [suggestions, setSuggestions] = useState([]);
+  const { createTrip, fetchTrips, trips } = useTripStore();
+
   const handleAddTrip = async () => {
     const { success, message } = await createTrip(newTrip);
-    console.log(newTrip);
-    console.log("Success: ", success);
-    console.log("Message: ", message);
+    console.log("Saved:", newTrip, success, message);
   };
-  const { fetchTrips, trips } = useTripStore();
-  console.log(trips);
+
   useEffect(() => {
     fetchTrips();
-
-    // Generate random access code once on mount
-    const code = selectedCode || parseInt(Math.random() * 100000000);
-    setAccessCode(code.toString());
-    setNewTrip({ ...newTrip, accessCode: code.toString() });
-
-    window.initMap = function () {
-      let map;
-      let marker;
-      let geocoder;
-      let autocomplete;
-
-      geocoder = new window.google.maps.Geocoder();
-
-      map = new window.google.maps.Map(document.getElementById("map"), {
-        zoom: 5,
-        center: { lat: 41.9028, lng: 12.4964 }, // Roma
-      });
-
-      const input = document.getElementById("destination");
-      autocomplete = new window.google.maps.places.Autocomplete(input);
-      autocomplete.setTypes(["(cities)"]);
-
-      autocomplete.addListener("place_changed", () => {
-        const place = autocomplete.getPlace();
-        if (!place.geometry) {
-          alert("No details available for input: '" + place.name + "'");
-          return;
-        }
-
-        const location = place.geometry.location;
-        map.setCenter(location);
-        map.setZoom(13);
-
-        if (marker) marker.setMap(null);
-        marker = new window.google.maps.Marker({
-          map: map,
-          position: location,
-        });
-      });
-    };
-
-    // ✅ Solo dopo definiamo lo script e lo appendiamo
-    if (!window.google || !window.google.maps) {
-      const script = document.createElement("script");
-      script.src =
-        "https://maps.googleapis.com/maps/api/js?key=AIzaSyAmUXakG6rMSMpscP9U9UTMguvyBvh8LnY&libraries=places&callback=initMap";
-      script.async = true;
-      script.defer = true;
-      document.body.appendChild(script);
-    } else {
-      // Se già caricato
-      window.initMap();
-    }
-
-    return () => {
-      delete window.initMap;
-    };
+    setNewTrip((prev) => ({ ...prev, accessCode: tripCode.toString() }));
   }, []);
 
   useEffect(() => {
-    const match = trips.find((trip) => trip.accessCode === selectedCode);
+    const match = trips.find((trip) => trip.accessCode === tripCode);
     if (match) {
-      console.log(match);
       setNewTrip({ ...match });
-    }
-  }, [trips, selectedCode]);
 
-  function addActivity() {
+      provider.search({ query: match.destination }).then((results) => {
+        if (results && results.length > 0) {
+          const { x, y } = results[0];
+          setCoords([y, x]);
+        }
+      });
+    }
+  }, [trips, tripCode]);
+
+  const updateMapFromDestination = (destination) => {
+    if (!destination) return;
+    provider.search({ query: destination }).then((results) => {
+      if (results && results.length > 0) {
+        setSuggestions(results);
+        const { x, y } = results[0]; // x = lon, y = lat
+        setCoords([y, x]);
+      }
+    });
+  };
+
+  const handleDestinationChange = (e) => {
+    const value = e.target.value;
+    setNewTrip((prev) => ({ ...prev, destination: value }));
+  };
+
+  const handleDestinationBlur = () => {
+    updateMapFromDestination(newTrip.destination);
+  };
+
+  const handleDestinationKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // evita invio form
+      updateMapFromDestination(newTrip.destination);
+    }
+  };
+
+  const addActivity = () => {
     const addButton = document.getElementById("add-activity");
     addButton.remove();
     const node = document.createElement("textarea");
-    const textnode = document.createTextNode("");
-    node.appendChild(textnode);
     node.style.backgroundColor = "#ffffff";
     node.style.borderRadius = "10px";
     node.style.padding = "10px";
@@ -105,7 +84,7 @@ const CreatePage = () => {
     node.style.marginBottom = "15px";
     document.getElementById("box-activities").appendChild(node);
     document.getElementById("box-activities").appendChild(addButton);
-  }
+  };
 
   return (
     <div id="creaPagina">
@@ -114,11 +93,17 @@ const CreatePage = () => {
           id="destination"
           placeholder="Destination"
           name="destination"
+          list="destination-options"
           value={newTrip.destination}
-          onChange={(e) =>
-            setNewTrip({ ...newTrip, destination: e.target.value })
-          }
+          onChange={handleDestinationChange}
+          onBlur={handleDestinationBlur}
+          onKeyDown={handleDestinationKeyDown}
         />
+        <datalist id="destination-options">
+          {suggestions.map((s, index) => (
+            <option key={index} value={s.label} />
+          ))}
+        </datalist>
         <br />
         <label id="label-departure">Departure date</label>{" "}
         <input
@@ -161,13 +146,15 @@ const CreatePage = () => {
         </div>
       </div>
 
-      <div id="map"></div>
+      <div id="map">
+        <MapComponent coords={coords} />
+      </div>
 
       <div id="bottom-right-corner">
         <div id="box-code">
           <label id="code-title">Access code</label>
           <br />
-          <textarea id="code-area" value={accessCode} readOnly />
+          <textarea id="code-area" value={tripCode} readOnly />
         </div>
         <button id="save" onClick={handleAddTrip}>
           Save
