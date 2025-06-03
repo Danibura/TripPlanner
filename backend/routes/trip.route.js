@@ -1,16 +1,20 @@
 import express from "express";
 
-import { getTrips, createTrip, updateTrip, deleteTrip } from "../controllers/trip.controller.js";
+import {
+  getTrips,
+  createTrip,
+  updateTrip,
+  deleteTrip,
+} from "../controllers/trip.controller.js";
 
-const router=express.Router();
-
+const router = express.Router();
 
 router.get("/", getTrips);
 
 router.post("/", createTrip);
 
-router.put("/:id", updateTrip);
+router.put("/:code", updateTrip);
 
-router.delete("/:id", deleteTrip);
+router.delete("/:code", deleteTrip);
 
-export  default router;
+export default router;

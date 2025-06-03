@@ -4,39 +4,50 @@ import { useTripStore } from "../store/trip";
 import { useParams } from "react-router-dom";
 import MapComponent from "../components/MapComponent";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
-
+import Activity from "../components/Activity";
+import HomeLink from "../components/HomeLink";
 const provider = new OpenStreetMapProvider();
 
 const CreatePage = () => {
-  const { tripCode } = useParams();
-
+  //Creates new trip
   const [newTrip, setNewTrip] = useState({
     destination: "",
     departureDate: "",
     returnDate: "",
     accessCode: "",
     usefulInfo: "",
+    activities: [],
   });
 
+  //Coords and suggestions for location
   const [coords, setCoords] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
-  const { createTrip, fetchTrips, trips } = useTripStore();
+  const { createTrip, modifyTrip, fetchTrips, trips } = useTripStore();
 
-  const handleAddTrip = async () => {
-    const { success, message } = await createTrip(newTrip);
-    console.log("Saved:", newTrip, success, message);
-  };
-
+  //Fetch trips and get access code
+  const { tripCode } = useParams();
   useEffect(() => {
     fetchTrips();
     setNewTrip((prev) => ({ ...prev, accessCode: tripCode.toString() }));
   }, []);
 
+  //Update or create trip
+  const handleSaveTrip = async () => {
+    const existing = trips.find((t) => t.accessCode === newTrip.accessCode);
+    if (existing) {
+      const { success, message } = await modifyTrip(newTrip);
+      console.log("Updated ", success, message);
+    } else {
+      const { success, message } = await createTrip(newTrip);
+      console.log("Created:", newTrip, success, message);
+    }
+  };
+
+  //Fill fields and map with the info of the trip
   useEffect(() => {
     const match = trips.find((trip) => trip.accessCode === tripCode);
     if (match) {
       setNewTrip({ ...match });
-
       provider.search({ query: match.destination }).then((results) => {
         if (results && results.length > 0) {
           const { x, y } = results[0];
@@ -46,22 +57,25 @@ const CreatePage = () => {
     }
   }, [trips, tripCode]);
 
+  //Updates map
   const updateMapFromDestination = (destination) => {
     if (!destination) return;
     provider.search({ query: destination }).then((results) => {
       if (results && results.length > 0) {
         setSuggestions(results);
-        const { x, y } = results[0]; // x = lon, y = lat
+        const { x, y } = results[0];
         setCoords([y, x]);
       }
     });
   };
 
+  //Changes trip destination
   const handleDestinationChange = (e) => {
     const value = e.target.value;
     setNewTrip((prev) => ({ ...prev, destination: value }));
   };
 
+  //Updates map
   const handleDestinationBlur = () => {
     updateMapFromDestination(newTrip.destination);
   };
@@ -73,21 +87,17 @@ const CreatePage = () => {
     }
   };
 
+  //Add blank activity to the trip
   const addActivity = () => {
-    const addButton = document.getElementById("add-activity");
-    addButton.remove();
-    const node = document.createElement("textarea");
-    node.style.backgroundColor = "#ffffff";
-    node.style.borderRadius = "10px";
-    node.style.padding = "10px";
-    node.style.width = "90%";
-    node.style.marginBottom = "15px";
-    document.getElementById("box-activities").appendChild(node);
-    document.getElementById("box-activities").appendChild(addButton);
+    setNewTrip((prev) => ({
+      ...prev,
+      activities: [...prev.activities, ""],
+    }));
   };
 
   return (
     <div id="creaPagina">
+      <HomeLink />
       <div id="blur">
         <input
           id="destination"
@@ -129,6 +139,19 @@ const CreatePage = () => {
         />
         <div id="box-activities">
           <h3 id="title-activities">Activities</h3>
+          {newTrip.activities &&
+            newTrip.activities.map((activity, index) => (
+              <Activity
+                key={index}
+                index={index}
+                value={activity}
+                onChange={(i, newValue) => {
+                  const updated = [...newTrip.activities];
+                  updated[i] = newValue;
+                  setNewTrip({ ...newTrip, activities: updated });
+                }}
+              />
+            ))}
           <button id="add-activity" onClick={addActivity}>
             Add activity
           </button>
@@ -156,7 +179,7 @@ const CreatePage = () => {
           <br />
           <textarea id="code-area" value={tripCode} readOnly />
         </div>
-        <button id="save" onClick={handleAddTrip}>
+        <button id="save" onClick={handleSaveTrip}>
           Save
         </button>
       </div>

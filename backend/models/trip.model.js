@@ -21,6 +21,10 @@ const tripSchema= new mongoose.Schema({
     usefulInfo:{
         type: String,
         required:false
+    },
+    activities:{
+        type: [String],
+        required:false
     }
 }, {
     timestamps: true
