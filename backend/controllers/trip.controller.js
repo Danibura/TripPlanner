@@ -1,5 +1,6 @@
 import Trip from "../models/trip.model.js";
 import mongoose from "mongoose";
+
 export const getTrips = async (req, res) => {
   try {
     const trips = await Trip.find({});
