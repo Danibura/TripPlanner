@@ -2,5 +2,11 @@ POST http://localhost:5000/api/users/login
 Content-Type: application/json
 
 {
-    "username":"Kyle"
+    "email":"dani@gmail.com",
+    "password":"Dani123"
 }
+
+###
+
+GET http://localhost:5000/protected
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NDFjYzI1NWYyZjk2MzAxOTQ4NTExOCIsImVtYWlsIjoiZGFuaUBnbWFpbC5jb20iLCJuYW1lIjoiRGFuaSIsImlhdCI6MTc0OTE0MzA0MSwiZXhwIjoxNzQ5MTQ2NjQxfQ.T0qjNl03aga2dxbRUAhsu5rely1X64fyycOxeuW-eug

@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import tripRoutes from "./routes/trip.route.js";
 import userRoutes from "./routes/user.route.js";
-
+import authenticate from "./middleware/authenticate.js";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -14,6 +14,10 @@ app.use(express.json());
 
 app.use("/api/trips", tripRoutes);
 app.use("/api/users", userRoutes);
+
+app.get("/protected", authenticate, (req, res) => {
+  res.json({ message: `Welcome ${req.user.name}`, user: req.user });
+});
 
 connectDB()
   .then(() => {

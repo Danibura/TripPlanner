@@ -1,0 +1,48 @@
+#signupPage{
+     background-image:url("../images/boat.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    margin: 0px;
+    padding: 20px;
+}
+
+#contentSign{
+    position: absolute;
+    top: 10%;
+    left: 37%;
+    color: rgb(0, 0, 0);
+    font-size: 26px;
+}
+
+#signupDiv{
+    backdrop-filter: blur(8px);
+    border: 2px solid rgb(255, 255, 255);
+    font-size: 28px;
+    font-weight: bolder;
+    border-radius: 10px;
+    padding-top: 40px;
+    padding-left: 50px;
+    padding-bottom: 40px;
+    padding-right: 200px;
+    box-shadow: 2px 2px 5px black;
+}
+
+#signupButton{
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    font-size: 30px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#already{
+    background-color: white;
+    width: 340px;
+    height: 30px;
+    font-size: 24px;
+    padding: 5px;
+    box-shadow: 2px 2px 5px black;
+    border-radius: 10px;
+}

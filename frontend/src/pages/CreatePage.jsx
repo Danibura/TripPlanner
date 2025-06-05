@@ -96,7 +96,7 @@ const CreatePage = () => {
   };
 
   return (
-    <div id="creaPagina">
+    <div id="createPage">
       <HomeLink />
       <div id="blur">
         <input
