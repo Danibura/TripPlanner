@@ -4,11 +4,19 @@ import { connectDB } from "./config/db.js";
 import tripRoutes from "./routes/trip.route.js";
 import userRoutes from "./routes/user.route.js";
 import authenticate from "./middleware/authenticate.js";
+import cors from "cors";
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 console.log(process.env.MONGO_URL);
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 

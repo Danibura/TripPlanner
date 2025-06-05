@@ -1,6 +1,9 @@
 import React from "react";
 import "./css/signup.css";
 import { Link } from "react-router-dom";
+import useAuth from "../store/useAuth";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const SignupPage = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -10,6 +13,7 @@ const SignupPage = () => {
   });
 
   const [message, setMessage] = useState("");
+  const { register, isLoading } = useAuth();
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -18,38 +22,78 @@ const SignupPage = () => {
     }));
   };
 
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("");
-    try {
-    } catch (err) {}
+    const result = await register(formData);
+    console.log(result.success);
+    if (result.success) {
+      setMessage(true);
+      setFormData({ name: "", birthday: "", email: "", password: "" });
+      navigate("/");
+      console.log("OKK");
+    } else {
+      setMessage(false);
+    }
   };
 
   return (
     <div id="signupPage">
       <div id="contentSign">
         <div id="signupDiv">
-          <label htmlFor="name">Name:</label>
-          <br />
-          <input type="text" name="name" id="name" />
-          <br />
-          <br />
-          <label htmlFor="birthday">Birthday:</label>
-          <br />
-          <input type="date" name="birthday" id="birthday" />
-          <br />
-          <br />
-          <label htmlFor="email">Email:</label>
-          <br />
-          <input type="email" name="email" id="email" />
-          <br />
-          <br />
-          <label htmlFor="password">Password:</label>
-          <br />
-          <input type="password" name="password" id="password" />
-          <br />
-          <br />
-          <button id="signupButton">Signup</button>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="name">Name:</label>
+            <br />
+            <input
+              type="text"
+              name="name"
+              onChange={handleChange}
+              value={formData.name}
+              required
+              placeholder="Full name"
+            />
+            <br />
+            <br />
+            <label htmlFor="birthday">Birthday:</label>
+            <br />
+            <input
+              type="date"
+              name="birthday"
+              onChange={handleChange}
+              value={formData.birthday}
+              required
+              placeholder="Birthday"
+            />
+            <br />
+            <br />
+            <label htmlFor="email">Email:</label>
+            <br />
+            <input
+              type="email"
+              name="email"
+              onChange={handleChange}
+              value={formData.email}
+              required
+              placeholder="Email"
+            />
+            <br />
+            <br />
+            <label htmlFor="password">Password:</label>
+            <br />
+            <input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              value={formData.password}
+              required
+              placeholder="Password"
+            />
+            <br />
+            <br />
+            <button type="submit" disabled={isLoading}>
+              {isLoading ? "Registering" : "Register"}
+            </button>
+          </form>
         </div>
         <br />
         <div id="already">
