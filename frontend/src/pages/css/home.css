@@ -1,5 +1,5 @@
 body {
-  background-color: white;
+  background-color: rgb(214, 135, 135);
   height: 100vh;
   overflow: hidden;
 }
@@ -72,9 +72,10 @@ body {
   color: black;
   background-color: white;
   box-shadow: 2px 2px 2px black;
-  height: 30px;
-  width: 100px;
+  height: 60px;
+  width: 300px;
   margin-left: 40px;
+  font-size: 26px;
 }
 
 #joinButton {
@@ -82,7 +83,9 @@ body {
   color: black;
   background-color: white;
   box-shadow: 2px 2px 2px black;
-  height: 30px;
-  width: 100px;
+  height: 60px;
+  width: 300px;
   margin-left: 40px;
+  margin-top: 40px;
+  font-size: 26px;
 }
