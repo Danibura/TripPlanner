@@ -20,7 +20,7 @@ export const useTripStore = create((set) => ({
       });
 
       if (!res.ok) {
-        const errorText = await res.text(); 
+        const errorText = await res.text();
         return { success: false, message: `Server error: ${errorText}` };
       }
 

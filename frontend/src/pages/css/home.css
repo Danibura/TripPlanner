@@ -67,7 +67,17 @@ body {
   right: 40px;
 }
 
-button {
+#createButton {
+  border-radius: 10px;
+  color: black;
+  background-color: white;
+  box-shadow: 2px 2px 2px black;
+  height: 30px;
+  width: 100px;
+  margin-left: 40px;
+}
+
+#joinButton {
   border-radius: 10px;
   color: black;
   background-color: white;

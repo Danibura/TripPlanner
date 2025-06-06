@@ -31,7 +31,7 @@ const LoginPage = () => {
       <div id="contentLog">
         <div id="loginDiv">
           <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Email:</label>
+            <label>Email:</label>
             <br />
             <input
               type="email"
@@ -43,7 +43,7 @@ const LoginPage = () => {
             />
             <br />
             <br />
-            <label htmlFor="password">Password:</label>
+            <label>Password:</label>
             <br />
             <input
               type="password"
@@ -55,7 +55,7 @@ const LoginPage = () => {
             />
             <br />
             <br />
-            <button type="submit" disabled={isLoading}>
+            <button type="submit" disabled={isLoading} id="loginButton">
               {isLoading ? "Registering" : "Register"}
             </button>
           </form>

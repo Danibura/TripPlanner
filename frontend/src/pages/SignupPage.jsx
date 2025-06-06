@@ -30,7 +30,7 @@ const SignupPage = () => {
       navigate("/");
       console.log("OKK");
     } else {
-      console.log("Errore")
+      console.log("Errore");
     }
   };
 
@@ -39,7 +39,7 @@ const SignupPage = () => {
       <div id="contentSign">
         <div id="signupDiv">
           <form onSubmit={handleSubmit}>
-            <label htmlFor="name">Name:</label>
+            <label>Name:</label>
             <br />
             <input
               type="text"
@@ -51,7 +51,7 @@ const SignupPage = () => {
             />
             <br />
             <br />
-            <label htmlFor="birthday">Birthday:</label>
+            <label>Birthday:</label>
             <br />
             <input
               type="date"
@@ -63,7 +63,7 @@ const SignupPage = () => {
             />
             <br />
             <br />
-            <label htmlFor="email">Email:</label>
+            <label>Email:</label>
             <br />
             <input
               type="email"
@@ -75,7 +75,7 @@ const SignupPage = () => {
             />
             <br />
             <br />
-            <label htmlFor="password">Password:</label>
+            <label>Password:</label>
             <br />
             <input
               type="password"

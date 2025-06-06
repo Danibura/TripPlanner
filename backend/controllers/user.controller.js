@@ -37,22 +37,22 @@ const register = async (req, res) => {
     const user = new User({ name, birthday, email, password });
     await user.save();
 
-    const accessToken=generateAccessToken(user)
-    const refreshToken=generateRefreshToken(user)
-    await RefreshToken.create({token:refreshToken, userId:user._id})
+    const accessToken = generateAccessToken(user);
+    const refreshToken = generateRefreshToken(user);
+    await RefreshToken.create({ token: refreshToken, userId: user._id });
 
-    const safeUser={
-      id:user._id,
-      name:user.name,
-      email:user.email
-    }
+    const safeUser = {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+    };
 
     res.status(201).json({
-      message:"Registration completed",
-      user:safeUser,
+      message: "Registration completed",
+      user: safeUser,
       accessToken,
-      refreshToken
-    })
+      refreshToken,
+    });
     res.status(201).json({ message: "Registration completed" });
   } catch (err) {
     res.status(500).json({ message: "Error during registration" });
@@ -72,13 +72,13 @@ const login = async (req, res) => {
 
     await RefreshToken.create({ token: refreshToken, userId: user._id });
 
-     const safeUser = {
+    const safeUser = {
       id: user._id,
       name: user.name,
       email: user.email,
     };
 
-     res.json({
+    res.json({
       user: safeUser,
       accessToken,
       refreshToken,
