@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import API_BASE_URL from "../../../backend/config/api";
+import API_BASE_URL from "../config";
 export const useTripStore = create((set) => ({
   trips: [],
   setTrips: (trips) => set({ trips }),

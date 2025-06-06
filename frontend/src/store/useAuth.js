@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import API_BASE_URL from "../../../backend/config/api";
+import API_BASE_URL from "../config";
 const useAuth = create((set) => ({
   user: JSON.parse(localStorage.getItem("user")) || null,
   accessToken: localStorage.getItem("accessToken") || null,
