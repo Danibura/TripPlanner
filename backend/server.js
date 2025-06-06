@@ -11,9 +11,20 @@ const PORT = process.env.PORT || 5000;
 
 console.log(process.env.MONGO_URL);
 
+const allowedOrigins = [
+  "http://localhost:5173", // sviluppo locale
+  "https://trip-planner-rust-gamma.vercel.app", // dominio deployato
+];
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
