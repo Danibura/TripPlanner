@@ -1,0 +1,55 @@
+#loginPage{
+     background-image:url("../images/sky.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    margin: 0px;
+    padding: 20px;
+}
+
+#contentLog{
+    position: absolute;
+    top: 25%;
+    left: 37%;
+    color: white;
+    font-size: 26px;
+}
+
+#loginDiv{
+    border: 2px solid white;
+    font-size: 28px;
+    border-radius: 10px;
+    padding-top: 40px;
+    padding-left: 50px;
+    padding-bottom: 40px;
+    padding-right: 200px;
+    backdrop-filter: blur(8px);
+}
+
+input{
+    width: 250px;
+    height: 60px;
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: 26px;
+}
+
+#loginButton{
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    font-size: 30px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#dont{
+    background-color: white;
+    width: 340px;
+    height: 30px;
+    font-size: 24px;
+    padding: 5px;
+    box-shadow: 2px 2px 5px black;
+    border-radius: 10px;
+    color: black;
+}
