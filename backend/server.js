@@ -32,8 +32,8 @@ app.use(
 
 app.use(express.json());
 
-app.use(`${API_BASE_URL}/api/trips`, tripRoutes);
-app.use(`${API_BASE_URL}/api/users`, userRoutes);
+app.use(`/api/trips`, tripRoutes);
+app.use(`/api/users`, userRoutes);
 
 app.get("/protected", authenticate, (req, res) => {
   res.json({ message: `Welcome ${req.user.name}`, user: req.user });
