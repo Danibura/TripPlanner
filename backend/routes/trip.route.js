@@ -15,6 +15,6 @@ router.post("/", createTrip);
 
 router.put("/:code", updateTrip);
 
-router.delete("/:code", deleteTrip);
+router.delete("/:id", deleteTrip);
 
 export default router;

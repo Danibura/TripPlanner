@@ -1,11 +1,9 @@
 import React from "react";
-import "./css/index.css";
 import { Link } from "react-router-dom";
 
 const HomePage = () => {
   var tripCode = parseInt(Math.random() * 100000000);
   return (
-    
     <div className="column">
       <Link to={`/create/${tripCode}`}>
         <button className="create">Create a trip</button>

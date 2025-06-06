@@ -29,12 +29,10 @@ export const createTrip = async (req, res) => {
   } catch (error) {
     console.error("Error in Create Trip:", error);
 
-    // Se errore di validazione di mongoose
     if (error.name === "ValidationError") {
       return res.status(400).json({ success: false, message: error.message });
     }
 
-    // Altri errori server
     return res.status(500).json({ success: false, message: error.message });
   }
 };
@@ -57,7 +55,7 @@ export const updateTrip = async (req, res) => {
 
     res.status(200).json({ success: true, data: updatedTrip });
   } catch (error) {
-    console.log("error in deliting trip");
+    console.log("error in updating trip");
     res.status(500).json({ success: false, message: error.message });
   }
 };
