@@ -1,5 +1,5 @@
 import { create } from "zustand";
-
+import API_BASE_URL from "../../../backend/config/api";
 const useAuth = create((set) => ({
   user: JSON.parse(localStorage.getItem("user")) || null,
   accessToken: localStorage.getItem("accessToken") || null,
@@ -10,7 +10,7 @@ const useAuth = create((set) => ({
   register: async (formData) => {
     set({ isLoading: true, error: null });
     try {
-      const res = await fetch("http://localhost:5000/api/users/register", {
+      const res = await fetch(`${API_BASE_URL}/api/users/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const useAuth = create((set) => ({
   login: async (formData) => {
     set({ isLoading: true, error: null });
     try {
-      const res = await fetch("http://localhost:5000/api/users/login", {
+      const res = await fetch(`${API_BASE_URL}/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

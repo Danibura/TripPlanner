@@ -1,5 +1,5 @@
 import { create } from "zustand";
-
+import API_BASE_URL from "../../../backend/config/api";
 export const useTripStore = create((set) => ({
   trips: [],
   setTrips: (trips) => set({ trips }),
@@ -11,7 +11,7 @@ export const useTripStore = create((set) => ({
     }
 
     try {
-      const res = await fetch("/api/trips", {
+      const res = await fetch(`${API_BASE_URL}/api/trips`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,19 +36,22 @@ export const useTripStore = create((set) => ({
     }
   },
   fetchTrips: async () => {
-    const res = await fetch("/api/trips");
+    const res = await fetch(`${API_BASE_URL}/api/trips`);
     const data = await res.json();
     set({ trips: data.data });
   },
   modifyTrip: async (updatedTrip) => {
     try {
-      const res = await fetch(`/api/trips/${updatedTrip.accessCode}`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(updatedTrip),
-      });
+      const res = await fetch(
+        `${API_BASE_URL}/api/trips/${updatedTrip.accessCode}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(updatedTrip),
+        }
+      );
 
       if (!res.ok) {
         const errorText = await res.text();
