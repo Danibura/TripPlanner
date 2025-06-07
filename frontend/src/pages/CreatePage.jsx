@@ -6,6 +6,8 @@ import MapComponent from "../components/MapComponent";
 import { OpenStreetMapProvider } from "leaflet-geosearch";
 import Activity from "../components/Activity";
 import HomeLink from "../components/HomeLink";
+import { jwtDecode } from "jwt-decode";
+
 const provider = new OpenStreetMapProvider();
 
 const CreatePage = () => {
@@ -17,7 +19,8 @@ const CreatePage = () => {
     accessCode: "",
     usefulInfo: "",
     activities: [],
-    users: []
+    organizers: [],
+    participants: [],
   });
 
   //Coords and suggestions for location
@@ -46,16 +49,32 @@ const CreatePage = () => {
 
   //Fill fields and map with the info of the trip
   useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    const decoded = jwtDecode(token);
+    const email = decoded.email;
     const match = trips.find((trip) => trip.accessCode === tripCode);
     if (match) {
-      setNewTrip({ ...match });
+      setNewTrip({
+        ...match,
+        participants:
+          match.participants?.includes(email) ||
+          match.organizers?.includes(email)
+            ? match.participants
+            : [...match.participants, email],
+      });
       provider.search({ query: match.destination }).then((results) => {
         if (results && results.length > 0) {
           const { x, y } = results[0];
           setCoords([y, x]);
         }
       });
-    }
+    } else
+      setNewTrip((prevTrip) => ({
+        ...prevTrip,
+        organizers: prevTrip.organizers?.includes(email)
+          ? prevTrip.organizers
+          : [...prevTrip.organizers, email],
+      }));
   }, [trips, tripCode]);
 
   //Updates map
@@ -167,6 +186,13 @@ const CreatePage = () => {
               setNewTrip({ ...newTrip, usefulInfo: e.target.value })
             }
           ></textarea>
+        </div>
+        <div id="box-participants">
+          <h3 id="title-participants">Participants</h3>
+          <div id="box-participants-icon">
+            {newTrip.organizers.map((organizer) => organizer + ", ")}
+            {newTrip.participants.map((participant) => participant + ", ")}
+          </div>
         </div>
       </div>
 

@@ -215,3 +215,28 @@
     background-color: rgb(255, 255, 255);
     border: 5px solid rgb(0, 132, 255);
 }
+
+#box-participants{
+    width: 800px;
+    max-height: 200px;
+    margin-left: 20px;
+    margin-top: 20px;
+    padding:12px;
+    color: white;
+    display: flex;
+}
+
+#title-participants{
+    color: white;
+    font-family: "Chewy", system-ui;
+    font-style: normal;
+    letter-spacing: 0.1rem;
+    font-size: 28px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#box-participants-icon{
+    margin-left: 20px;
+    margin-top: 10px;
+}

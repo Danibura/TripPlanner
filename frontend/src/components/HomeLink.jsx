@@ -5,7 +5,7 @@ const HomeLink = () => {
     <Link to="/">
       <div>
         <span
-          class="material-symbols-outlined"
+          className="material-symbols-outlined"
           style={{
             color: "#fff",
             background:

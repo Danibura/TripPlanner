@@ -6,6 +6,7 @@ export const useTripStore = create((set) => ({
   selectedCode: null, // valore iniziale
   setSelectedCode: (code) => set({ selectedCode: code }),
   createTrip: async (newTrip) => {
+    console.log(API_BASE_URL);
     if (!newTrip.destination || !newTrip.departureDate || !newTrip.returnDate) {
       return { success: false, message: "Please fill in all fields" };
     }
@@ -58,7 +59,7 @@ export const useTripStore = create((set) => ({
         return { success: false, message: `Server error ${errorText}` };
       }
 
-      const data = await res.json(); // prendi il trip aggiornato
+      const data = await res.json();
       set((state) => ({
         trips: state.trips.map((trip) =>
           trip.accessCode === data.data.accessCode ? data.data : trip
