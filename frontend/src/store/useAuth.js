@@ -6,6 +6,8 @@ const useAuth = create((set) => ({
   refreshToken: localStorage.getItem("refreshToken") || null,
   error: null,
   isLoading: false,
+  users: [],
+  setUsers: (users) => set({ users }),
 
   register: async (formData) => {
     set({ isLoading: true, error: null });
@@ -76,6 +78,29 @@ const useAuth = create((set) => ({
       refreshToken: null,
       error: null,
     });
+  },
+
+  findUser: async (email) => {
+    try {
+      const res = await fetch(
+        `${API_BASE_URL}/api/users/email/${encodeURIComponent(email)}`
+      );
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "User not found");
+      return { success: true, data: data.user };
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  fetchUsers: async () => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/users`);
+      const data = await res.json();
+      set({ users: data.data });
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
   },
 }));
 

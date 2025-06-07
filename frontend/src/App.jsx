@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import JoinPage from "./pages/JoinPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/home" element={<HomePage />} />
       <Route path="/create/:tripCode" element={<CreatePage />} />
       <Route path="/join" element={<JoinPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
     </Routes>
   );
 }
