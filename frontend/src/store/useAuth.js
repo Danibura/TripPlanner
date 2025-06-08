@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import API_BASE_URL from "../config";
+import { updateTrip } from "../../../backend/controllers/trip.controller";
 const useAuth = create((set) => ({
   user: JSON.parse(localStorage.getItem("user")) || null,
   accessToken: localStorage.getItem("accessToken") || null,
@@ -98,6 +99,32 @@ const useAuth = create((set) => ({
       const res = await fetch(`${API_BASE_URL}/api/users`);
       const data = await res.json();
       set({ users: data.data });
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+
+  modifyUser: async (updatedUser) => {
+    try {
+      const res = await fetch(
+        `${API_BASE_URL}/api/users/${updatedUser.email}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedUser),
+        }
+      );
+
+      if (!res.ok) return { success: false, message: "Error" };
+      const data = await res.json();
+      set((state) => ({
+        users: state.users.map((user) =>
+          user.email === updatedUser.email ? data.data : user
+        ),
+      }));
+      return { success: true, data: data.data };
     } catch (err) {
       return { success: false, message: err.message };
     }
