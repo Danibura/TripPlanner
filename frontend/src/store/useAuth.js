@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import API_BASE_URL from "../config";
-import { updateTrip } from "../../../backend/controllers/trip.controller";
+
 const useAuth = create((set) => ({
   user: JSON.parse(localStorage.getItem("user")) || null,
   accessToken: localStorage.getItem("accessToken") || null,
