@@ -7,8 +7,6 @@ const useAuth = create((set) => ({
   refreshToken: localStorage.getItem("refreshToken") || null,
   error: null,
   isLoading: false,
-  users: [],
-  setUsers: (users) => set({ users }),
 
   register: async (formData) => {
     set({ isLoading: true, error: null });
@@ -119,11 +117,16 @@ const useAuth = create((set) => ({
 
       if (!res.ok) return { success: false, message: "Error" };
       const data = await res.json();
-      set((state) => ({
-        users: state.users.map((user) =>
-          user.email === updatedUser.email ? data.data : user
-        ),
-      }));
+
+      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("accessToken", data.accessToken);
+      localStorage.setItem("refreshToken", data.refreshToken);
+      set({
+        user: data.user || null,
+        accessToken: data.accessToken,
+        refreshToken: data.refreshToken,
+        isLoading: false,
+      });
       return { success: true, data: data.data };
     } catch (err) {
       return { success: false, message: err.message };

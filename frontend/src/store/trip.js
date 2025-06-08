@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import API_BASE_URL from "../config";
+import { getTripByCode } from "../../../backend/controllers/trip.controller";
 export const useTripStore = create((set) => ({
   trips: [],
   setTrips: (trips) => set({ trips }),
@@ -69,6 +70,18 @@ export const useTripStore = create((set) => ({
       return { success: true };
     } catch (err) {
       console.error(err);
+      return { success: false, message: err.message };
+    }
+  },
+  getTripByCode: async (code) => {
+    try {
+      const res = await fetch(
+        `${API_BASE_URL}/api/trips/${encodeURIComponent(code)}`
+      );
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Trip not ");
+      return { success: true, data: data.trip };
+    } catch (err) {
       return { success: false, message: err.message };
     }
   },

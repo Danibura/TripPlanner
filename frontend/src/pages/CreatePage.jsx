@@ -7,6 +7,7 @@ import { OpenStreetMapProvider } from "leaflet-geosearch";
 import Activity from "../components/Activity";
 import HomeLink from "../components/HomeLink";
 import { jwtDecode } from "jwt-decode";
+import useAuth from "../store/useAuth";
 
 const provider = new OpenStreetMapProvider();
 
@@ -23,18 +24,14 @@ const CreatePage = () => {
     participants: [],
   });
 
-  //Coords and suggestions for location
+  //States
   const [coords, setCoords] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const { createTrip, modifyTrip, fetchTrips, trips } = useTripStore();
-
-  //Fetch trips and get access code
-  const { tripCode } = useParams();
-  useEffect(() => {
-    fetchTrips();
-    setNewTrip((prev) => ({ ...prev, accessCode: tripCode.toString() }));
-  }, []);
-
+  const [currentUser, setCurrentUser] = useState(null);
+  const { findUser, modifyUser } = useAuth();
+  var { tripCode } = useParams();
+  var tripCode = tripCode.trim();
   //Update or create trip
   const handleSaveTrip = async () => {
     const existing = trips.find((t) => t.accessCode === newTrip.accessCode);
@@ -45,37 +42,15 @@ const CreatePage = () => {
       const { success, message } = await createTrip(newTrip);
       console.log("Created:", newTrip, success, message);
     }
+    const updatedUser = {
+      ...currentUser,
+      trips: [...currentUser.trips, tripCode],
+    };
+    setCurrentUser(updatedUser);
+    const res = await modifyUser(updatedUser);
+    if (!res.success) console.log("Error", res.message);
+    else console.log("Trip added to the user");
   };
-
-  //Fill fields and map with the info of the trip
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    const decoded = jwtDecode(token);
-    const email = decoded.email;
-    const match = trips.find((trip) => trip.accessCode === tripCode);
-    if (match) {
-      setNewTrip({
-        ...match,
-        participants:
-          match.participants?.includes(email) ||
-          match.organizers?.includes(email)
-            ? match.participants
-            : [...match.participants, email],
-      });
-      provider.search({ query: match.destination }).then((results) => {
-        if (results && results.length > 0) {
-          const { x, y } = results[0];
-          setCoords([y, x]);
-        }
-      });
-    } else
-      setNewTrip((prevTrip) => ({
-        ...prevTrip,
-        organizers: prevTrip.organizers?.includes(email)
-          ? prevTrip.organizers
-          : [...prevTrip.organizers, email],
-      }));
-  }, [trips, tripCode]);
 
   //Updates map
   const updateMapFromDestination = (destination) => {
@@ -114,6 +89,54 @@ const CreatePage = () => {
       activities: [...prev.activities, ""],
     }));
   };
+
+  //Fetch user
+  useEffect(() => {
+    const fetchUser = async () => {
+      const token = localStorage.getItem("accessToken");
+      const decoded = jwtDecode(token);
+      const email = decoded.email;
+      const res = await findUser(email);
+      const user = res.data;
+      if (res.success) setCurrentUser(user);
+      else console.error(res.message);
+    };
+    fetchUser();
+  }, []);
+
+  //Fill fields and map with the info of the trip
+  useEffect(() => {
+    if (!currentUser) return;
+    const match = trips.find((trip) => trip.accessCode === tripCode);
+    if (match) {
+      setNewTrip({
+        ...match,
+        participants:
+          match.participants?.includes(currentUser.email) ||
+          match.organizers?.includes(currentUser.email)
+            ? match.participants
+            : [...match.participants, currentUser.email],
+      });
+      provider.search({ query: match.destination }).then((results) => {
+        if (results && results.length > 0) {
+          const { x, y } = results[0];
+          setCoords([y, x]);
+        }
+      });
+    } else
+      setNewTrip((prevTrip) => ({
+        ...prevTrip,
+        organizers: prevTrip.organizers?.includes(currentUser.email)
+          ? prevTrip.organizers
+          : [...prevTrip.organizers, currentUser.email],
+      }));
+  }, [trips, tripCode, currentUser]);
+
+  //Fetch trips and set access code
+  useEffect(() => {
+    fetchTrips();
+    setNewTrip((prev) => ({ ...prev, accessCode: tripCode.toString() }));
+  }, []);
 
   return (
     <div id="createPage">

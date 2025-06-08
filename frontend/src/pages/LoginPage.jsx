@@ -23,7 +23,7 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const result = await login(formData);
-    if (result.success) navigate("/home");
+    if (result.success) navigate("/myTrips");
     else alert(result.message);
   };
   return (
