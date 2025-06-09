@@ -50,8 +50,7 @@
 }
 
 #createButton{
-    margin-left:100px;
-    margin-left:100px;
+
     background: rgb(19, 32, 107, 0.8);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
@@ -59,6 +58,10 @@
     border: 0px;
     box-shadow: 2px 2px 2px rgb(30,30,30);;
     color:rgb(226, 226, 226);
+}
+
+#create-link{
+    margin-left:100px;
 }
 
 #joinButton{
@@ -111,23 +114,29 @@
 }
 
 #filters:hover{
-    filter: brightness(1.05);
     cursor: pointer;
 }
 
 #dropdown-filters-menu{
-    display: none;
     position: absolute;
-    top:50px;
+    top:30px;
     left: -80px;
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
     border: 0px;
-    transition: opacity 1s ease-in-out;
+    transition: transform 0.5s ease, opacity 0.5s ease, width 0.5s ease;
+    width: 0px;
     z-index: 3;
     box-shadow: 0px 2px 2px rgb(30,30,30);
+    opacity: 0;
 }
 
+#dropdown-filters-menu.drop{
+    transform: translateY(25px);
+    opacity:1;
+    box-shadow: 0px 2px 2px rgb(30,30,30);
+    width: 230px;
+}
 
 #dropdown-filters-menu button{
     background-color: transparent;

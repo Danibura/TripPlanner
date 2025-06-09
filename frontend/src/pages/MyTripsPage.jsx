@@ -34,6 +34,22 @@ const MyTripsPage = () => {
     setFilteredTrips(fTrips);
   };
 
+  const sortAlphabetical = () => {
+    setSelectedFilter(1);
+    setFilteredTrips(
+      trips.sort((a, b) => a.destination.localeCompare(b.destination))
+    );
+  };
+
+  const sortChronological = () => {
+    setSelectedFilter(2);
+    setFilteredTrips(
+      trips.sort(
+        (a, b) => new Date(a.departureDate) - new Date(b.departureDate)
+      )
+    );
+  };
+
   useEffect(() => {
     const fetchUser = async () => {
       const res = await findUser(email);
@@ -61,7 +77,9 @@ const MyTripsPage = () => {
   }, [currentUser]);
 
   useEffect(() => {
-    setFilteredTrips(trips);
+    setFilteredTrips(
+      trips.sort((a, b) => a.destination.localeCompare(b.destination))
+    );
   }, [trips]);
 
   return (
@@ -109,20 +127,15 @@ const MyTripsPage = () => {
             onClick={() => {
               setShowFilters(!showFilters);
             }}
+            style={{
+              filter: showFilters ? "brightness(1.2)" : "none",
+            }}
           >
             instant_mix
           </button>
-          <div
-            id="dropdown-filters-menu"
-            style={{
-              display: showFilters ? "block" : "none",
-              opacity: showFilters ? 1 : 0,
-            }}
-          >
+          <div id="dropdown-filters-menu" className={showFilters ? "drop" : ""}>
             <button
-              onClick={() => {
-                setSelectedFilter(1);
-              }}
+              onClick={sortAlphabetical}
               style={{
                 color: selectedFilter == 1 && "rgb(3, 10, 97)",
               }}
@@ -133,9 +146,7 @@ const MyTripsPage = () => {
               Alphabetical
             </button>
             <button
-              onClick={() => {
-                setSelectedFilter(2);
-              }}
+              onClick={sortChronological}
               style={{
                 color: selectedFilter == 2 && "rgb(3, 10, 97)",
               }}
@@ -148,7 +159,7 @@ const MyTripsPage = () => {
           </div>
         </div>
 
-        <Link to={`/create/ ${tripCode}`}>
+        <Link to={`/create/ ${tripCode}`} id="create-link">
           <button id="createButton">Create</button>
         </Link>
         <Link to={`/join`}>
