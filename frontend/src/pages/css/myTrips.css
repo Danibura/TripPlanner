@@ -23,13 +23,12 @@
 #options-box{
     background: rgba(36, 36, 36, 0.1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 20px 0px;
     z-index: 1;
     display: flex;
     align-items: center;
+    height: 60px;
 }
 
 #myTrips-title{
@@ -75,18 +74,20 @@
 
 #createButton:hover{
     box-shadow: 2px 2px 2px rgb(226, 226, 226);
-    cursor:pointer
+    cursor:pointer;
+    filter:brightness(1.2)
 }
 
 #joinButton:hover{
     box-shadow: 2px 2px 2px rgb(226, 226, 226);
-    cursor:pointer
+    cursor:pointer;
+    filter:brightness(1.2)
 }
 
 #logout{
     background-color: rgb(73, 98, 180);
     color: rgb(8, 27, 138);
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     border: 0px;
     cursor: pointer;
     padding: 20px;
@@ -98,8 +99,45 @@
     right: 40px;
 }
 
+#dropdown-filters-box{
+    margin-left: 40px;
+    position: relative;
+    z-index: 2;
+}    
+
 #filters{
     background-color: rgb(226, 226, 226);
     color: rgb(30,30,30);
-    margin-left: 40px;
+}
+
+#filters:hover{
+    filter: brightness(1.05);
+    cursor: pointer;
+}
+
+#dropdown-filters-menu{
+    display: none;
+    position: absolute;
+    top:50px;
+    left: -80px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    border: 0px;
+    transition: opacity 1s ease-in-out;
+    z-index: 3;
+    box-shadow: 0px 2px 2px rgb(30,30,30);
+}
+
+
+#dropdown-filters-menu button{
+    background-color: transparent;
+    color: rgb(30,30,30);
+    display: flex;
+    font-size: 26px;
+    border: 0px;
+}
+
+#dropdown-filters-menu button:hover{
+    color: rgb(26, 138, 230);
+    cursor: pointer;
 }

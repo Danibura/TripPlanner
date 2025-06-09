@@ -20,6 +20,8 @@ const MyTripsPage = () => {
   const [filteredTrips, setFilteredTrips] = useState([]);
   const { getTripByCode } = useTripStore();
   const [searched, setSearched] = useState("");
+  const [showFilters, setShowFilters] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState(1);
   const handleLogout = async () => {
     logout();
   };
@@ -84,6 +86,7 @@ const MyTripsPage = () => {
             className="material-symbols-outlined"
             id="logout"
             onClick={handleLogout}
+            title="Logout"
           >
             logout
           </button>
@@ -99,9 +102,52 @@ const MyTripsPage = () => {
             handleSearchedChange(e);
           }}
         />
-        <button className="material-symbols-outlined" id="filters">
-          instant_mix
-        </button>
+        <div id="dropdown-filters-box">
+          <button
+            className="material-symbols-outlined"
+            id="filters"
+            onClick={() => {
+              setShowFilters(!showFilters);
+            }}
+          >
+            instant_mix
+          </button>
+          <div
+            id="dropdown-filters-menu"
+            style={{
+              display: showFilters ? "block" : "none",
+              opacity: showFilters ? 1 : 0,
+            }}
+          >
+            <button
+              onClick={() => {
+                setSelectedFilter(1);
+              }}
+              style={{
+                color: selectedFilter == 1 && "rgb(3, 10, 97)",
+              }}
+            >
+              {selectedFilter == 1 && (
+                <span className="material-symbols-outlined">check</span>
+              )}
+              Alphabetical
+            </button>
+            <button
+              onClick={() => {
+                setSelectedFilter(2);
+              }}
+              style={{
+                color: selectedFilter == 2 && "rgb(3, 10, 97)",
+              }}
+            >
+              {selectedFilter == 2 && (
+                <span className="material-symbols-outlined">check</span>
+              )}
+              Chronological
+            </button>
+          </div>
+        </div>
+
         <Link to={`/create/ ${tripCode}`}>
           <button id="createButton">Create</button>
         </Link>
