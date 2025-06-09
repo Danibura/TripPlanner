@@ -1,0 +1,38 @@
+#confirmWindow{
+    position: fixed;
+    top: 35%;
+    left: 35%;
+    width: 450px;
+    height: 100px;
+    background-color: white;
+    border-radius: 20px;
+    z-index: 4;
+    padding: 30px;
+    box-shadow: 2px 2px 2px black;
+}
+#confirmWindow h3{
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+#confirmWindow #yes-no-div{
+    padding-bottom: 20px;
+}
+#confirmWindow #yes{
+    background-color: rgb(223, 112, 112);
+    color: rgb(97, 0, 0);
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0px 2px 2px rgb(30,30,30);
+    border: 0px;
+}
+
+#confirmWindow #no{
+    background-color: rgb(165, 165, 165);
+    color: rgb(36, 36, 36);
+    border-radius: 20px;
+    margin-left: 30px;
+     cursor: pointer;
+     box-shadow: 0px 2px 2px rgb(30,30,30);
+     border: 0px;
+}

@@ -7,6 +7,7 @@ import { useTripStore } from "../store/trip";
 import { useState } from "react";
 import { useEffect } from "react";
 import Trip from "../components/Trip";
+import ConfirmWindow from "../components/ConfirmWindow";
 
 const MyTripsPage = () => {
   const token = localStorage.getItem("accessToken");
@@ -15,13 +16,15 @@ const MyTripsPage = () => {
   const email = decoded.email;
   var tripCode = parseInt(Math.random() * 100000000);
   const [currentUser, setCurrentUser] = useState(null);
-  const { findUser, logout } = useAuth();
+  const { findUser, logout, modifyUser } = useAuth();
   const [trips, setTrips] = useState([]);
   const [filteredTrips, setFilteredTrips] = useState([]);
-  const { getTripByCode } = useTripStore();
+  const { getTripByCode, modifyTrip } = useTripStore();
   const [searched, setSearched] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(1);
+  const [clickedBin, setClickedBin] = useState(0);
+
   const handleLogout = async () => {
     logout();
   };
@@ -31,25 +34,77 @@ const MyTripsPage = () => {
     const fTrips = trips.filter(
       (trip) => !trip.destination.indexOf(e.target.value)
     );
-    setFilteredTrips(fTrips);
+    if (selectedFilter == 1)
+      setFilteredTrips(
+        fTrips.sort((a, b) => a.destination.localeCompare(b.destination))
+      );
+    else
+      setFilteredTrips(
+        fTrips.sort(
+          (a, b) => new Date(a.departureDate) - new Date(b.departureDate)
+        )
+      );
   };
 
   const sortAlphabetical = () => {
     setSelectedFilter(1);
     setFilteredTrips(
-      trips.sort((a, b) => a.destination.localeCompare(b.destination))
+      filteredTrips.sort((a, b) => a.destination.localeCompare(b.destination))
     );
   };
 
   const sortChronological = () => {
     setSelectedFilter(2);
     setFilteredTrips(
-      trips.sort(
+      filteredTrips.sort(
         (a, b) => new Date(a.departureDate) - new Date(b.departureDate)
       )
     );
   };
 
+  const removeTrip = async () => {
+    const updatedUser = {
+      ...currentUser,
+      trips: currentUser.trips.filter((trip) => trip !== clickedBin),
+    };
+    try {
+      await modifyUser(updatedUser);
+    } catch (err) {
+      console.log(err.message);
+    }
+    setCurrentUser(updatedUser);
+    const newTrips = await fetchTrips(updatedUser);
+    setTrips(newTrips);
+    try {
+      const res = await getTripByCode(clickedBin);
+      const data = res.data;
+      const removedTrip = {
+        ...data,
+        participants: data.participants.filter(
+          (participant) => participant != email
+        ),
+        organizers: data.organizers.filter((organizer) => organizer != email),
+      };
+      await modifyTrip(removedTrip);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const fetchTrips = async (user) => {
+    if (!user) return;
+    const accessCodes = user.trips;
+    var newTrips = [];
+    for (let i = 0; i < accessCodes.length; i++) {
+      const res = await getTripByCode(accessCodes[i].trim());
+      const trip = res.data;
+      newTrips = [...newTrips, trip];
+    }
+    setTrips(newTrips);
+    return newTrips;
+  };
+
+  //Finds user
   useEffect(() => {
     const fetchUser = async () => {
       const res = await findUser(email);
@@ -59,26 +114,17 @@ const MyTripsPage = () => {
     fetchUser();
   }, []);
 
+  //Finds trips
   useEffect(() => {
-    const fetchTrips = async () => {
-      if (!currentUser) return;
-      const accessCodes = currentUser.trips;
-      for (let i = 0; i < accessCodes.length; i++) {
-        const res = await getTripByCode(accessCodes[i].trim());
-        const trip = res.data;
-        setTrips((prevTrips) => {
-          if (prevTrips.some((t) => t.accessCode == trip.accessCode))
-            return prevTrips;
-          else return [...prevTrips, trip];
-        });
-      }
-    };
-    fetchTrips();
+    fetchTrips(currentUser);
   }, [currentUser]);
 
+  //Set filtered trips
   useEffect(() => {
     setFilteredTrips(
-      trips.sort((a, b) => a.destination.localeCompare(b.destination))
+      trips
+        .filter((trip) => !trip.destination.indexOf(searched))
+        .sort((a, b) => a.destination.localeCompare(b.destination))
     );
   }, [trips]);
 
@@ -167,16 +213,20 @@ const MyTripsPage = () => {
         </Link>
       </div>
       <div id="trips-list">
-        {filteredTrips.map((trip, index) => (
+        {filteredTrips?.map((trip, index) => (
           <Trip
             key={index}
             destination={trip.destination}
             departureDate={trip.departureDate}
             returnDate={trip.returnDate}
             code={trip.accessCode}
+            setClickedBin={setClickedBin}
           />
         ))}
       </div>
+      {clickedBin != 0 && (
+        <ConfirmWindow removeTrip={removeTrip} setClickedBin={setClickedBin} />
+      )}
     </div>
   );
 };

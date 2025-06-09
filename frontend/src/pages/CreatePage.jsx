@@ -8,7 +8,7 @@ import Activity from "../components/Activity";
 import HomeLink from "../components/HomeLink";
 import { jwtDecode } from "jwt-decode";
 import useAuth from "../store/useAuth";
-
+import Pfp from "../components/Pfp";
 const provider = new OpenStreetMapProvider();
 
 const CreatePage = () => {
@@ -30,9 +30,12 @@ const CreatePage = () => {
   const { createTrip, modifyTrip, fetchTrips, trips } = useTripStore();
   const [currentUser, setCurrentUser] = useState(null);
   const { findUser, modifyUser } = useAuth();
+  const [participants, setParticipants] = useState([]);
+  const [organizers, setOrganizers] = useState([]);
   var { tripCode } = useParams();
   tripCode = tripCode.trim();
   const [join, setJoin] = useState(false);
+
   //Update or create trip
   const handleSaveTrip = async () => {
     var ok = true;
@@ -164,6 +167,34 @@ const CreatePage = () => {
     setNewTrip((prev) => ({ ...prev, accessCode: tripCode.toString() }));
   }, []);
 
+  useEffect(() => {
+    const fetchAllParticipants = async () => {
+      const resultsParticipants = await Promise.all(
+        newTrip.participants.map((participant) => findUser(participant))
+      );
+      const validParticipants = resultsParticipants
+        .filter((res) => res.success)
+        .map((res) => res.data);
+
+      setParticipants(validParticipants);
+    };
+    fetchAllParticipants();
+  }, [newTrip.participants]);
+
+  useEffect(() => {
+    const fetchAllOrganizers = async () => {
+      const resultsOrganizers = await Promise.all(
+        newTrip.organizers.map((participant) => findUser(participant))
+      );
+      const validOrganizers = resultsOrganizers
+        .filter((res) => res.success)
+        .map((res) => res.data);
+
+      setOrganizers(validOrganizers);
+    };
+    fetchAllOrganizers();
+  }, [newTrip.organizers]);
+
   return (
     <div id="createPage">
       <HomeLink />
@@ -239,8 +270,12 @@ const CreatePage = () => {
         <div id="box-participants">
           <h3 id="title-participants">Participants</h3>
           <div id="box-participants-icon">
-            {newTrip.organizers.map((organizer) => organizer + ", ")}
-            {newTrip.participants.map((participant) => participant + ", ")}
+            {organizers.map((organizer) => (
+              <Pfp num={organizer.pfp} size="50px" key={organizer.email} />
+            ))}
+            {participants.map((participant) => (
+              <Pfp num={participant.pfp} size="50px" key={participant.email} />
+            ))}
           </div>
         </div>
       </div>

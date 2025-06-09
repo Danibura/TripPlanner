@@ -123,3 +123,7 @@
     display: flex;
     align-items: center;
 }
+
+#arrowBack{
+    cursor: pointer;
+}

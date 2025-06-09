@@ -4,6 +4,7 @@ import useAuth from "../store/useAuth";
 import { useEffect } from "react";
 import "./css/profile.css";
 import { jwtDecode } from "jwt-decode";
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
   const { findUser, modifyUser } = useAuth();
@@ -50,6 +51,11 @@ const ProfilePage = () => {
     <div id="profilePage">
       {currentUser ? (
         <div id="box-user-info">
+          <Link to={"/myTrips"}>
+            <button className="material-symbols-outlined" id="arrowBack">
+              arrow_back
+            </button>
+          </Link>
           <div id="row1">
             <h1 id="yourProfileTitle">Your &nbsp; profile</h1>
             <div

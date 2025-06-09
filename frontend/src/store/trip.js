@@ -79,7 +79,7 @@ export const useTripStore = create((set) => ({
         `${API_BASE_URL}/api/trips/${encodeURIComponent(code)}`
       );
       const data = await res.json();
-      if (!res.ok) throw new Error(data.message || "Trip not ");
+      if (!res.success) console.log(res.message);
       return { success: true, data: data.trip };
     } catch (err) {
       return { success: false, message: err.message };

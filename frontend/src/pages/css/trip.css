@@ -47,3 +47,12 @@
 #returnDate-line{
     width: 300px;
 }
+
+#bin{
+    position: absolute;
+    right: 40px;
+    cursor: pointer;
+    z-index: 2;
+    box-shadow: 2px 2px 2px rgb(30,30,30);
+    border: 0px;
+}
