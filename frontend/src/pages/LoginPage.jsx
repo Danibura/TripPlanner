@@ -3,7 +3,7 @@ import "./css/login.css";
 import { Link } from "react-router-dom";
 import useAuth from "../store/useAuth";
 import { useNavigate } from "react-router-dom";
-
+import { useEffect } from "react";
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -26,6 +26,7 @@ const LoginPage = () => {
     if (result.success) navigate("/myTrips");
     else alert(result.message);
   };
+
   return (
     <div id="loginPage">
       <div id="contentLog">

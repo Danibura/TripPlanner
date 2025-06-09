@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+
+#link-trip{
+    text-decoration: none;
+}
+
+#trip-line{
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    font-size: 30px;
+    align-items: center;
+    font-family: "Delius", cursive;
+    color: rgb(30,30,30);
+}
+
+#trip-line:hover{
+    background: rgba(255, 255, 255, 0.8);
+}
+#trip-line div{
+    margin: 20px 50px;
+}
+#destination-line{
+
+}
+
+#departureDate-line{
+}
+
+#returnDate-line{
+}

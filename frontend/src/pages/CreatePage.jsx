@@ -31,25 +31,53 @@ const CreatePage = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const { findUser, modifyUser } = useAuth();
   var { tripCode } = useParams();
-  var tripCode = tripCode.trim();
+  tripCode = tripCode.trim();
+  const [join, setJoin] = useState(false);
   //Update or create trip
   const handleSaveTrip = async () => {
+    const ok = true;
+    if (!newTrip.destination) {
+      alert("Please choose a destination");
+      ok = false;
+    }
+    if (!newTrip.departureDate) {
+      alert("Please choose a departure date");
+      ok = false;
+    }
+    if (!newTrip.returnDate) {
+      alert("Please choose a return date");
+      ok = false;
+    }
+    if (!ok) return;
+    const updatedTrip = {
+      ...newTrip,
+      participants:
+        newTrip.participants?.includes(currentUser.email) ||
+        newTrip.organizers?.includes(currentUser.email)
+          ? newTrip.participants
+          : [...newTrip.participants, currentUser.email],
+    };
+
     const existing = trips.find((t) => t.accessCode === newTrip.accessCode);
     if (existing) {
-      const { success, message } = await modifyTrip(newTrip);
+      const { success, message } = await modifyTrip(updatedTrip);
       console.log("Updated ", success, message);
     } else {
-      const { success, message } = await createTrip(newTrip);
+      const { success, message } = await createTrip(updatedTrip);
       console.log("Created:", newTrip, success, message);
     }
+    setNewTrip(updatedTrip);
     const updatedUser = {
       ...currentUser,
-      trips: [...currentUser.trips, tripCode],
+      trips: currentUser.trips.includes(tripCode)
+        ? currentUser.trips
+        : [...currentUser.trips, tripCode],
     };
     setCurrentUser(updatedUser);
     const res = await modifyUser(updatedUser);
     if (!res.success) console.log("Error", res.message);
     else console.log("Trip added to the user");
+    alert("Trip saved successfully");
   };
 
   //Updates map
@@ -109,14 +137,12 @@ const CreatePage = () => {
     if (!currentUser) return;
     const match = trips.find((trip) => trip.accessCode === tripCode);
     if (match) {
-      setNewTrip({
-        ...match,
-        participants:
-          match.participants?.includes(currentUser.email) ||
-          match.organizers?.includes(currentUser.email)
-            ? match.participants
-            : [...match.participants, currentUser.email],
-      });
+      setNewTrip(match);
+      if (
+        !match.participants?.includes(currentUser.email) &&
+        !match.organizers?.includes(currentUser.email)
+      )
+        setJoin(true);
       provider.search({ query: match.destination }).then((results) => {
         if (results && results.length > 0) {
           const { x, y } = results[0];
@@ -230,7 +256,7 @@ const CreatePage = () => {
           <textarea id="code-area" value={tripCode} readOnly />
         </div>
         <button id="save" onClick={handleSaveTrip}>
-          Save
+          {join ? "Join" : "Save"}
         </button>
       </div>
     </div>

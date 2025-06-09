@@ -1,31 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
 #myTripsPage{
     background-color: rgb(216, 231, 255);
     height: 100vh;
 }
 
 #header{
-    background-color: white;
-    color: rgb(0, 0, 0);
+    background: linear-gradient(rgb(25, 73, 145), rgb(58, 116, 202));
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     font-weight: bold;
     padding: 40px;
-    font-family: "Delius", cursive;
+    
+
     display: flex;
     align-items: center;
-    border-bottom: 2px solid black;
     z-index: 2;
 }
 
 #options-box{
-    background-color: rgb(231, 231, 231);
+    background: rgba(36, 36, 36, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 20px 0px;
     z-index: 1;
+    display: flex;
+    align-items: center;
 }
 
 #myTrips-title{
+    font-family: "Playball", cursive;
     margin-left: 40px;
-    font-size: 40px;
+    font-size: 60px;
+        background: linear-gradient(to right,rgb(243, 243, 243), rgb(216, 216, 216));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #search{
@@ -34,5 +47,59 @@
     color: rgb(24, 23, 23);
     margin-left: 40px;
     border: 0px;
-    box-shadow: 2px 2px 2px black;
+    box-shadow: 2px 2px 2px rgb(30,30,30);;
+}
+
+#createButton{
+    margin-left:100px;
+    margin-left:100px;
+    background: rgb(19, 32, 107, 0.8);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 0px;
+    box-shadow: 2px 2px 2px rgb(30,30,30);;
+    color:rgb(226, 226, 226);
+}
+
+#joinButton{
+    margin-left:100px;
+    background: rgb(19, 32, 107, 0.8);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 0px;
+    box-shadow: 2px 2px 2px rgb(30,30,30);
+    color:rgb(226, 226, 226);
+}
+
+#createButton:hover{
+    box-shadow: 2px 2px 2px rgb(226, 226, 226);
+    cursor:pointer
+}
+
+#joinButton:hover{
+    box-shadow: 2px 2px 2px rgb(226, 226, 226);
+    cursor:pointer
+}
+
+#logout{
+    background-color: rgb(73, 98, 180);
+    color: rgb(8, 27, 138);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    border: 0px;
+    cursor: pointer;
+    padding: 20px;
+    font-size: 30px;
+}
+
+#logoutLink{
+    position: absolute;
+    right: 40px;
+}
+
+#filters{
+    background-color: rgb(226, 226, 226);
+    color: rgb(30,30,30);
+    margin-left: 40px;
 }

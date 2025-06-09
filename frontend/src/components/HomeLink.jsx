@@ -2,14 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 const HomeLink = () => {
   return (
-    <Link to="/">
+    <Link to="/myTrips">
       <div>
         <span
           className="material-symbols-outlined"
           style={{
             color: "#fff",
             background:
-              "linear-gradient(rgb(255, 2, 2), rgb(255, 125, 3), rgb(255, 208, 0))",
+              "linear-gradient(rgb(37, 123, 173), rgb(141, 215, 233), rgb(37, 123, 173))",
             paddingLeft: "40px",
             paddingTop: "10px",
             paddingBottom: "10px",
