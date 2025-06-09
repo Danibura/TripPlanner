@@ -35,7 +35,7 @@ const CreatePage = () => {
   const [join, setJoin] = useState(false);
   //Update or create trip
   const handleSaveTrip = async () => {
-    const ok = true;
+    var ok = true;
     if (!newTrip.destination) {
       alert("Please choose a destination");
       ok = false;
