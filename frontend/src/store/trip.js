@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import API_BASE_URL from "../config";
-import { getTripByCode } from "../../../backend/controllers/trip.controller";
+
 export const useTripStore = create((set) => ({
   trips: [],
   setTrips: (trips) => set({ trips }),
