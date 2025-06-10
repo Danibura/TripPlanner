@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import Trip from "../components/Trip";
 import ConfirmWindow from "../components/ConfirmWindow";
 import Pfp from "../components/Pfp";
+import { useNavigate } from "react-router-dom";
 
 const MyTripsPage = () => {
   const token = localStorage.getItem("accessToken");
@@ -25,6 +26,7 @@ const MyTripsPage = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(1);
   const [clickedBin, setClickedBin] = useState(0);
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     logout();
@@ -105,6 +107,9 @@ const MyTripsPage = () => {
     return newTrips;
   };
 
+  const navigateProfile = () => {
+    navigate("/profile");
+  };
   //Finds user
   useEffect(() => {
     const fetchUser = async () => {
@@ -132,7 +137,11 @@ const MyTripsPage = () => {
   return (
     <div id="myTripsPage">
       <div id="header">
-        {currentUser && <Pfp user={currentUser} size={80} left="40px" />}
+        {currentUser && (
+          <div onClick={navigateProfile}>
+            <Pfp user={currentUser} size={80} left="40px" />
+          </div>
+        )}
         <h1 id="myTrips-title">{name}'s trips</h1>
         <Link to={"/"} id="logoutLink">
           <button

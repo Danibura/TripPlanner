@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
+
+#profileTab{
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    height: 100vh;
+    width: 450px;
+    background: linear-gradient(rgb(8, 52, 146), rgb(69, 119, 134));
+    z-index: 1200;
+    padding: 40px;
+    color: rgb(245, 245, 245);
+    animation: appearTab 0.5s ease-in-out;
+    box-shadow: -2px 0px 5px black;
+}
+
+@keyframes appearTab{
+    from{
+        width: 0px;
+        opacity: 0;
+    }
+    to{
+        width: 450px;
+        opacity: 1;
+    }
+}
+
+
+#profileTab div{
+    font-family:"Finger Paint", serif;
+    font-size: 22px;
+}
+
+#nameAndPfp{
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+}
+
+#profileTab-name{
+    font-size: 45px;
+    font-family:"Rocl Salt", cursive;
+    background: linear-gradient(to right,rgb(201, 172, 42), rgb(255, 244, 244));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+#profileTab-email{
+    font-family: "Saira", sans-serif;
+    font-size:30px;
+    margin-top: 30px;
+    display: flex;
+    align-items: baseline;
+}
+
+#profileTab-birthday{
+    font-family: "Saira", sans-serif;
+    font-size:30px;
+    margin-top: 30px;
+    display: flex;
+    align-items: baseline;
+}
+
+#profileTab-location{
+    font-family: "Saira", sans-serif;
+    font-size:30px;
+    margin-top: 30px;
+    display: flex;
+    align-items: baseline;
+}
+
+#profileTab-bio{
+    font-family: "Saira", sans-serif;
+    font-size:30px;
+    margin-top: 30px;
+    display: flex;
+    align-items: baseline;
+}
+
+#profileTab-close{
+    background-color: transparent;
+    color: rgb(245, 245, 245);
+    cursor:pointer;
+    transition: box-shadow 0.2s ease;
+}
+
+#profileTab-close:hover{
+    box-shadow: -2px 2px 5px white;
+}
+
+#make-organizer{
+    margin-top: 80px;
+    color: rgb(246,246,246);
+    background-color: transparent;
+    border: 2px solid rgb(246,246,246);
+}

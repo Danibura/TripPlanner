@@ -87,7 +87,7 @@ const SignupPage = () => {
             <br />
             <br />
             <button type="submit" disabled={isLoading}>
-              {isLoading ? "Registering" : "Register"}
+              {isLoading ? "Loading" : "Sign up"}
             </button>
           </form>
         </div>

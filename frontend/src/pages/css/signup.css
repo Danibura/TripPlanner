@@ -40,9 +40,10 @@ button{
 #already{
     background-color: white;
     width: 340px;
-    height: 30px;
     font-size: 24px;
-    padding: 5px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     box-shadow: 2px 2px 5px black;
     border-radius: 10px;
 }

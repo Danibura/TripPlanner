@@ -10,6 +10,8 @@ import { jwtDecode } from "jwt-decode";
 import useAuth from "../store/useAuth";
 import Pfp from "../components/Pfp";
 import ParticipantsWindow from "../components/ParticipantsWindow";
+import ProfileTab from "../components/ProfileTab";
+
 const provider = new OpenStreetMapProvider();
 
 const CreatePage = () => {
@@ -35,8 +37,9 @@ const CreatePage = () => {
   const [organizers, setOrganizers] = useState([]);
   var { tripCode } = useParams();
   tripCode = tripCode.trim();
-  const [join, setJoin] = useState(false);
   const [showParticipants, setShowParticipants] = useState(false);
+  const [showProfile, setShowProfile] = useState(null);
+  const [userRole, setUserRole] = useState("visitor");
 
   //Update or create trip
   const handleSaveTrip = async () => {
@@ -45,11 +48,11 @@ const CreatePage = () => {
       alert("Please choose a destination");
       ok = false;
     }
-    if (!newTrip.departureDate) {
+    if (!newTrip.departureDate && ok) {
       alert("Please choose a departure date");
       ok = false;
     }
-    if (!newTrip.returnDate) {
+    if (!newTrip.returnDate && ok) {
       alert("Please choose a return date");
       ok = false;
     }
@@ -81,8 +84,10 @@ const CreatePage = () => {
     setCurrentUser(updatedUser);
     const res = await modifyUser(updatedUser);
     if (!res.success) console.log("Error", res.message);
-    else console.log("Trip added to the user");
-    alert("Trip saved successfully");
+    else {
+      if (userRole == "organizer") alert("Trip saved successfully!");
+      else alert("Trip joined!");
+    }
   };
 
   //Updates map
@@ -110,7 +115,7 @@ const CreatePage = () => {
 
   const handleDestinationKeyDown = (e) => {
     if (e.key === "Enter") {
-      e.preventDefault(); // evita invio form
+      e.preventDefault();
       updateMapFromDestination(newTrip.destination);
     }
   };
@@ -127,6 +132,20 @@ const CreatePage = () => {
     e.preventDefault();
     e.stopPropagation();
     setShowParticipants(true);
+  };
+
+  const handleChangeRole = async (userToChange) => {
+    console.log(userToChange.email);
+    const updatedTrip = {
+      ...newTrip,
+      participants: newTrip.participants.filter(
+        (participant) => participant != userToChange.email
+      ),
+      organizers: [...newTrip.organizers, userToChange.email],
+    };
+    setNewTrip(updatedTrip);
+    const { success, message } = await modifyTrip(updatedTrip);
+    console.log("Updated ", success, message);
   };
 
   //Fetch user
@@ -149,11 +168,11 @@ const CreatePage = () => {
     const match = trips.find((trip) => trip.accessCode === tripCode);
     if (match) {
       setNewTrip(match);
-      if (
-        !match.participants?.includes(currentUser.email) &&
-        !match.organizers?.includes(currentUser.email)
-      )
-        setJoin(true);
+      if (match.participants?.includes(currentUser.email))
+        setUserRole("participant");
+      if (match.organizers?.includes(currentUser.email))
+        setUserRole("organizer");
+
       provider.search({ query: match.destination }).then((results) => {
         if (results && results.length > 0) {
           const { x, y } = results[0];
@@ -216,6 +235,7 @@ const CreatePage = () => {
           onChange={handleDestinationChange}
           onBlur={handleDestinationBlur}
           onKeyDown={handleDestinationKeyDown}
+          readOnly={userRole != "organizer"}
         />
         <datalist id="destination-options">
           {suggestions.map((s, index) => (
@@ -232,6 +252,7 @@ const CreatePage = () => {
           onChange={(e) =>
             setNewTrip({ ...newTrip, departureDate: e.target.value })
           }
+          readOnly={userRole != "organizer"}
         />
         <br />
         <br />
@@ -244,6 +265,7 @@ const CreatePage = () => {
           onChange={(e) =>
             setNewTrip({ ...newTrip, returnDate: e.target.value })
           }
+          readOnly={userRole != "organizer"}
         />
         <div id="box-activities">
           <h3 id="title-activities">Activities</h3>
@@ -260,7 +282,11 @@ const CreatePage = () => {
                 }}
               />
             ))}
-          <button id="add-activity" onClick={addActivity}>
+          <button
+            id="add-activity"
+            onClick={addActivity}
+            disabled={userRole != "organizer"}
+          >
             Add activity
           </button>
         </div>
@@ -273,6 +299,7 @@ const CreatePage = () => {
             onChange={(e) =>
               setNewTrip({ ...newTrip, usefulInfo: e.target.value })
             }
+            readOnly={userRole != "organizer"}
           ></textarea>
         </div>
         <div id="box-participants">
@@ -284,9 +311,6 @@ const CreatePage = () => {
                 size={50}
                 key={organizer.email}
                 left="-20px"
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
               />
             ))}
             {participants.map((participant) => (
@@ -295,9 +319,6 @@ const CreatePage = () => {
                 size={50}
                 key={participant.email}
                 left="-20px"
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
               />
             ))}
           </div>
@@ -314,15 +335,26 @@ const CreatePage = () => {
           <br />
           <textarea id="code-area" value={tripCode} readOnly />
         </div>
-        <button id="save" onClick={handleSaveTrip}>
-          {join ? "Join" : "Save"}
-        </button>
+        {userRole != "participant" && (
+          <button id="save" onClick={handleSaveTrip}>
+            {userRole === "organizer" ? "Save" : "Join"}
+          </button>
+        )}
       </div>
       {showParticipants && (
         <ParticipantsWindow
           participants={participants}
           organizers={organizers}
           setShowParticipants={setShowParticipants}
+          setShowProfile={setShowProfile}
+        />
+      )}
+      {showProfile && (
+        <ProfileTab
+          user={showProfile}
+          setShowProfile={setShowProfile}
+          userRole={userRole}
+          handleChangeRole={handleChangeRole}
         />
       )}
     </div>

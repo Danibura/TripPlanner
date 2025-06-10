@@ -6,6 +6,7 @@ const ParticipantsWindow = ({
   organizers,
   participants,
   setShowParticipants,
+  setShowProfile,
 }) => {
   return (
     <div id="participants-window">
@@ -13,19 +14,23 @@ const ParticipantsWindow = ({
         <Pfp
           user={organizer}
           size={80}
-          left="40px"
+          left={40}
+          top={20}
           name={organizer.name}
           key={organizer.email}
           color="rgb(33, 136, 19)"
+          setShowProfile={setShowProfile}
         />
       ))}
       {participants.map((participant) => (
         <Pfp
           user={participant}
           size={80}
-          left="40px"
+          left={40}
+          top={20}
           name={participant.name}
           key={participant.email}
+          setShowProfile={setShowProfile}
         />
       ))}
       <button

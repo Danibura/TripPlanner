@@ -6,18 +6,19 @@ const Pfp = ({
   user = null,
   size,
   left,
+  top = 0,
   color = "transparent",
   name = "",
-  onClick = {},
+  setShowProfile = () => {},
 }) => {
-  const content = (
+  return (
     <div
       id="profileContainer"
       style={{
         marginLeft: left,
         width: "min-content",
+        marginTop: top,
       }}
-      onClick={onClick}
     >
       <div
         id="pfpWrapper"
@@ -31,6 +32,10 @@ const Pfp = ({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          cursor: "pointer",
+        }}
+        onClick={() => {
+          setShowProfile(user);
         }}
       >
         <div
@@ -53,17 +58,6 @@ const Pfp = ({
         {name}
       </figcaption>
     </div>
-  );
-  return (
-    <Link
-      to={"/profile"}
-      style={{
-        textDecoration: "none",
-        color: "rgb(30,30,30)",
-      }}
-    >
-      {content}
-    </Link>
   );
 };
 
