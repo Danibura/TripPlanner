@@ -28,7 +28,6 @@ const SignupPage = () => {
     if (result.success) {
       setFormData({ name: "", birthday: "", email: "", password: "" });
       navigate("/");
-      console.log("OKK");
     } else {
       console.log("Errore");
     }

@@ -6,7 +6,7 @@ import "./css/profile.css";
 import { jwtDecode } from "jwt-decode";
 import { Link } from "react-router-dom";
 
-const ProfilePage = () => {
+const ProfilePage = ({ user = null }) => {
   const { findUser, modifyUser } = useAuth();
   const [currentUser, setCurrentUser] = useState(null);
   const [modified, setModified] = useState(false);

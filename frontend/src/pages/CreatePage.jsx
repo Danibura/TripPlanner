@@ -123,6 +123,12 @@ const CreatePage = () => {
     }));
   };
 
+  const handleShowParticipants = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowParticipants(true);
+  };
+
   //Fetch user
   useEffect(() => {
     const fetchUser = async () => {
@@ -217,11 +223,11 @@ const CreatePage = () => {
           ))}
         </datalist>
         <br />
-        <label id="label-departure">Departure date</label>{" "}
+        <label id="label-departureDate">Departure date</label>{" "}
         <input
           type="date"
-          id="departure"
-          name="departure"
+          id="departureDate"
+          name="departureDate"
           value={newTrip.departureDate}
           onChange={(e) =>
             setNewTrip({ ...newTrip, departureDate: e.target.value })
@@ -229,11 +235,11 @@ const CreatePage = () => {
         />
         <br />
         <br />
-        <label id="label-return">Return date</label>{" "}
+        <label id="label-returnDate">Return date</label>{" "}
         <input
           type="date"
-          id="return"
-          name="return"
+          id="returnDate"
+          name="returnDate"
           value={newTrip.returnDate}
           onChange={(e) =>
             setNewTrip({ ...newTrip, returnDate: e.target.value })
@@ -271,26 +277,27 @@ const CreatePage = () => {
         </div>
         <div id="box-participants">
           <h3 id="title-participants">Participants</h3>
-          <div
-            id="box-participants-icon"
-            onClick={() => {
-              setShowParticipants(true);
-            }}
-          >
+          <div id="box-participants-icon" onClick={handleShowParticipants}>
             {organizers.map((organizer) => (
               <Pfp
-                num={organizer.pfp}
+                user={organizer}
                 size={50}
                 key={organizer.email}
                 left="-20px"
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
               />
             ))}
             {participants.map((participant) => (
               <Pfp
-                num={participant.pfp}
+                user={participant}
                 size={50}
                 key={participant.email}
                 left="-20px"
+                onClick={(e) => {
+                  e.preventDefault();
+                }}
               />
             ))}
           </div>

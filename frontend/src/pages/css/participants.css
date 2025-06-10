@@ -5,12 +5,17 @@
     background-color: rgb(226,226,226);
     border-radius: 20px;
     width: 600px;
-    height: 250px;
-    padding: 20px 0px;
-    display: flex;
+    height: 300px;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-right: 50px;
+    padding-bottom: 20px;
     box-shadow: 2px 2px 5px rgb(30,30,30);
     overflow-y: auto;
     animation: appear 0.5s ease-in-out;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    z-index: 1000;
 }
 
 #close-participants{

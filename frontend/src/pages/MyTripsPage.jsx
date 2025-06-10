@@ -8,6 +8,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Trip from "../components/Trip";
 import ConfirmWindow from "../components/ConfirmWindow";
+import Pfp from "../components/Pfp";
 
 const MyTripsPage = () => {
   const token = localStorage.getItem("accessToken");
@@ -73,7 +74,7 @@ const MyTripsPage = () => {
       console.log(err.message);
     }
     setCurrentUser(updatedUser);
-    const newTrips = await fetchTrips(updatedUser);
+    const newTrips = await fetchUserTrips(updatedUser);
     setTrips(newTrips);
     try {
       const res = await getTripByCode(clickedBin);
@@ -91,7 +92,7 @@ const MyTripsPage = () => {
     }
   };
 
-  const fetchTrips = async (user) => {
+  const fetchUserTrips = async (user) => {
     if (!user) return;
     const accessCodes = user.trips;
     var newTrips = [];
@@ -116,7 +117,7 @@ const MyTripsPage = () => {
 
   //Finds trips
   useEffect(() => {
-    fetchTrips(currentUser);
+    fetchUserTrips(currentUser);
   }, [currentUser]);
 
   //Set filtered trips
@@ -131,19 +132,7 @@ const MyTripsPage = () => {
   return (
     <div id="myTripsPage">
       <div id="header">
-        <Link to={"/profile"}>
-          <div
-            style={{
-              height: "100px",
-              width: "100px",
-              borderRadius: "50%",
-              backgroundImage: `url("/images/Ape${currentUser?.pfp}.jpg")`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
-        </Link>
+        {currentUser && <Pfp user={currentUser} size={80} left="40px" />}
         <h1 id="myTrips-title">{name}'s trips</h1>
         <Link to={"/"} id="logoutLink">
           <button

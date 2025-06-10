@@ -11,7 +11,7 @@ const ParticipantsWindow = ({
     <div id="participants-window">
       {organizers.map((organizer) => (
         <Pfp
-          num={organizer.pfp}
+          user={organizer}
           size={80}
           left="40px"
           name={organizer.name}
@@ -21,7 +21,7 @@ const ParticipantsWindow = ({
       ))}
       {participants.map((participant) => (
         <Pfp
-          num={participant.pfp}
+          user={participant}
           size={80}
           left="40px"
           name={participant.name}

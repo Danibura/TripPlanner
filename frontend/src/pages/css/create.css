@@ -12,6 +12,7 @@
     height: 100vh;
     margin: 0px;
     padding: 20px;
+    overflow-y: auto;
 }
 
 #blur{
@@ -22,7 +23,7 @@
     border-radius: 50px;
     width: 800px;
     height: 90%;
-    overflow: hidden;
+    overflow:hidden;
 }
 
 #destination {
@@ -41,7 +42,7 @@
   resize: none;
 }
 
-#label-departure{
+#label-departureDate{
     font-family: "Chewy", system-ui;
     font-style: normal;
     letter-spacing: 0.1rem;
@@ -51,7 +52,7 @@
     color: white;
 }
 
-#departure{
+#departureDate{
     font-family: "Chewy", system-ui;
     padding-left: 20px;
     width: 300px;
@@ -62,7 +63,7 @@
 }
 
 
-#label-return{
+#label-returnDate{
     font-family: "Chewy", system-ui;
     font-style: normal;
     letter-spacing: 0.1rem;
@@ -72,7 +73,7 @@
     color: white;
 }
 
-#return{
+#returnDate{
     font-family: "Chewy", system-ui;
     padding-left: 20px;
     width: 300px;
@@ -86,7 +87,7 @@
     width: 800px;
     max-height: 200px;
     margin-left: 20px;
-    margin-top: 40px;
+    margin-top: 20px;
     padding:12px;
     overflow-y: auto;
 }
@@ -121,7 +122,7 @@
     width: 800px;
     max-height: 200px;
     margin-left: 20px;
-    margin-top: 40px;
+    margin-top: 10px;
     padding:12px;
     overflow-y: auto;
 }
@@ -220,8 +221,8 @@
     width: 800px;
     max-height: 200px;
     margin-left: 20px;
-    margin-top: 20px;
-    padding:12px;
+    margin-top: 10px;
+    padding-left:12px;
     color: white;
     display: flex;
 }
@@ -237,8 +238,13 @@
 }
 
 #box-participants-icon{
-    display: flex;
-    margin-left: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    margin-left: 20px;
     cursor: pointer;
-    height: 200px;
+    margin-top: -10px;
+    overflow-y: auto;
+    padding-left: 20px;
+    height: 120px;
+    z-index: 7;
 }
