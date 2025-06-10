@@ -9,6 +9,7 @@ import HomeLink from "../components/HomeLink";
 import { jwtDecode } from "jwt-decode";
 import useAuth from "../store/useAuth";
 import Pfp from "../components/Pfp";
+import ParticipantsWindow from "../components/ParticipantsWindow";
 const provider = new OpenStreetMapProvider();
 
 const CreatePage = () => {
@@ -35,6 +36,7 @@ const CreatePage = () => {
   var { tripCode } = useParams();
   tripCode = tripCode.trim();
   const [join, setJoin] = useState(false);
+  const [showParticipants, setShowParticipants] = useState(false);
 
   //Update or create trip
   const handleSaveTrip = async () => {
@@ -269,12 +271,27 @@ const CreatePage = () => {
         </div>
         <div id="box-participants">
           <h3 id="title-participants">Participants</h3>
-          <div id="box-participants-icon">
+          <div
+            id="box-participants-icon"
+            onClick={() => {
+              setShowParticipants(true);
+            }}
+          >
             {organizers.map((organizer) => (
-              <Pfp num={organizer.pfp} size="50px" key={organizer.email} />
+              <Pfp
+                num={organizer.pfp}
+                size={50}
+                key={organizer.email}
+                left="-20px"
+              />
             ))}
             {participants.map((participant) => (
-              <Pfp num={participant.pfp} size="50px" key={participant.email} />
+              <Pfp
+                num={participant.pfp}
+                size={50}
+                key={participant.email}
+                left="-20px"
+              />
             ))}
           </div>
         </div>
@@ -294,6 +311,13 @@ const CreatePage = () => {
           {join ? "Join" : "Save"}
         </button>
       </div>
+      {showParticipants && (
+        <ParticipantsWindow
+          participants={participants}
+          organizers={organizers}
+          setShowParticipants={setShowParticipants}
+        />
+      )}
     </div>
   );
 };
