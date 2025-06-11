@@ -11,7 +11,6 @@ import ConfirmWindow from "../components/ConfirmWindow";
 import { useNavigate } from "react-router-dom";
 import MenuWindow from "../components/MenuWindow";
 import Header from "../components/Header";
-import { deleteTrip } from "../../../backend/controllers/trip.controller";
 
 const MyTripsPage = () => {
   const token = localStorage.getItem("accessToken");
@@ -22,7 +21,7 @@ const MyTripsPage = () => {
   const { findUser, modifyUser } = useAuth();
   const [trips, setTrips] = useState([]);
   const [filteredTrips, setFilteredTrips] = useState([]);
-  const { getTripByCode, modifyTrip } = useTripStore();
+  const { getTripByCode, modifyTrip, deleteTrip } = useTripStore();
   const [searched, setSearched] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(1);
@@ -87,12 +86,14 @@ const MyTripsPage = () => {
         ),
         organizers: data.organizers.filter((organizer) => organizer != email),
       };
+      console.log(removedTrip);
       if (
         removedTrip.participants.length == 0 &&
         removedTrip.organizers.length == 0
-      )
-        await deleteTrip(removedTrip);
-      else await modifyTrip(removedTrip);
+      ) {
+        const res = await deleteTrip(removedTrip);
+        console.log(res.success);
+      } else await modifyTrip(removedTrip);
     } catch (err) {
       console.log(err.message);
     }

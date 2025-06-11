@@ -43,7 +43,7 @@ const Pfp = ({
         <div
           id="pfp"
           style={{
-            backgroundImage: `url("/images/Ape${user.pfp}.jpg")`,
+            backgroundImage: `url("/images/Ape${user?.pfp}.jpg")`,
             width: size,
             height: size,
             borderRadius: "50%",
