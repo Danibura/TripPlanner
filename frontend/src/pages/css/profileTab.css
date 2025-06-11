@@ -15,6 +15,11 @@
     color: rgb(245, 245, 245);
     animation: appearTab 0.5s ease-in-out;
     box-shadow: -2px 0px 5px black;
+    transition: width 0.3s ease-in-out;
+}
+
+#profileTab.hidden{
+    width:0px;
 }
 
 @keyframes appearTab{
@@ -97,3 +102,16 @@
     background-color: transparent;
     border: 2px solid rgb(246,246,246);
 }
+
+#kickout{
+    margin-top: 80px;
+    color: rgb(246,246,246);
+    background-color: transparent;
+    border: 2px solid rgb(71, 0, 0);
+    background: linear-gradient(to right,rgb(71, 0, 0), rgb(197, 0, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+

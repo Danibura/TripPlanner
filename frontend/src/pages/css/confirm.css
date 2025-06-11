@@ -9,6 +9,7 @@
     z-index: 4;
     padding: 30px;
     box-shadow: 2px 2px 2px black;
+    animation: appear 0.2s ease-in-out;
 }
 #confirmWindow h3{
     font-size: 26px;
@@ -35,4 +36,13 @@
      cursor: pointer;
      box-shadow: 0px 2px 2px rgb(30,30,30);
      border: 0px;
+}
+
+@keyframes appear{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }

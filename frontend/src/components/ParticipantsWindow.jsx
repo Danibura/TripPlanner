@@ -1,6 +1,7 @@
 import React from "react";
 import "../pages/css/participants.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import Pfp from "./Pfp";
 const ParticipantsWindow = ({
   organizers,
@@ -8,8 +9,13 @@ const ParticipantsWindow = ({
   setShowParticipants,
   setShowProfile,
 }) => {
+  const [hide, setHide] = useState(false);
+  const closeParticipants = () => {
+    setHide(true);
+    setTimeout(() => setShowParticipants(false), 500);
+  };
   return (
-    <div id="participants-window">
+    <div id="participants-window" className={hide ? "hidden" : ""}>
       {organizers.map((organizer) => (
         <Pfp
           user={organizer}
@@ -34,9 +40,7 @@ const ParticipantsWindow = ({
         />
       ))}
       <button
-        onClick={() => {
-          setShowParticipants(false);
-        }}
+        onClick={closeParticipants}
         className="material-symbols-outlined"
         id="close-participants"
       >

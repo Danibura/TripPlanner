@@ -1,15 +1,26 @@
 import React from "react";
 import Pfp from "./Pfp";
 import "../pages/css/profileTab.css";
-const ProfileTab = ({ user, setShowProfile, userRole, handleChangeRole }) => {
+import { useState } from "react";
+const ProfileTab = ({
+  user,
+  setShowProfile,
+  userRole,
+  handleChangeRole,
+  participants,
+  handleKickOut,
+}) => {
+  const [hide, setHide] = useState(false);
+  const closeProfileTab = () => {
+    setHide(true);
+    setTimeout(() => setShowProfile(false), 300);
+  };
   return (
-    <div id="profileTab">
+    <div id="profileTab" className={hide ? "hidden" : ""}>
       <button
         className="material-symbols-outlined"
         id="profileTab-close"
-        onClick={() => {
-          setShowProfile(false);
-        }}
+        onClick={closeProfileTab}
       >
         close
       </button>
@@ -29,16 +40,28 @@ const ProfileTab = ({ user, setShowProfile, userRole, handleChangeRole }) => {
       <h3 id="profileTab-bio">
         Bio: &nbsp;<div>{user.bio}</div>
       </h3>
-      {userRole == "organizer" && (
-        <button
-          id="make-organizer"
-          onClick={() => {
-            handleChangeRole(user);
-          }}
-        >
-          Make an organizer
-        </button>
-      )}
+      {userRole == "organizer" &&
+        participants.some((participant) => participant.email == user.email) && (
+          <div>
+            <button
+              id="make-organizer"
+              onClick={() => {
+                handleChangeRole(user);
+              }}
+            >
+              Make an organizer
+            </button>
+            <br />
+            <button
+              id="kickout"
+              onClick={() => {
+                handleKickOut(user);
+              }}
+            >
+              Kick out
+            </button>
+          </div>
+        )}
     </div>
   );
 };

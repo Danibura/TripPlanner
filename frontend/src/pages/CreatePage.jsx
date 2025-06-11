@@ -135,13 +135,24 @@ const CreatePage = () => {
   };
 
   const handleChangeRole = async (userToChange) => {
-    console.log(userToChange.email);
     const updatedTrip = {
       ...newTrip,
       participants: newTrip.participants.filter(
         (participant) => participant != userToChange.email
       ),
       organizers: [...newTrip.organizers, userToChange.email],
+    };
+    setNewTrip(updatedTrip);
+    const { success, message } = await modifyTrip(updatedTrip);
+    console.log("Updated ", success, message);
+  };
+
+  const handleKickOut = async (userToExpel) => {
+    const updatedTrip = {
+      ...newTrip,
+      participants: newTrip.participants.filter(
+        (participant) => participant != userToExpel.email
+      ),
     };
     setNewTrip(updatedTrip);
     const { success, message } = await modifyTrip(updatedTrip);
@@ -355,6 +366,8 @@ const CreatePage = () => {
           setShowProfile={setShowProfile}
           userRole={userRole}
           handleChangeRole={handleChangeRole}
+          participants={participants}
+          handleKickOut={handleKickOut}
         />
       )}
     </div>

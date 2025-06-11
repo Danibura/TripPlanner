@@ -35,6 +35,7 @@ button{
     font-size: 30px;
     border: 2px solid white;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 #already{
