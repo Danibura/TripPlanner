@@ -10,6 +10,18 @@
     height: 100vh;
 }
 
+
+#logout{
+    background-color: rgb(73, 98, 180);
+    color: rgb(8, 27, 138);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    border: 0px;
+    cursor: pointer;
+    padding: 20px;
+    font-size: 30px;
+    
+}
+
 #box-user-info{
     position: absolute;
     left: 40px;

@@ -9,11 +9,15 @@ import MenuButton from "../components/MenuButton";
 import MenuWindow from "../components/MenuWindow";
 
 const ProfilePage = () => {
-  const { findUser, modifyUser } = useAuth();
+  const { findUser, modifyUser, logout } = useAuth();
   const [currentUser, setCurrentUser] = useState(null);
   const [modified, setModified] = useState(false);
   const [changePfp, setChangePfp] = useState(false);
   const [rotateMenu, setRotateMenu] = useState(false);
+
+  const handleLogout = async () => {
+    logout();
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -84,6 +88,16 @@ const ProfilePage = () => {
                   &#62;
                 </button>
               </div>
+              <Link to={"/"} id="logoutLink">
+                <button
+                  className="material-symbols-outlined"
+                  id="logout"
+                  onClick={handleLogout}
+                  title="Logout"
+                >
+                  logout
+                </button>
+              </Link>
             </div>
             <div id="row2">
               <div id="column1">

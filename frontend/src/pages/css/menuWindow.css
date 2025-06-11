@@ -37,6 +37,10 @@
     text-decoration: none;
 }
 
+#publicTripsLink{
+    text-decoration: none;
+}
+
 @keyframes appearMenu{
     from{
         opacity: 0;

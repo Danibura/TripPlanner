@@ -55,7 +55,7 @@ export const useTripStore = create((set) => ({
         }
       );
 
-      if (!res.ok) {
+      if (!res.success) {
         const errorText = await res.text();
         return { success: false, message: `Server error ${errorText}` };
       }
@@ -80,6 +80,35 @@ export const useTripStore = create((set) => ({
       );
       const data = await res.json();
       return { success: true, data: data.trip };
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
+  deleteTrip: async (removedTrip) => {
+    console.log(removedTrip.accessCode);
+    try {
+      const res = await fetch(
+        `${API_BASE_URL}/api/trips/${encodeURIComponent(
+          removedTrip.accessCode
+        )}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!res.success) {
+        const errorText = await res.text();
+        return { success: false, message: `Error ${errorText}` };
+      }
+
+      set((state) => ({
+        trips: state.trips.filter((trip) => trip.accessCode != code),
+      }));
+      console.log("Trip delted");
+      return { success: true };
     } catch (err) {
       return { success: false, message: err.message };
     }

@@ -1,0 +1,6 @@
+#publicTripsPage{
+    background-color: rgb(216, 231, 255);
+    height: 100vh;
+    overflow-y: auto;
+    position: relative;
+}

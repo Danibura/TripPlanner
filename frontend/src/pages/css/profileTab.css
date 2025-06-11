@@ -51,6 +51,7 @@
     background: linear-gradient(to right,rgb(201, 172, 42), rgb(255, 244, 244));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
 }
 
 #profileTab-email{

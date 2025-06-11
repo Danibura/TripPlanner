@@ -57,6 +57,7 @@ const CreatePage = () => {
       ok = false;
     }
     if (!ok) return;
+
     const updatedTrip = {
       ...newTrip,
       participants:
@@ -134,6 +135,7 @@ const CreatePage = () => {
     setShowParticipants(true);
   };
 
+  //Change user role
   const handleChangeRole = async (userToChange) => {
     const updatedTrip = {
       ...newTrip,
@@ -147,6 +149,7 @@ const CreatePage = () => {
     console.log("Updated ", success, message);
   };
 
+  //Kickout user
   const handleKickOut = async (userToExpel) => {
     const updatedTrip = {
       ...newTrip,
@@ -346,7 +349,9 @@ const CreatePage = () => {
         <div id="box-code">
           <label id="code-title">Access code</label>
           <br />
-          <textarea id="code-area" value={tripCode} readOnly />
+          <div id="code-area">
+            <div id="codeCreate">{tripCode}</div>
+          </div>
         </div>
         {userRole != "participant" && (
           <button id="save" onClick={handleSaveTrip}>

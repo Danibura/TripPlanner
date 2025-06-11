@@ -12,11 +12,13 @@ const JoinPage = () => {
       <div id="content">
         <div id="title"> Insert access code:</div>
         <div id="row">
-          <textarea
-            name="codeArea"
-            id="codeArea"
-            onChange={(e) => setTripCode(e.target.value)}
-          ></textarea>
+          <div id="codeArea">
+            <textarea
+              name="code"
+              id="code"
+              onChange={(e) => setTripCode(e.target.value)}
+            ></textarea>
+          </div>
 
           <Link to={`/create/${tripCode}`}>
             <button id="go">GO</button>

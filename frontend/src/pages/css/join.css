@@ -32,18 +32,20 @@
     border-bottom-left-radius: 10px;
     width: 400px;
     height: 80px;
-    text-align: center;
-        font-size: 40px;
-        padding-top: 10px;
-      font-family: "Honk", system-ui;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-variation-settings:
-    "MORF" 15,
-    "SHLN" 50;
+    background-color: white;
     overflow-y: hidden;
-    border: 2px black solid;
+}
+
+#code{
+    width: 400px;
+    font-size: 40px;
+    padding-top: 10px;
+    font-family: "Rubik Dirt", system-ui;
+    background: linear-gradient(to top,rgb(201, 172, 42), rgb(134, 6, 6));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border: 0px;
+    text-align: center;
 }
 #go{
     border-radius: 0px;

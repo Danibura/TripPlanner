@@ -1,0 +1,21 @@
+#header{
+    background: linear-gradient(rgb(25, 73, 145), rgb(58, 116, 202));
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+
+#header-title{
+    font-family: "Playball", cursive;
+    margin-left: 140px;
+    font-size: 60px;
+    background: linear-gradient(to right,rgb(243, 243, 243), rgb(216, 216, 216));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

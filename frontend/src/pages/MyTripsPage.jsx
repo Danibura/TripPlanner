@@ -8,19 +8,18 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Trip from "../components/Trip";
 import ConfirmWindow from "../components/ConfirmWindow";
-import Pfp from "../components/Pfp";
 import { useNavigate } from "react-router-dom";
 import MenuWindow from "../components/MenuWindow";
-import MenuButton from "../components/MenuButton";
+import Header from "../components/Header";
+import { deleteTrip } from "../../../backend/controllers/trip.controller";
 
 const MyTripsPage = () => {
   const token = localStorage.getItem("accessToken");
   const decoded = jwtDecode(token);
-  const name = decoded.name;
   const email = decoded.email;
   var tripCode = parseInt(Math.random() * 100000000);
   const [currentUser, setCurrentUser] = useState(null);
-  const { findUser, logout, modifyUser } = useAuth();
+  const { findUser, modifyUser } = useAuth();
   const [trips, setTrips] = useState([]);
   const [filteredTrips, setFilteredTrips] = useState([]);
   const { getTripByCode, modifyTrip } = useTripStore();
@@ -30,10 +29,6 @@ const MyTripsPage = () => {
   const [clickedBin, setClickedBin] = useState(0);
   const navigate = useNavigate();
   const [rotateMenu, setRotateMenu] = useState(false);
-
-  const handleLogout = async () => {
-    logout();
-  };
 
   const handleSearchedChange = (e) => {
     setSearched(e.target.value);
@@ -81,6 +76,7 @@ const MyTripsPage = () => {
     setCurrentUser(updatedUser);
     const newTrips = await fetchUserTrips(updatedUser);
     setTrips(newTrips);
+
     try {
       const res = await getTripByCode(clickedBin);
       const data = res.data;
@@ -91,7 +87,12 @@ const MyTripsPage = () => {
         ),
         organizers: data.organizers.filter((organizer) => organizer != email),
       };
-      await modifyTrip(removedTrip);
+      if (
+        removedTrip.participants.length == 0 &&
+        removedTrip.organizers.length == 0
+      )
+        await deleteTrip(removedTrip);
+      else await modifyTrip(removedTrip);
     } catch (err) {
       console.log(err.message);
     }
@@ -139,20 +140,11 @@ const MyTripsPage = () => {
 
   return (
     <div id="myTripsPage">
-      <MenuButton rotateMenu={rotateMenu} setRotateMenu={setRotateMenu} />
-      <div id="header">
-        <h1 id="myTrips-title">My trips</h1>
-        <Link to={"/"} id="logoutLink">
-          <button
-            className="material-symbols-outlined"
-            id="logout"
-            onClick={handleLogout}
-            title="Logout"
-          >
-            logout
-          </button>
-        </Link>
-      </div>
+      <Header
+        rotateMenu={rotateMenu}
+        setRotateMenu={setRotateMenu}
+        title="My trips"
+      />
       <div id="options-box">
         <input
           type="text"
@@ -211,14 +203,7 @@ const MyTripsPage = () => {
       </div>
       <div id="trips-list">
         {filteredTrips?.map((trip, index) => (
-          <Trip
-            key={index}
-            destination={trip.destination}
-            departureDate={trip.departureDate}
-            returnDate={trip.returnDate}
-            code={trip.accessCode}
-            setClickedBin={setClickedBin}
-          />
+          <Trip key={index} trip={trip} setClickedBin={setClickedBin} />
         ))}
       </div>
       {clickedBin != 0 && (
