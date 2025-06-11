@@ -8,10 +8,12 @@
 #profilePage{
     background:linear-gradient(rgb(33, 74, 255), rgb(33, 222, 255));
     height: 100vh;
-    padding: 40px;
 }
 
 #box-user-info{
+    position: absolute;
+    left: 40px;
+    top: 40px;
     width: 90%;
     height: 80%;
     padding: 40px;

@@ -11,6 +11,7 @@ import ConfirmWindow from "../components/ConfirmWindow";
 import Pfp from "../components/Pfp";
 import { useNavigate } from "react-router-dom";
 import MenuWindow from "../components/MenuWindow";
+import MenuButton from "../components/MenuButton";
 
 const MyTripsPage = () => {
   const token = localStorage.getItem("accessToken");
@@ -138,13 +139,7 @@ const MyTripsPage = () => {
 
   return (
     <div id="myTripsPage">
-      <button
-        className={`material-symbols-outlined ${rotateMenu ? "rotated" : ""}`}
-        id="menu"
-        onClick={() => setRotateMenu(!rotateMenu)}
-      >
-        menu
-      </button>
+      <MenuButton rotateMenu={rotateMenu} setRotateMenu={setRotateMenu} />
       <div id="header">
         <h1 id="myTrips-title">My trips</h1>
         <Link to={"/"} id="logoutLink">
@@ -229,7 +224,13 @@ const MyTripsPage = () => {
       {clickedBin != 0 && (
         <ConfirmWindow removeTrip={removeTrip} setClickedBin={setClickedBin} />
       )}
-      {rotateMenu && <MenuWindow user={currentUser} />}
+      {rotateMenu && (
+        <MenuWindow
+          user={currentUser}
+          setRotateMenu={setRotateMenu}
+          currentPage="myTrips"
+        />
+      )}
     </div>
   );
 };

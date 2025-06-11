@@ -5,12 +5,16 @@ import { useEffect } from "react";
 import "./css/profile.css";
 import { jwtDecode } from "jwt-decode";
 import { Link } from "react-router-dom";
+import MenuButton from "../components/MenuButton";
+import MenuWindow from "../components/MenuWindow";
 
 const ProfilePage = () => {
   const { findUser, modifyUser } = useAuth();
   const [currentUser, setCurrentUser] = useState(null);
   const [modified, setModified] = useState(false);
   const [changePfp, setChangePfp] = useState(false);
+  const [rotateMenu, setRotateMenu] = useState(false);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCurrentUser((prevUser) => ({
@@ -48,100 +52,110 @@ const ProfilePage = () => {
   }, []);
 
   return (
-    <div id="profilePage">
-      {currentUser ? (
-        <div id="box-user-info">
-          <div id="row1">
-            <h1 id="yourProfileTitle">Your &nbsp; profile</h1>
-            <div
-              id="box-pfp"
-              onMouseOver={() => {
-                setChangePfp(true);
-              }}
-              onMouseOut={() => {
-                setChangePfp(false);
-              }}
-            >
+    <div>
+      <MenuButton rotateMenu={rotateMenu} setRotateMenu={setRotateMenu} />
+      <div id="profilePage">
+        {currentUser ? (
+          <div id="box-user-info">
+            <div id="row1">
+              <h1 id="yourProfileTitle">Your &nbsp; profile</h1>
               <div
-                id="pfp"
-                style={{
-                  backgroundImage: `url("/images/Ape${currentUser.pfp}.jpg")`,
+                id="box-pfp"
+                onMouseOver={() => {
+                  setChangePfp(true);
                 }}
-              ></div>
-              <button
-                id="changePfpButton"
-                onClick={handleChangePfp}
-                style={{
-                  visibility: changePfp ? "visible" : "hidden",
+                onMouseOut={() => {
+                  setChangePfp(false);
                 }}
               >
-                &#62;
-              </button>
-            </div>
-          </div>
-          <div id="row2">
-            <div id="column1">
-              <label>Name: </label>
-              <input
-                type="text"
-                name="name"
-                value={currentUser.name}
-                onChange={handleChange}
-                id="name"
-              />
-              <br />
-              <br />
-              <label>Birthday: </label>
-              <input
-                type="date"
-                name="birthday"
-                value={currentUser.birthday}
-                onChange={handleChange}
-                id="birthday"
-              />
-              <br />
-              <br />
-              <label>Email: </label>
-              <input
-                type="text"
-                readOnly
-                name="email"
-                value={currentUser.email}
-                onChange={handleChange}
-                id="email"
-              />
-              <br />
-              {modified && (
-                <button onClick={handleSubmit} id="saveUserButton">
-                  Save
+                <div
+                  id="pfp"
+                  style={{
+                    backgroundImage: `url("/images/Ape${currentUser.pfp}.jpg")`,
+                  }}
+                ></div>
+                <button
+                  id="changePfpButton"
+                  onClick={handleChangePfp}
+                  style={{
+                    visibility: changePfp ? "visible" : "hidden",
+                  }}
+                >
+                  &#62;
                 </button>
-              )}
+              </div>
             </div>
-            <div id="column2">
-              <label>Location</label>
-              <input
-                type="text"
-                name="location"
-                value={currentUser.location}
-                onChange={handleChange}
-                id="location"
-              />
-              <br />
-              <br />
-              <label>Bio: </label>
-              <br />
-              <textarea
-                name="bio"
-                value={currentUser.bio}
-                onChange={handleChange}
-                id="bio"
-              />
+            <div id="row2">
+              <div id="column1">
+                <label>Name: </label>
+                <input
+                  type="text"
+                  name="name"
+                  value={currentUser.name}
+                  onChange={handleChange}
+                  id="name"
+                />
+                <br />
+                <br />
+                <label>Birthday: </label>
+                <input
+                  type="date"
+                  name="birthday"
+                  value={currentUser.birthday}
+                  onChange={handleChange}
+                  id="birthday"
+                />
+                <br />
+                <br />
+                <label>Email: </label>
+                <input
+                  type="text"
+                  readOnly
+                  name="email"
+                  value={currentUser.email}
+                  onChange={handleChange}
+                  id="email"
+                />
+                <br />
+                {modified && (
+                  <button onClick={handleSubmit} id="saveUserButton">
+                    Save
+                  </button>
+                )}
+              </div>
+              <div id="column2">
+                <label>Location</label>
+                <input
+                  type="text"
+                  name="location"
+                  value={currentUser.location}
+                  onChange={handleChange}
+                  id="location"
+                />
+                <br />
+                <br />
+                <label>Bio: </label>
+                <br />
+                <textarea
+                  name="bio"
+                  value={currentUser.bio}
+                  onChange={handleChange}
+                  id="bio"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <h2>Loading...</h2>
-      )}
+        ) : (
+          <h2>Loading...</h2>
+        )}
+        {rotateMenu && (
+          <MenuWindow
+            user={currentUser}
+            setRotateMenu={setRotateMenu}
+            currentPage="profile"
+          />
+        )}
+      </div>
     </div>
   );
 };

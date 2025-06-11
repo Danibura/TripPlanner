@@ -29,7 +29,7 @@ const SignupPage = () => {
       setFormData({ name: "", birthday: "", email: "", password: "" });
       navigate("/");
     } else {
-      console.log("Errore");
+      alert("User already existent");
     }
   };
 
@@ -85,6 +85,12 @@ const SignupPage = () => {
               placeholder="Password"
             />
             <br />
+            <br />
+            <div id="accept-policy">
+              <input type="checkbox" id="accept" required />
+              Accept to make your info visible to others
+            </div>
+
             <br />
             <button type="submit" disabled={isLoading}>
               {isLoading ? "Loading" : "Sign up"}

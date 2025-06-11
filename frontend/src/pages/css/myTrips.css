@@ -151,18 +151,3 @@
     cursor: pointer;
 }
 
-#menu{
-    position: absolute;
-    top:40px;
-    left: 40px;
-    color: white;
-    font-size: 60px;
-    background-color: transparent;
-    border: 0px;
-    z-index:10;
-    transition: transform 0.2s ease-in-out;
-}
-
-#menu.rotated{
-    transform: rotate(-90deg);
-}
