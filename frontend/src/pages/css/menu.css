@@ -28,6 +28,11 @@
     margin-right: 30px;
     margin-left: 10px;
 }
+
+#profileLink{
+    text-decoration: none;
+}
+
 @keyframes appearMenu{
     from{
         opacity: 0;
