@@ -10,6 +10,7 @@ import Trip from "../components/Trip";
 import ConfirmWindow from "../components/ConfirmWindow";
 import Pfp from "../components/Pfp";
 import { useNavigate } from "react-router-dom";
+import MenuWindow from "../components/MenuWindow";
 
 const MyTripsPage = () => {
   const token = localStorage.getItem("accessToken");
@@ -27,6 +28,7 @@ const MyTripsPage = () => {
   const [selectedFilter, setSelectedFilter] = useState(1);
   const [clickedBin, setClickedBin] = useState(0);
   const navigate = useNavigate();
+  const [rotateMenu, setRotateMenu] = useState(false);
 
   const handleLogout = async () => {
     logout();
@@ -136,13 +138,15 @@ const MyTripsPage = () => {
 
   return (
     <div id="myTripsPage">
+      <button
+        className={`material-symbols-outlined ${rotateMenu ? "rotated" : ""}`}
+        id="menu"
+        onClick={() => setRotateMenu(!rotateMenu)}
+      >
+        menu
+      </button>
       <div id="header">
-        {currentUser && (
-          <div onClick={navigateProfile}>
-            <Pfp user={currentUser} size={80} left="40px" />
-          </div>
-        )}
-        <h1 id="myTrips-title">{name}'s trips</h1>
+        <h1 id="myTrips-title">My trips</h1>
         <Link to={"/"} id="logoutLink">
           <button
             className="material-symbols-outlined"
@@ -225,6 +229,7 @@ const MyTripsPage = () => {
       {clickedBin != 0 && (
         <ConfirmWindow removeTrip={removeTrip} setClickedBin={setClickedBin} />
       )}
+      {rotateMenu && <MenuWindow user={currentUser} />}
     </div>
   );
 };

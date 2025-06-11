@@ -4,6 +4,7 @@
     background-color: rgb(216, 231, 255);
     height: 100vh;
     overflow-y: auto;
+    position: relative;
 }
 
 #header{
@@ -32,7 +33,7 @@
 
 #myTrips-title{
     font-family: "Playball", cursive;
-    margin-left: 40px;
+    margin-left: 140px;
     font-size: 60px;
     background: linear-gradient(to right,rgb(243, 243, 243), rgb(216, 216, 216));
   -webkit-background-clip: text;
@@ -148,4 +149,20 @@
 #dropdown-filters-menu button:hover{
     color: rgb(26, 138, 230);
     cursor: pointer;
+}
+
+#menu{
+    position: absolute;
+    top:40px;
+    left: 40px;
+    color: white;
+    font-size: 60px;
+    background-color: transparent;
+    border: 0px;
+    z-index:10;
+    transition: transform 0.2s ease-in-out;
+}
+
+#menu.rotated{
+    transform: rotate(-90deg);
 }

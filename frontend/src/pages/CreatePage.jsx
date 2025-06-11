@@ -190,13 +190,15 @@ const CreatePage = () => {
           setCoords([y, x]);
         }
       });
-    } else
+    } else {
       setNewTrip((prevTrip) => ({
         ...prevTrip,
         organizers: prevTrip.organizers?.includes(currentUser.email)
           ? prevTrip.organizers
           : [...prevTrip.organizers, currentUser.email],
       }));
+      setUserRole("organizer");
+    }
   }, [trips, tripCode, currentUser]);
 
   //Fetch trips and set access code

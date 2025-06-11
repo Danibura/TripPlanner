@@ -5,7 +5,8 @@ import "../pages/css/pfp.css";
 const Pfp = ({
   user = null,
   size,
-  left,
+  left = 0,
+  right = 0,
   top = 0,
   color = "transparent",
   name = "",
@@ -18,6 +19,7 @@ const Pfp = ({
         marginLeft: left,
         width: "min-content",
         marginTop: top,
+        marginRight: right,
       }}
     >
       <div
