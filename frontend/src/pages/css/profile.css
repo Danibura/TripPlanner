@@ -53,14 +53,37 @@
     box-shadow: 2px 2px 5px black;
 }
 
+#name{
+    width: 400px;
+    height: 60px;
+    padding-left: 10px;
+    font-size: 26px;
+    border-radius: 10px;
+}
+
 #birthday{
     width: 220px;
+    height: 60px;
+    padding-left: 10px;
+    font-size: 26px;
+    border-radius: 10px;
 }
 
 #email{
     width: 400px;
+    height: 60px;
+    padding-left: 10px;
+    font-size: 26px;
+    border-radius: 10px;
 }
 
+#location{
+    width: 400px;
+    height: 60px;
+    padding-left: 10px;
+    font-size: 26px;
+    border-radius: 10px;
+}
 #bio{
     height: 200px;
     width: 500px;

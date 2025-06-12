@@ -41,6 +41,7 @@ const SignupPage = () => {
             <label>Name:</label>
             <br />
             <input
+              id="signupName"
               type="text"
               name="name"
               onChange={handleChange}
@@ -53,6 +54,7 @@ const SignupPage = () => {
             <label>Birthday:</label>
             <br />
             <input
+              id="signupBirthday"
               type="date"
               name="birthday"
               onChange={handleChange}
@@ -65,6 +67,7 @@ const SignupPage = () => {
             <label>Email:</label>
             <br />
             <input
+              id="signupEmail"
               type="email"
               name="email"
               onChange={handleChange}
@@ -77,6 +80,7 @@ const SignupPage = () => {
             <label>Password:</label>
             <br />
             <input
+              id="signupPassword"
               type="password"
               name="password"
               onChange={handleChange}

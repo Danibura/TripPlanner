@@ -11,7 +11,7 @@ import useAuth from "../store/useAuth";
 import Pfp from "../components/Pfp";
 import ParticipantsWindow from "../components/ParticipantsWindow";
 import ProfileTab from "../components/ProfileTab";
-
+import CountrySelector from "../components/CountrySelector";
 const provider = new OpenStreetMapProvider();
 
 const CreatePage = () => {
@@ -25,6 +25,7 @@ const CreatePage = () => {
     activities: [],
     organizers: [],
     participants: [],
+    country: "private",
   });
 
   //States
@@ -40,6 +41,7 @@ const CreatePage = () => {
   const [showParticipants, setShowParticipants] = useState(false);
   const [showProfile, setShowProfile] = useState(null);
   const [userRole, setUserRole] = useState("visitor");
+  const [selectedCountry, setSelectedCountry] = useState("International");
 
   //Update or create trip
   const handleSaveTrip = async () => {
@@ -75,6 +77,7 @@ const CreatePage = () => {
       const { success, message } = await createTrip(updatedTrip);
       console.log("Created:", newTrip, success, message);
     }
+    console.log(updatedTrip);
     setNewTrip(updatedTrip);
     const updatedUser = {
       ...currentUser,
@@ -161,6 +164,20 @@ const CreatePage = () => {
     const { success, message } = await modifyTrip(updatedTrip);
     console.log("Updated ", success, message);
   };
+
+  const handleSelectCountry = (country) => {
+    setNewTrip({ ...newTrip, country: country });
+    setSelectedCountry(country);
+  };
+
+  const changePublic = (publicValue) => {
+    if (!publicValue) setNewTrip({ ...newTrip, country: "private" });
+    else setNewTrip({ ...newTrip, country: "International" });
+  };
+
+  useEffect(() => {
+    setSelectedCountry(newTrip.country);
+  });
 
   //Fetch user
   useEffect(() => {
@@ -272,7 +289,7 @@ const CreatePage = () => {
         />
         <br />
         <br />
-        <label id="label-returnDate">Return date</label>{" "}
+        <label id="label-returnDate">Return date</label>
         <input
           type="date"
           id="returnDate"
@@ -283,6 +300,28 @@ const CreatePage = () => {
           }
           readOnly={userRole != "organizer"}
         />
+        <br />
+        <br />
+        <div id="boxIsPublic">
+          <label id="isPublic">Public</label>
+          <label id="switchPublic">
+            <input
+              type="checkbox"
+              checked={newTrip.country != "private"}
+              onChange={(e) => changePublic(e.target.checked)}
+            />
+            <span id="sliderPublic"></span>
+          </label>
+          {newTrip.country != "private" && (
+            <div id="divCountrySel">
+              <label>Participats country: </label>
+              <CountrySelector
+                handleSelectCountry={handleSelectCountry}
+                selectedCountry={selectedCountry}
+              />
+            </div>
+          )}
+        </div>
         <div id="box-activities">
           <h3 id="title-activities">Activities</h3>
           {newTrip.activities &&

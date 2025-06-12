@@ -28,6 +28,35 @@
     box-shadow: 2px 2px 5px black;
 }
 
+#signupName{
+    width: 250px;
+    height: 60px;
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: 26px;
+}
+
+#signupBirthday{
+    width: 250px;
+    height: 60px;
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: 26px;
+}
+#signupEmail{
+    width: 250px;
+    height: 60px;
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: 26px;
+}
+#signupPassword{
+    width: 250px;
+    height: 60px;
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: 26px;
+}
 button{
     background-color: black;
     color: white;

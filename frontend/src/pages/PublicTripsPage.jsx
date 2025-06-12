@@ -79,9 +79,11 @@ const PublicTripsPage = () => {
         </div>
       </div>
       <div id="trips-list">
-        {trips?.map((trip, index) => (
-          <Trip key={index} trip={trip} />
-        ))}
+        {trips
+          ?.filter((trip) => trip.country != "private")
+          .map((trip, index) => (
+            <Trip key={index} trip={trip} showCountry={true} />
+          ))}
       </div>
     </div>
   );

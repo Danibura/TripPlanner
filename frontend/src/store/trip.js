@@ -55,11 +55,6 @@ export const useTripStore = create((set) => ({
         }
       );
 
-      if (!res.success) {
-        const errorText = await res.text();
-        return { success: false, message: `Server error ${errorText}` };
-      }
-
       const data = await res.json();
       set((state) => ({
         trips: state.trips.map((trip) =>
@@ -85,7 +80,6 @@ export const useTripStore = create((set) => ({
     }
   },
   deleteTrip: async (removedTrip) => {
-    console.log(removedTrip.accessCode);
     try {
       const res = await fetch(
         `${API_BASE_URL}/api/trips/${encodeURIComponent(

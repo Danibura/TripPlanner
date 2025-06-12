@@ -2,7 +2,7 @@ import React from "react";
 import "../pages/css/trip.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-const Trip = ({ trip, setClickedBin }) => {
+const Trip = ({ trip, setClickedBin, showCountry = false }) => {
   const [showBin, setShowBin] = useState(false);
   return (
     <Link
@@ -15,6 +15,7 @@ const Trip = ({ trip, setClickedBin }) => {
         <div id="destination-line">{trip.destination}</div>
         <div id="departureDate-line">{trip.departureDate}</div>
         <div id="returnDate-line">{trip.returnDate}</div>
+        {showCountry && <div id="country-line">{trip.country}</div>}
         {showBin && setClickedBin != null && (
           <button
             className="material-symbols-outlined"

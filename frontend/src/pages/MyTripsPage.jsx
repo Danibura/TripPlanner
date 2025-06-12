@@ -86,13 +86,11 @@ const MyTripsPage = () => {
         ),
         organizers: data.organizers.filter((organizer) => organizer != email),
       };
-      console.log(removedTrip);
       if (
         removedTrip.participants.length == 0 &&
         removedTrip.organizers.length == 0
       ) {
         const res = await deleteTrip(removedTrip);
-        console.log(res.success);
       } else await modifyTrip(removedTrip);
     } catch (err) {
       console.log(err.message);

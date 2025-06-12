@@ -17,11 +17,11 @@
 
 #blur{
  /*  background-color: #2f69d4;*/
-    border: 5px solid white;
+    border: 5px solid rgb(246,246,246);
     backdrop-filter: blur(10px);
     padding: 20px;
     border-radius: 50px;
-    width: 40%;
+    width: 42%;
     height: 90%;
     overflow-x:hidden;
     overflow-y: auto;
@@ -50,7 +50,7 @@
     font-size: 30px;
     font-weight: bold;
     margin-left: 32px;
-    color: white;
+    color: rgb(246,246,246);
 }
 
 #departureDate{
@@ -71,7 +71,7 @@
     font-size: 30px;
     font-weight: bold;
     margin-left: 32px;
-    color: white;
+    color: rgb(246,246,246);
 }
 
 #returnDate{
@@ -84,9 +84,80 @@
     border-radius: 10px;
 }
 
+#boxIsPublic{
+    display: flex;
+    align-items: center;
+}
+#isPublic{
+    font-family: "Chewy", system-ui;
+    letter-spacing: 0.1rem;
+    font-size: 26px;
+    font-weight: bold;
+    margin-left: 32px;
+    color: rgb(246,246,246);
+}
+
+#switchPublic{
+    position: relative;
+    display: inline-block;
+    height: 28px;
+    width: 50px;
+    margin-left: 10px;
+}
+
+#switchPublic input{
+    opacity: 0;
+    width: 0px;
+    height: 0px;
+}
+
+#sliderPublic{
+    position: absolute;
+    cursor: pointer;
+    top:0; bottom:0; left:0; right:0;
+    background-color: gray;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+#sliderPublic::before{
+    content:"";
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    left: 3px;
+    bottom: 3px;
+    transition: 0.4s;
+}
+
+#switchPublic input:checked + #sliderPublic{
+    background-color: rgb(127, 208, 255);
+}
+
+#switchPublic input:checked + #sliderPublic::before{
+    transform: translateX(22px);
+}
+
+#divCountrySel{
+    display: flex;
+    margin-left: 40px;
+    align-items: center;
+}
+
+#divCountrySel label{
+    font-family: "Chewy", system-ui;
+    letter-spacing: 0.1rem;
+    font-size: 26px;
+    font-weight: bold;
+    color: rgb(246,246,246);
+    margin-right: 20px;
+}
+
 #box-activities{
     width: 800px;
-    max-height: 200px;
+    max-height: 120px;
     margin-left: 20px;
     margin-top: 20px;
     padding:12px;
@@ -95,7 +166,7 @@
 
 
 #title-activities{
-    color: white;
+    color: rgb(246,246,246);
     font-family: "Chewy", system-ui;
     font-style: normal;
     letter-spacing: 0.1rem;
@@ -109,10 +180,10 @@
     height: 60px;
     margin: 0px;
     box-sizing: border-box;
-    border: 5px solid #ffffff;
+    border: 5px solid rgb(246,246,246);
     border-radius: 50px;
-    background-color: #000000;
-    color: white;
+    background-color: rgb(30,30,30);
+    color: rgb(246,246,246);
     font-size: 20px;
     font-family:'Courier New', Courier, monospace;
     font-weight: bold;
@@ -130,7 +201,7 @@
 
 
 #title-info{
-    color: white;
+    color: rgb(246,246,246);
     font-family: "Chewy", system-ui;
     font-style: normal;
     letter-spacing: 0.1rem;
@@ -173,7 +244,7 @@
 }
 
 #code-title{
-    color: white;
+    color: rgb(246,246,246);
     font-size: 20px;
     font-family: "Press Start 2P", system-ui;
     word-spacing: -10px;
@@ -247,6 +318,5 @@
     margin-top: -10px;
     overflow-y: auto;
     padding-left: 20px;
-    height: 120px;
     z-index: 7;
 }
