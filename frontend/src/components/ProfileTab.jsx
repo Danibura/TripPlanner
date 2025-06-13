@@ -26,6 +26,8 @@ const ProfileTab = ({
   const handleFriend = async () => {
     let updatedActualUser = actualUser,
       updatedSecondUser = secondUserVar;
+    console.log("Actual user", actualUser);
+    console.log("Second user", updatedSecondUser);
     if (friendState == "Stranger") {
       updatedActualUser = {
         ...actualUser,
@@ -33,7 +35,6 @@ const ProfileTab = ({
       };
       setActualUser(updatedActualUser);
       setFriendState("Request-sent");
-      console.log(updatedActualUser);
     }
     if (friendState == "Request-sent") {
       updatedActualUser = {
@@ -72,6 +73,13 @@ const ProfileTab = ({
         ),
       };
       setActualUser(updatedActualUser);
+      updatedSecondUser = {
+        ...secondUserVar,
+        friends: secondUserVar.friends.filter(
+          (friend) => friend != actualUser.email
+        ),
+      };
+      setSecondUserVar(updatedSecondUser);
       setFriendState("Stranger");
     }
     try {

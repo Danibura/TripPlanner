@@ -58,6 +58,10 @@ const CreatePage = () => {
       alert("Please choose a return date");
       ok = false;
     }
+    if (new Date(newTrip.departureDate) > new Date(newTrip.returnDate) && ok) {
+      alert("Return date can't preceed departure date");
+      ok = false;
+    }
     if (!ok) return;
 
     const updatedTrip = {
