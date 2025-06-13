@@ -4,6 +4,7 @@ const CountrySelector = ({
   handleSelectCountry,
   selectedCountry,
   userRole = "organizer",
+  all = false,
 }) => {
   const countries = [
     "Afghanistan",
@@ -218,6 +219,7 @@ const CountrySelector = ({
         }}
         disabled={userRole != "organizer"}
       >
+        {all && <option value="All">All</option>}
         <option value="International">International</option>
         {countries.map((country) => (
           <option key={country} value={country}>

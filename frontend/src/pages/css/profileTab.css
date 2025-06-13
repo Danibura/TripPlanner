@@ -99,14 +99,14 @@
 
 #make-organizer{
     margin-top: 80px;
-    color: rgb(246,246,246);
-    background-color: transparent;
-    border: 2px solid rgb(246,246,246);
+    border: 2px solid rgb(17, 71, 0);
+    background: linear-gradient(to right,rgb(34, 145, 0), rgb(135, 223, 101));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 #kickout{
-    margin-top: 80px;
-    color: rgb(246,246,246);
+    margin-top: 50px;
     background-color: transparent;
     border: 2px solid rgb(71, 0, 0);
     background: linear-gradient(to right,rgb(71, 0, 0), rgb(197, 0, 0));
@@ -115,4 +115,8 @@
   font-weight: bold;
 }
 
+#friendButton{
+    margin-top: 50px;
+    background-color: transparent;
+}
 

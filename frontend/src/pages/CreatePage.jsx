@@ -416,6 +416,7 @@ const CreatePage = () => {
           handleChangeRole={handleChangeRole}
           participants={participants}
           handleKickOut={handleKickOut}
+          secondUser={currentUser}
         />
       )}
     </div>
