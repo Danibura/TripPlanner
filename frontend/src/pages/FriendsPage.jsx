@@ -17,74 +17,100 @@ const FriendsPage = () => {
   const decoded = jwtDecode(token);
   const email = decoded.email;
   const [currentUser, setCurrentUser] = useState(null);
-  const { findUser } = useAuth();
+  const { findUser, fetchUsers } = useAuth();
   const [searched, setSearched] = useState("");
   const navigate = useNavigate();
   const [rotateMenu, setRotateMenu] = useState(false);
   const [friends, setFriends] = useState([]);
+  const [filteredFriends, setFilteredFriends] = useState([]);
   const [showProfile, setShowProfile] = useState(null);
+  const [currentPage, setCurrentPage] = useState("myFriends");
 
   const handleSearchedChange = (e) => {
     const newSearched = e.target.value;
     setSearched(newSearched);
-    //applyFilters(undefined, newSearched, undefined);
+    const fFriends = friends.filter(
+      (friend) => !friend.name.indexOf(newSearched)
+    );
+    setFilteredFriends(fFriends);
   };
 
-  const findFriends = async (user) => {
+  const findFriends = async () => {
+    const user = await getUpdatedUser();
     try {
-      console.log(user.friends);
       const resultFriends = await Promise.all(
         user.friends.map((friend) => findUser(friend))
       );
 
       const validFriends = resultFriends
         .filter((res) => res.success)
-        .map((res) => {
-          console.log(res.data);
-          return res.data;
-        });
+        .map((res) => res.data);
 
       setFriends(validFriends);
+      setFilteredFriends(validFriends);
     } catch (err) {
       console.log(err.message);
     }
   };
 
+  const handleChangePage = (page) => {
+    setCurrentPage(page);
+    if (page == "myFriends") findFriends();
+    else findOthers();
+  };
+
+  const findOthers = async () => {
+    try {
+      const res = await fetchUsers();
+      let others = res.data;
+      others = others.filter((other) => other.email != currentUser.email);
+      setFriends(others);
+      setFilteredFriends(others);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const getUpdatedUser = async () => {
+    const res = await findUser(email);
+    const user = res.data;
+    setCurrentUser(user);
+    return user;
+  };
+
   useEffect(() => {
-    const fetchUser = async () => {
-      const res = await findUser(email);
-      const user = res.data;
-      setCurrentUser(user);
-      findFriends(user);
-    };
-    fetchUser();
+    findFriends();
   }, []);
   return (
     <div id="friendsPage">
       <FriendsHeader
         rotateMenu={rotateMenu}
         setRotateMenu={setRotateMenu}
-        currentPage="myFriends"
+        currentPage={currentPage}
+        handleChangePage={handleChangePage}
       />
       <div id="friends-option-box">
-        <input
-          type="text"
-          placeholder="Search"
-          id="search-friends"
-          value={searched}
-          onChange={(e) => {
-            handleSearchedChange(e);
-          }}
-        />
+        <div id="search-friends">
+          <input
+            type="text"
+            placeholder="Search"
+            value={searched}
+            onChange={(e) => {
+              handleSearchedChange(e);
+            }}
+          />
+        </div>
       </div>
       <div id="friendsList">
-        {friends?.map((friend) => (
-          <UserLine
-            user={friend}
-            key={friend.email}
-            setShowProfile={setShowProfile}
-          />
-        ))}
+        {filteredFriends
+          ?.sort((a, b) => a.name.localeCompare(b.name))
+          .map((friend) => (
+            <UserLine
+              user={friend}
+              key={friend.email}
+              setShowProfile={setShowProfile}
+            />
+          ))}
       </div>
       {showProfile && (
         <ProfileTab

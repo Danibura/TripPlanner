@@ -26,8 +26,6 @@ const ProfileTab = ({
   const handleFriend = async () => {
     let updatedActualUser = actualUser,
       updatedSecondUser = secondUserVar;
-    console.log("Actual user", actualUser);
-    console.log("Second user", updatedSecondUser);
     if (friendState == "Stranger") {
       updatedActualUser = {
         ...actualUser,

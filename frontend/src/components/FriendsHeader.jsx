@@ -2,27 +2,32 @@ import React from "react";
 import { Link } from "react-router-dom";
 import MenuButton from "./MenuButton";
 import "../pages/css/friendsHeader.css";
-const FriendsHeader = ({ rotateMenu, setRotateMenu, currentPage }) => {
+const FriendsHeader = ({
+  rotateMenu,
+  setRotateMenu,
+  currentPage,
+  handleChangePage,
+}) => {
   return (
     <div id="friendsHeader">
       <MenuButton rotateMenu={rotateMenu} setRotateMenu={setRotateMenu} />
-      <div id="myFriendsDiv">
-        <Link
+      <div>
+        <button
           id="myFriends"
-          to={"/friends"}
           className={currentPage == "myFriends" ? "underline" : ""}
+          onClick={() => handleChangePage("myFriends")}
         >
           My friends
-        </Link>
+        </button>
       </div>
-      <div id="otherTravalersDiv">
-        <Link
+      <div>
+        <button
           id="otherTravelers"
-          to={"/otherTravelers"}
           className={currentPage == "otherTravelers" ? "underline" : ""}
+          onClick={() => handleChangePage("otherTravelers")}
         >
           Other travelers
-        </Link>
+        </button>
       </div>
     </div>
   );

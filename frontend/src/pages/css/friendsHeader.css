@@ -1,7 +1,7 @@
  @import url('https://fonts.googleapis.com/css2?family=Kenia&display=swap');
  
  #friendsHeader{
-    padding-top: 55px;
+    padding-top: 45px;
     padding-bottom: 50px;
     background: linear-gradient(rgb(0, 194, 136), rgb(56, 255, 179));
     display: flex;
@@ -9,38 +9,53 @@
     border-bottom: 1px solid rgb(179, 179, 179, 0.5);
  }
  
-#friendsHeader div{
+ #friendsHeader div{
     width: 50%;
-    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: baseline;
+ }
 
+#myFriends{
+    position: relative;
+    color: white;
+    font-size: 40px;
+    text-decoration: none;
+    font-family: "Kenia", cursive;
+    font-style: italic;
+    border: 0px;
+    background-color: transparent;
 }
 
- #myFriends{
+#otherTravelers{
     position: relative;
     color: white;
     font-size: 40px;
     text-decoration: none;
     font-family: "Kenia", cursive;
     font-style: italic;
- }
-
- #otherTravelers{
-    position: relative;
-    color: white;
-    font-size: 40px;
-    text-decoration: none;
-    font-family: "Kenia", cursive;
-    font-style: italic;
- }
+    border: 0px;
+    background-color: transparent;
+}
 
 .underline::after{
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: 0px;
     left: 0px;
     height: 3px;
     width: 100%;
     background: linear-gradient(to right, rgb(0, 79, 153), rgb(111, 255, 255), rgb(0, 79, 153));
     border: 0px;
     border-radius: 30%;
+    animation: underlineAppear 0.3s ease-in-out;
+}
+
+@keyframes underlineAppear{
+   from{
+      width: 0%;
+   }
+   to{
+      width: 100%;
+   }
 }

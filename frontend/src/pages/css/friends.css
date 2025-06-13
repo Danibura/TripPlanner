@@ -16,13 +16,26 @@
 
 #search-friends{
     border-radius: 20px;
-    background-color: rgb(227, 255, 246);
-    color: rgb(24, 23, 23);
+      background-color: rgb(227, 255, 246);
     margin-left: 40px;
     border: 0px;
     box-shadow: 2px 2px 2px rgb(30,30,30);
     width: 250px;
     height: 60px;
     padding-left: 10px;
+
+}
+
+#search-friends input{
+    background: linear-gradient(to right,rgb(0, 78, 30), rgb(0, 185, 77));
+    background-clip: text;
+  -webkit-text-fill-color: transparent;
     font-size: 26px;
+    width: 200px;
+    border: 0px;
+        padding-top: 15px;
+}
+
+#search-friends input:focus{
+    outline: none;
 }

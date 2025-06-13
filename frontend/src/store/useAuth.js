@@ -94,9 +94,10 @@ const useAuth = create((set) => ({
 
   fetchUsers: async () => {
     try {
-      const res = await fetch(`${API_BASE_URL}/api/users`);
-      const data = await res.json();
-      set({ users: data.data });
+      const res = await fetch(`${API_BASE_URL}/api/users/`);
+      const users = await res.json();
+      set({ users: users.data });
+      return { success: true, data: users.data };
     } catch (err) {
       return { success: false, message: err.message };
     }
