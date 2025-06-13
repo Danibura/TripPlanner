@@ -100,7 +100,7 @@ const ProfileTab = ({
         else setFriendState("Stranger");
       }
     }
-  }, []);
+  }, [user, secondUser]);
 
   useEffect(() => {
     setActualUser(user);

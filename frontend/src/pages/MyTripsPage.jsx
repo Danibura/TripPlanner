@@ -79,7 +79,7 @@ const MyTripsPage = () => {
     try {
       const res = await getTripByCode(clickedBin);
       const data = res.data;
-      const removedTrip = {
+      let updatedTrip = {
         ...data,
         participants: data.participants.filter(
           (participant) => participant != email
@@ -87,11 +87,24 @@ const MyTripsPage = () => {
         organizers: data.organizers.filter((organizer) => organizer != email),
       };
       if (
-        removedTrip.participants.length == 0 &&
-        removedTrip.organizers.length == 0
+        updatedTrip.participants.length == 0 &&
+        updatedTrip.organizers.length == 0
       ) {
-        await deleteTrip(removedTrip);
-      } else await modifyTrip(removedTrip);
+        await deleteTrip(updatedTrip);
+      } else {
+        if (updatedTrip.organizers.length == 0) {
+          updatedTrip = {
+            ...updatedTrip,
+            organizers: [
+              ...updatedTrip.organizers,
+              updatedTrip.participants[0],
+            ],
+            participants: updatedTrip.participants.slice(1),
+          };
+        }
+
+        await modifyTrip(updatedTrip);
+      }
     } catch (err) {
       console.log(err.message);
     }
