@@ -158,15 +158,25 @@ const CreatePage = () => {
 
   //Kickout user
   const handleKickOut = async (userToExpel) => {
-    const updatedTrip = {
-      ...newTrip,
-      participants: newTrip.participants.filter(
-        (participant) => participant != userToExpel.email
-      ),
-    };
-    setNewTrip(updatedTrip);
-    const { success, message } = await modifyTrip(updatedTrip);
-    console.log("Updated ", success, message);
+    try {
+      const updatedTrip = {
+        ...newTrip,
+        participants: newTrip.participants.filter(
+          (participant) => participant != userToExpel.email
+        ),
+      };
+      setNewTrip(updatedTrip);
+      const { success, message } = await modifyTrip(updatedTrip);
+
+      const updatedUser = {
+        ...userToExpel,
+        trips: userToExpel.trips.filter((trip) => trip != tripCode),
+      };
+      await modifyUser(updatedUser);
+      console.log("Updated ", success, message);
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   const handleSelectCountry = (country) => {
