@@ -6,6 +6,7 @@ import SignupPage from "./pages/SignupPage";
 import ProfilePage from "./pages/ProfilePage";
 import MyTripsPage from "./pages/MyTripsPage";
 import PublicTripsPage from "./pages/PublicTripsPage";
+import FriendsPage from "./pages/FriendsPage";
 function App() {
   return (
     <Routes>
@@ -16,6 +17,7 @@ function App() {
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/myTrips" element={<MyTripsPage />} />
       <Route path="/publicTrips" element={<PublicTripsPage />} />
+      <Route path="/friends" element={<FriendsPage />}></Route>
     </Routes>
   );
 }

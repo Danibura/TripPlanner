@@ -49,7 +49,7 @@
     font-size: 45px;
     font-family:"Rocl Salt", cursive;
     background: linear-gradient(to right,rgb(201, 172, 42), rgb(255, 244, 244));
-  -webkit-background-clip: text;
+    background-clip: text;
   -webkit-text-fill-color: transparent;
 
 }
@@ -101,7 +101,7 @@
     margin-top: 80px;
     border: 2px solid rgb(17, 71, 0);
     background: linear-gradient(to right,rgb(34, 145, 0), rgb(135, 223, 101));
-  -webkit-background-clip: text;
+    background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -110,7 +110,7 @@
     background-color: transparent;
     border: 2px solid rgb(71, 0, 0);
     background: linear-gradient(to right,rgb(71, 0, 0), rgb(197, 0, 0));
-  -webkit-background-clip: text;
+    background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: bold;
 }

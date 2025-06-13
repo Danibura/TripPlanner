@@ -40,9 +40,17 @@ const MenuWindow = ({ user, setRotateMenu, currentPage }) => {
           </li>
         </Link>
 
-        <li>
-          <h4 className="material-symbols-outlined">diversity_4</h4>Friends
-        </li>
+        <Link
+          to={"/friends"}
+          id="friendsLink"
+          onClick={() => {
+            if (currentPage == "friends") setRotateMenu(false);
+          }}
+        >
+          <li>
+            <h4 className="material-symbols-outlined">diversity_4</h4>Friends
+          </li>
+        </Link>
         <li>
           <h4 className="material-symbols-outlined">notifications</h4>
           Notifications

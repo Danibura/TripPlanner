@@ -1,0 +1,42 @@
+ @import url('https://fonts.googleapis.com/css2?family=Kenia&display=swap');
+ 
+ #friendsHeader{
+    padding-top: 55px;
+    padding-bottom: 50px;
+    background: linear-gradient(rgb(0, 156, 130), rgb(56, 255, 205));
+    display: flex;
+    align-items: center;
+ }
+ 
+#friendsHeader div{
+    width: 50%;
+    text-align: center;
+}
+
+ #myFriends{
+    position: relative;
+    color: white;
+    font-size: 40px;
+    text-decoration: none;
+    font-family: "Kenia", cursive;
+ }
+
+ #otherTravelers{
+    position: relative;
+    color: white;
+    font-size: 40px;
+    text-decoration: none;
+    font-family: "Kenia", cursive;
+ }
+
+.underline::after{
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0px;
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(to right, rgb(0, 79, 153), rgb(111, 255, 255), rgb(0, 79, 153));
+    border: 0px;
+    border-radius: 30%;
+}
