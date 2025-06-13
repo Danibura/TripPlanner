@@ -39,13 +39,14 @@
 }
 #destination-line{
     margin-left: 40px;
-    width: 900px;
+    width: 35%;
 }
 #departureDate-line{
-    width: 300px;
+    width: 15%;
+    margin-left: 30px;
 }
 #returnDate-line{
-    width: 300px;
+    width: 15%;
 }
 
 #bin{

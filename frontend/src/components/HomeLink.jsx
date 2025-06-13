@@ -16,7 +16,7 @@ const HomeLink = () => {
             width: "80px",
             fontSize: "40px",
             position: "absolute",
-            left: "900px",
+            left: "48%",
             top: "0px",
             borderBottomLeftRadius: "20px",
             borderBottomRightRadius: "20px",

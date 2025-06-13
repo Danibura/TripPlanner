@@ -1,6 +1,10 @@
 import React from "react";
 
-const CountrySelector = ({ handleSelectCountry, selectedCountry }) => {
+const CountrySelector = ({
+  handleSelectCountry,
+  selectedCountry,
+  userRole = "organizer",
+}) => {
   const countries = [
     "Afghanistan",
     "Albania",
@@ -212,8 +216,9 @@ const CountrySelector = ({ handleSelectCountry, selectedCountry }) => {
           borderRadius: "10px",
           fontSize: "20px",
         }}
+        disabled={userRole != "organizer"}
       >
-        <option value="international">International</option>
+        <option value="International">International</option>
         {countries.map((country) => (
           <option key={country} value={country}>
             {country}

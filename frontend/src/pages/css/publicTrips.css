@@ -1,6 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+NSW+ACT+Hand+Pre:wght@400..700&display=swap');
+
 #publicTripsPage{
     background-color: rgb(216, 231, 255);
     height: 100vh;
     overflow-y: auto;
     position: relative;
+}
+
+#participantsCountryFilter{
+    margin-left: 40px;
+}
+
+#participantsCountryFilter label{
+    font-family:"Edu NSW ACT Hand Pre", cursive;
+    font-size:20px;
+    color: white;
 }

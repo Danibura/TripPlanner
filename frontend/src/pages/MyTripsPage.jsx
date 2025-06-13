@@ -11,7 +11,7 @@ import ConfirmWindow from "../components/ConfirmWindow";
 import { useNavigate } from "react-router-dom";
 import MenuWindow from "../components/MenuWindow";
 import Header from "../components/Header";
-
+import Fields from "../components/Fields";
 const MyTripsPage = () => {
   const token = localStorage.getItem("accessToken");
   const decoded = jwtDecode(token);
@@ -24,7 +24,7 @@ const MyTripsPage = () => {
   const { getTripByCode, modifyTrip, deleteTrip } = useTripStore();
   const [searched, setSearched] = useState("");
   const [showFilters, setShowFilters] = useState(false);
-  const [selectedFilter, setSelectedFilter] = useState(1);
+  const [selectedFilter, setSelectedFilter] = useState(2);
   const [clickedBin, setClickedBin] = useState(0);
   const navigate = useNavigate();
   const [rotateMenu, setRotateMenu] = useState(false);
@@ -90,7 +90,7 @@ const MyTripsPage = () => {
         removedTrip.participants.length == 0 &&
         removedTrip.organizers.length == 0
       ) {
-        const res = await deleteTrip(removedTrip);
+        await deleteTrip(removedTrip);
       } else await modifyTrip(removedTrip);
     } catch (err) {
       console.log(err.message);
@@ -110,9 +110,6 @@ const MyTripsPage = () => {
     return newTrips;
   };
 
-  const navigateProfile = () => {
-    navigate("/profile");
-  };
   //Finds user
   useEffect(() => {
     const fetchUser = async () => {
@@ -133,7 +130,7 @@ const MyTripsPage = () => {
     setFilteredTrips(
       trips
         .filter((trip) => !trip.destination.indexOf(searched))
-        .sort((a, b) => a.destination.localeCompare(b.destination))
+        .sort((a, b) => new Date(a.departureDate) - new Date(b.departureDate))
     );
   }, [trips]);
 
@@ -200,6 +197,7 @@ const MyTripsPage = () => {
           <button id="joinButton">Join</button>
         </Link>
       </div>
+      <Fields />
       <div id="trips-list">
         {filteredTrips?.map((trip, index) => (
           <Trip key={index} trip={trip} setClickedBin={setClickedBin} />

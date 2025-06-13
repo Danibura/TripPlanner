@@ -308,6 +308,7 @@ const CreatePage = () => {
             <input
               type="checkbox"
               checked={newTrip.country != "private"}
+              disabled={userRole != "organizer"}
               onChange={(e) => changePublic(e.target.checked)}
             />
             <span id="sliderPublic"></span>
@@ -316,6 +317,7 @@ const CreatePage = () => {
             <div id="divCountrySel">
               <label>Participats country: </label>
               <CountrySelector
+                userRole={userRole}
                 handleSelectCountry={handleSelectCountry}
                 selectedCountry={selectedCountry}
               />
