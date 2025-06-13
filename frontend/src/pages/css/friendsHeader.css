@@ -3,14 +3,16 @@
  #friendsHeader{
     padding-top: 55px;
     padding-bottom: 50px;
-    background: linear-gradient(rgb(0, 156, 130), rgb(56, 255, 205));
+    background: linear-gradient(rgb(0, 194, 136), rgb(56, 255, 179));
     display: flex;
     align-items: center;
+    border-bottom: 1px solid rgb(179, 179, 179, 0.5);
  }
  
 #friendsHeader div{
     width: 50%;
     text-align: center;
+
 }
 
  #myFriends{
@@ -19,6 +21,7 @@
     font-size: 40px;
     text-decoration: none;
     font-family: "Kenia", cursive;
+    font-style: italic;
  }
 
  #otherTravelers{
@@ -27,6 +30,7 @@
     font-size: 40px;
     text-decoration: none;
     font-family: "Kenia", cursive;
+    font-style: italic;
  }
 
 .underline::after{

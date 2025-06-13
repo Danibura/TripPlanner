@@ -10,16 +10,19 @@ import { useEffect } from "react";
 import useAuth from "../store/useAuth";
 import "./css/friends.css";
 import FriendsHeader from "../components/FriendsHeader";
+import UserLine from "../components/UserLine";
+
 const FriendsPage = () => {
   const token = localStorage.getItem("accessToken");
   const decoded = jwtDecode(token);
   const email = decoded.email;
-  var tripCode = parseInt(Math.random() * 100000000);
   const [currentUser, setCurrentUser] = useState(null);
   const { findUser } = useAuth();
   const [searched, setSearched] = useState("");
   const navigate = useNavigate();
   const [rotateMenu, setRotateMenu] = useState(false);
+  const [friends, setFriends] = useState([]);
+  const [showProfile, setShowProfile] = useState(null);
 
   const handleSearchedChange = (e) => {
     const newSearched = e.target.value;
@@ -27,11 +30,32 @@ const FriendsPage = () => {
     //applyFilters(undefined, newSearched, undefined);
   };
 
+  const findFriends = async (user) => {
+    try {
+      console.log(user.friends);
+      const resultFriends = await Promise.all(
+        user.friends.map((friend) => findUser(friend))
+      );
+
+      const validFriends = resultFriends
+        .filter((res) => res.success)
+        .map((res) => {
+          console.log(res.data);
+          return res.data;
+        });
+
+      setFriends(validFriends);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   useEffect(() => {
     const fetchUser = async () => {
       const res = await findUser(email);
       const user = res.data;
       setCurrentUser(user);
+      findFriends(user);
     };
     fetchUser();
   }, []);
@@ -46,13 +70,29 @@ const FriendsPage = () => {
         <input
           type="text"
           placeholder="Search"
-          id="search"
+          id="search-friends"
           value={searched}
           onChange={(e) => {
             handleSearchedChange(e);
           }}
         />
       </div>
+      <div id="friendsList">
+        {friends?.map((friend) => (
+          <UserLine
+            user={friend}
+            key={friend.email}
+            setShowProfile={setShowProfile}
+          />
+        ))}
+      </div>
+      {showProfile && (
+        <ProfileTab
+          user={showProfile}
+          setShowProfile={setShowProfile}
+          secondUser={currentUser}
+        />
+      )}
       {rotateMenu && (
         <MenuWindow
           user={currentUser}

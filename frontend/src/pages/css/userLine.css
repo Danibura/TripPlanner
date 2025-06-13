@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Just+Another+Hand&display=swap');
+
+#userLine{
+     padding: 10px;
+     background: rgba(210, 255, 225, 0.7);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#userLine:hover{
+    filter:brightness(1.1)
+}
+
+#userLine-name{
+    font-size: 50px;
+        background: linear-gradient(to right,rgb(0, 78, 30), rgb(0, 185, 77));
+    background-clip: text;
+  -webkit-text-fill-color: transparent;
+    font-family: "Just Another Hand", cursive;
+    margin-left: 40px;
+    letter-spacing: 0.15rem;
+    font-weight: 550;
+}
+

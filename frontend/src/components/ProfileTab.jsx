@@ -6,10 +6,10 @@ import useAuth from "../store/useAuth";
 const ProfileTab = ({
   user,
   setShowProfile,
-  userRole,
-  handleChangeRole,
-  participants,
-  handleKickOut,
+  userRole = null,
+  handleChangeRole = () => {},
+  participants = [],
+  handleKickOut = () => {},
   secondUser = null,
 }) => {
   const [hide, setHide] = useState(false);
