@@ -154,7 +154,7 @@ const MyTripsPage = () => {
         setRotateMenu={setRotateMenu}
         title="My trips"
       />
-      <div id="options-box">
+      <div id="options-box-myTrips">
         <input
           type="text"
           placeholder="Search"

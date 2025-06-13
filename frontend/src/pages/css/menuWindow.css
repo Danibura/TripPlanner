@@ -45,6 +45,10 @@
 #friendsLink{
     text-decoration: none;
 }
+
+#notificationsLink{
+    text-decoration: none;
+}
 @keyframes appearMenu{
     from{
         opacity: 0;

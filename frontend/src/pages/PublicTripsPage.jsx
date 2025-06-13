@@ -120,7 +120,7 @@ const PublicTripsPage = () => {
         />
       )}
 
-      <div id="options-box">
+      <div id="options-box-publicTrips">
         <input
           type="text"
           placeholder="Search"

@@ -1,16 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
 #myTripsPage{
-    background-color: rgb(216, 231, 255);
+    background-color: rgb(216, 223, 255);
     height: 100vh;
     overflow-y: auto;
     position: relative;
 }
 
-#options-box{
-
+#options-box-myTrips{
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    background: rgba(28, 111, 189, 0.7);
+    background: rgba(28, 57, 189, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 20px 0px;
     z-index: 1;

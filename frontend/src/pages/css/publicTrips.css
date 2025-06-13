@@ -7,6 +7,18 @@
     position: relative;
 }
 
+#options-box-publicTrips{
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background: rgba(28, 103, 189, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px 0px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    height: 60px;
+}
+
+
 #participantsCountryFilter{
     margin-left: 40px;
 }

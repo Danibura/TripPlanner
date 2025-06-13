@@ -1,7 +1,7 @@
  @import url('https://fonts.googleapis.com/css2?family=Kenia&display=swap');
  
  #friendsHeader{
-    padding-top: 45px;
+    padding-top: 35px;
     padding-bottom: 50px;
     background: linear-gradient(rgb(0, 194, 136), rgb(56, 255, 179));
     display: flex;
@@ -19,7 +19,7 @@
 #myFriends{
     position: relative;
     color: white;
-    font-size: 40px;
+    font-size: 50px;
     text-decoration: none;
     font-family: "Kenia", cursive;
     font-style: italic;
@@ -30,7 +30,7 @@
 #otherTravelers{
     position: relative;
     color: white;
-    font-size: 40px;
+    font-size: 50px;
     text-decoration: none;
     font-family: "Kenia", cursive;
     font-style: italic;
