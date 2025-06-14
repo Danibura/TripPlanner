@@ -27,6 +27,15 @@
   font-weight: 600;
 }
 
+#declineInvitation{
+        margin-left: 60px;
+    border: 2px solid rgb(0, 0, 0);
+        background: linear-gradient(to right,rgb(0, 0, 0), rgb(65, 65, 65));
+    background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
 @keyframes appear{
     from{
         opacity: 0;

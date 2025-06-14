@@ -15,7 +15,7 @@ const NotificationsPage = () => {
   const decoded = jwtDecode(token);
   const email = decoded.email;
   const [currentUser, setCurrentUser] = useState(null);
-  const { findUser, modifyUser } = useAuth();
+  const { findUser } = useAuth();
 
   const fetchUser = async () => {
     const res = await findUser(email);
@@ -45,7 +45,12 @@ const NotificationsPage = () => {
         ))}
       {currentUser &&
         currentUser.invitations.map((invitation) => (
-          <Invitation tripCode={invitation} />
+          <Invitation
+            key={invitation}
+            tripCode={invitation}
+            user={currentUser}
+            fetchUser={fetchUser}
+          />
         ))}
       {rotateMenu && (
         <MenuWindow
