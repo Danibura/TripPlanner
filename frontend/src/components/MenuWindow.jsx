@@ -3,6 +3,7 @@ import "../pages/css/menuWindow.css";
 import Pfp from "./Pfp";
 import { Link } from "react-router-dom";
 const MenuWindow = ({ user, setRotateMenu, currentPage }) => {
+  const numNotifications = user.requests.length + user.invitations.length;
   return (
     <div id="menuWindow">
       <ul>
@@ -59,7 +60,13 @@ const MenuWindow = ({ user, setRotateMenu, currentPage }) => {
           }}
         >
           <li>
-            <h4 className="material-symbols-outlined">notifications</h4>
+            <h4
+              className="material-symbols-outlined"
+              id="bell"
+              data-after={numNotifications}
+            >
+              notifications
+            </h4>
             Notifications
           </li>
         </Link>

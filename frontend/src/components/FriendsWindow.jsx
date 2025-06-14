@@ -36,12 +36,15 @@ const FriendsWindow = ({ user, clickedShare, setClickedShare }) => {
   };
 
   const handleSend = async (invitedUser) => {
+    const invitation = {
+      tripCode: clickedShare,
+      fromEmail: user.email,
+    };
     const updatedUser = {
       ...invitedUser,
-      invitations: [...invitedUser.invitations, clickedShare],
+      invitations: [...invitedUser.invitations, invitation],
     };
     await modifyUser(updatedUser);
-    console.log(updatedUser);
   };
 
   useEffect(() => {

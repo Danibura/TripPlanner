@@ -89,7 +89,7 @@ const CreatePage = () => {
         ? currentUser.trips
         : [...currentUser.trips, tripCode],
       invitations: currentUser.invitations.filter(
-        (invitation) => invitation != tripCode
+        (invitation) => invitation.tripCode != tripCode
       ),
     };
     setCurrentUser(updatedUser);

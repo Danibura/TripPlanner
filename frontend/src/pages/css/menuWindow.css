@@ -49,6 +49,28 @@
 #notificationsLink{
     text-decoration: none;
 }
+
+#bell{
+    position: relative;
+}
+
+#bell::after{
+    position: absolute;
+    box-sizing: border-box;
+    top: -10px;
+    left: -10px;
+    content:attr(data-after);
+    border-radius: 50%;
+    background-color: white;
+    color: black;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    padding-left: 9px;
+    padding-top: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
 @keyframes appearMenu{
     from{
         opacity: 0;

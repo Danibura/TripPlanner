@@ -46,8 +46,8 @@ const NotificationsPage = () => {
       {currentUser &&
         currentUser.invitations.map((invitation) => (
           <Invitation
-            key={invitation}
-            tripCode={invitation}
+            key={invitation.tripCode}
+            invitation={invitation}
             user={currentUser}
             fetchUser={fetchUser}
           />

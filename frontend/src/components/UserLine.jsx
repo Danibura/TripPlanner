@@ -14,7 +14,9 @@ const UserLine = ({
   const [invited, setInvited] = useState(false);
   const checkInvited = () => {
     if (
-      user.invitations.includes(clickedShare) ||
+      user.invitations.some(
+        (invitation) => invitation.tripCode == clickedShare
+      ) ||
       user.trips.includes(clickedShare)
     )
       setInvited(true);

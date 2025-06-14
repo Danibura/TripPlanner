@@ -19,21 +19,21 @@
 }
 
 #goTrip{
-        margin-left: 80px;
+    margin-left: 80px;
     border: 2px solid rgb(0, 81, 255);
-        background: linear-gradient(to right,rgb(6, 27, 94), rgb(7, 179, 185));
+    background: linear-gradient(to right,rgb(6, 27, 94), rgb(7, 179, 185));
     background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 600;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
 }
 
 #declineInvitation{
-        margin-left: 60px;
+    margin-left: 60px;
     border: 2px solid rgb(0, 0, 0);
-        background: linear-gradient(to right,rgb(0, 0, 0), rgb(65, 65, 65));
+    background: linear-gradient(to right,rgb(0, 0, 0), rgb(65, 65, 65));
     background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 600;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
 }
 
 @keyframes appear{
