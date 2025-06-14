@@ -117,6 +117,9 @@ const FriendsPage = () => {
           user={showProfile}
           setShowProfile={setShowProfile}
           secondUser={currentUser}
+          findFriends={findFriends}
+          currentPage={currentPage}
+          getUpdatedUser={getUpdatedUser}
         />
       )}
       {rotateMenu && (

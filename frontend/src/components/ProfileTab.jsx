@@ -11,11 +11,14 @@ const ProfileTab = ({
   participants = [],
   handleKickOut = () => {},
   secondUser = null,
+  findFriends = () => {},
+  currentPage = null,
+  getUpdatedUser = () => {},
 }) => {
   const [hide, setHide] = useState(false);
   let [friendState, setFriendState] = useState("Stranger");
-  const [actualUser, setActualUser] = useState(null);
-  const [secondUserVar, setSecondUserVar] = useState(null);
+  const actualUser = user;
+  const secondUserVar = secondUser;
   const { modifyUser } = useAuth();
 
   const closeProfileTab = () => {
@@ -31,7 +34,6 @@ const ProfileTab = ({
         ...actualUser,
         requests: [...actualUser.requests, secondUser.email],
       };
-      setActualUser(updatedActualUser);
       setFriendState("Request-sent");
     }
     if (friendState == "Request-sent") {
@@ -41,7 +43,6 @@ const ProfileTab = ({
           (request) => request != secondUserVar.email
         ),
       };
-      setActualUser(updatedActualUser);
       setFriendState("Stranger");
     }
     if (friendState == "Request-received") {
@@ -52,7 +53,6 @@ const ProfileTab = ({
           (request) => request != secondUserVar.email
         ),
       };
-      setActualUser(updatedActualUser);
       updatedSecondUser = {
         ...secondUserVar,
         friends: [...secondUserVar.friends, actualUser.email],
@@ -60,7 +60,6 @@ const ProfileTab = ({
           (request) => request != actualUser.email
         ),
       };
-      setSecondUserVar(updatedSecondUser);
       setFriendState("Friend");
     }
     if (friendState == "Friend") {
@@ -70,42 +69,44 @@ const ProfileTab = ({
           (friend) => friend != secondUserVar.email
         ),
       };
-      setActualUser(updatedActualUser);
       updatedSecondUser = {
         ...secondUserVar,
         friends: secondUserVar.friends.filter(
           (friend) => friend != actualUser.email
         ),
       };
-      setSecondUserVar(updatedSecondUser);
       setFriendState("Stranger");
     }
     try {
       await modifyUser(updatedActualUser);
       await modifyUser(updatedSecondUser);
+      console.log(updatedActualUser);
+      console.log(updatedSecondUser);
     } catch (err) {
       console.log(err.message);
     }
+
+    if (currentPage == "myFriends") {
+      findFriends();
+    }
+
+    getUpdatedUser();
   };
 
   useEffect(() => {
-    if (user.friends.some((friend) => friend == secondUser.email))
-      setFriendState("Friend");
-    else {
-      if (user.requests.some((request) => request == secondUser.email))
-        setFriendState("Request-sent");
-      else {
-        if (secondUser.requests.some((request) => request == user.email))
-          setFriendState("Request-received");
-        else setFriendState("Stranger");
-      }
-    }
-  }, [user, secondUser]);
+    if (!actualUser || !secondUserVar) return;
 
-  useEffect(() => {
-    setActualUser(user);
-    setSecondUserVar(secondUser);
-  });
+    if (actualUser.friends.includes(secondUserVar.email)) {
+      setFriendState("Friend");
+    } else if (actualUser.requests.includes(secondUserVar.email)) {
+      setFriendState("Request-sent");
+    } else if (secondUserVar.requests.includes(actualUser.email)) {
+      setFriendState("Request-received");
+    } else {
+      setFriendState("Stranger");
+    }
+  }, [actualUser.email, secondUserVar.email]);
+
   return (
     <div id="profileTab" className={hide ? "hidden" : ""}>
       <button

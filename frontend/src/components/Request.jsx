@@ -7,6 +7,7 @@ import { useEffect } from "react";
 
 const Request = ({ email, secondUser, fetchUser }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const [secondUserVar, setSecondUserVar] = useState(secondUser);
   const { findUser, modifyUser } = useAuth();
   useEffect(() => {
     const fetchUser = async () => {
@@ -21,24 +22,31 @@ const Request = ({ email, secondUser, fetchUser }) => {
     try {
       const updatedUser = {
         ...currentUser,
-        requests: currentUser.requests.filter((request) => request != email),
-        friends: [...currentUser.friends, email],
+        friends: [...currentUser.friends, secondUser.email],
       };
       await modifyUser(updatedUser);
+      setCurrentUser(updatedUser);
+      const updatedSecondUser = {
+        ...secondUserVar,
+        requests: secondUserVar.requests.filter((request) => request != email),
+        friends: [...secondUserVar.friends, email],
+      };
+      await modifyUser(updatedSecondUser);
+      setSecondUserVar(updatedSecondUser);
     } catch (err) {
       console.log(err.message);
     }
     fetchUser();
-    //Remove from the second user, not the current user ( the email)
   };
 
   const handleRefuse = async () => {
     try {
-      const updatedUser = {
-        ...currentUser,
-        requests: currentUser.requests.filter((request) => request != email),
+      const updatedSecondUser = {
+        ...secondUserVar,
+        requests: secondUserVar.requests.filter((request) => request != email),
       };
-      await modifyUser(updatedUser);
+      await modifyUser(updatedSecondUser);
+      setSecondUserVar(updatedSecondUser);
     } catch (err) {
       console.log(err.message);
     }
