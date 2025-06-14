@@ -10,13 +10,17 @@ const Request = ({ email, secondUser, fetchUser }) => {
   const [secondUserVar, setSecondUserVar] = useState(secondUser);
   const { findUser, modifyUser } = useAuth();
   useEffect(() => {
-    const fetchUser = async () => {
+    const getUser = async () => {
       const res = await findUser(email);
       const user = res.data;
       setCurrentUser(user);
     };
-    fetchUser();
+    getUser();
   }, []);
+
+  useEffect(() => {
+    setSecondUserVar(secondUser);
+  }, [secondUser]);
 
   const handleAccept = async () => {
     try {

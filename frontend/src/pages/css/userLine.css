@@ -2,14 +2,13 @@
 
 #userLine{
      padding: 10px;
-     background: rgba(210, 255, 225, 0.7);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     display: flex;
     align-items: center;
-    cursor: pointer;
+
 }
 
 #userLine:hover{
@@ -18,7 +17,6 @@
 
 #userLine-name{
     font-size: 50px;
-        background: linear-gradient(to right,rgb(0, 78, 30), rgb(0, 185, 77));
     background-clip: text;
   -webkit-text-fill-color: transparent;
     font-family: "Just Another Hand", cursive;
@@ -27,3 +25,44 @@
     font-weight: 550;
 }
 
+.greenLine{
+     background: rgba(210, 255, 225, 0.7);
+         cursor: pointer;
+}
+
+.greenName{
+        background: linear-gradient(to right,rgb(0, 78, 30), rgb(0, 185, 77));
+}
+
+.blueLine{
+     background: rgba(210, 231, 255, 0.7);
+     cursor: initial;
+}
+
+.blueName{
+        background: linear-gradient(to right,rgb(0, 31, 78), rgb(0, 185, 185));
+}
+
+#send{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    border: 0px;
+    position: absolute;
+    right: 20px;
+    box-shadow: 2px 2px 2px black;
+}
+
+#alreadySent{
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+    border: 0px;
+    position: absolute;
+    right: 20px;
+    box-shadow: 2px 2px 2px white;
+    background-color: rgb(11, 64, 100);
+    cursor: initial;
+}

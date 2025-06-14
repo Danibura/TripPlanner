@@ -120,6 +120,8 @@ const FriendsPage = () => {
           findFriends={findFriends}
           currentPage={currentPage}
           getUpdatedUser={getUpdatedUser}
+          setCurrentUser={setCurrentUser}
+          findOthers={findOthers}
         />
       )}
       {rotateMenu && (

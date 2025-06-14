@@ -1,0 +1,61 @@
+#friendsWindow{
+    height: 40%;
+    width: 50%;
+    position: absolute;
+    left: 25%;
+    top: 30%;
+    background-color: white;
+    border-radius: 20px;
+    z-index: 12;
+    overflow-y: auto;
+    box-shadow: 2px 2px 5px rgb(30,30,30);
+}
+
+#friendsWindow-options-box{
+    height: 20%;
+    background-color: rgb(79, 155, 255);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding-top: 15px;
+}
+
+#search-friendsWindow{
+    border-radius: 20px;
+    background-color: rgb(227, 249, 255);
+    margin-left: 40px;
+    border: 0px;
+    box-shadow: 2px 2px 2px rgb(30,30,30);
+    width: 30%;
+    height: 80%;
+    padding-left: 10px;
+}
+
+#search-friendsWindow input{
+    background: linear-gradient(to right,rgb(0, 31, 78), rgb(0, 185, 185));
+    background-clip: text;
+  -webkit-text-fill-color: transparent;
+    font-size: 26px;
+    width: 280px;
+    border: 0px;
+    padding-top: 15px;
+}
+
+#search-friendsWindow input:focus{
+    outline: none;
+}
+
+#closeButton-friendsWindow{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 0px;
+}
+
+#closeButton-friendsWindow:hover{
+    filter: invert();
+}

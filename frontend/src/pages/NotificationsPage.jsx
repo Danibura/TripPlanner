@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
 import useAuth from "../store/useAuth";
 import Request from "../components/Request";
+import Invitation from "../components/Invitation";
 
 const NotificationsPage = () => {
   const [rotateMenu, setRotateMenu] = useState();
@@ -41,6 +42,10 @@ const NotificationsPage = () => {
             secondUser={currentUser}
             fetchUser={fetchUser}
           />
+        ))}
+      {currentUser &&
+        currentUser.invitations.map((invitation) => (
+          <Invitation tripCode={invitation} />
         ))}
       {rotateMenu && (
         <MenuWindow

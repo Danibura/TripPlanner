@@ -1,4 +1,4 @@
-#request{
+#invitation{
     position: relative;
     background: rgba(255, 255, 255, 0.568);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -25,24 +25,4 @@
     to{
         opacity: 1;
     }
-}
-
-#accept-request{
-    margin-left: 80px;
-    border: 2px solid rgb(255, 255, 255);
-        background: linear-gradient(to right,rgb(9, 94, 6), rgb(7, 185, 102));
-    background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 600;
-}
-
-#refuse-request{
-    margin-left: 60px;
-    color: black;
-    background-color: transparent;
-    border: 2px solid rgb(255, 255, 255);
-    background: linear-gradient(to right,rgb(94, 6, 6), rgb(185, 72, 7));
-    background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 600;
 }

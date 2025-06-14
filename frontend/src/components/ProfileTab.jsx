@@ -14,6 +14,8 @@ const ProfileTab = ({
   findFriends = () => {},
   currentPage = null,
   getUpdatedUser = () => {},
+  setCurrentUser = () => {},
+  findOthers = () => {},
 }) => {
   const [hide, setHide] = useState(false);
   let [friendState, setFriendState] = useState("Stranger");
@@ -35,8 +37,7 @@ const ProfileTab = ({
         requests: [...actualUser.requests, secondUser.email],
       };
       setFriendState("Request-sent");
-    }
-    if (friendState == "Request-sent") {
+    } else if (friendState == "Request-sent") {
       updatedActualUser = {
         ...actualUser,
         requests: actualUser.requests.filter(
@@ -44,8 +45,7 @@ const ProfileTab = ({
         ),
       };
       setFriendState("Stranger");
-    }
-    if (friendState == "Request-received") {
+    } else if (friendState == "Request-received") {
       updatedActualUser = {
         ...actualUser,
         friends: [...actualUser.friends, secondUserVar.email],
@@ -61,8 +61,7 @@ const ProfileTab = ({
         ),
       };
       setFriendState("Friend");
-    }
-    if (friendState == "Friend") {
+    } else if (friendState == "Friend") {
       updatedActualUser = {
         ...actualUser,
         friends: actualUser.friends.filter(
@@ -80,8 +79,6 @@ const ProfileTab = ({
     try {
       await modifyUser(updatedActualUser);
       await modifyUser(updatedSecondUser);
-      console.log(updatedActualUser);
-      console.log(updatedSecondUser);
     } catch (err) {
       console.log(err.message);
     }
@@ -89,8 +86,12 @@ const ProfileTab = ({
     if (currentPage == "myFriends") {
       findFriends();
     }
-
-    getUpdatedUser();
+    if (currentPage == "otherTravelers") {
+      findOthers();
+    }
+    const newUser = await getUpdatedUser();
+    setCurrentUser(newUser);
+    setShowProfile(user);
   };
 
   useEffect(() => {

@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 import MenuWindow from "../components/MenuWindow";
 import Header from "../components/Header";
 import Fields from "../components/Fields";
+import FriendsWindow from "../components/FriendsWindow";
+
 const MyTripsPage = () => {
   const token = localStorage.getItem("accessToken");
   const decoded = jwtDecode(token);
@@ -28,6 +30,7 @@ const MyTripsPage = () => {
   const [clickedBin, setClickedBin] = useState(0);
   const navigate = useNavigate();
   const [rotateMenu, setRotateMenu] = useState(false);
+  const [clickedShare, setClickedShare] = useState(0);
 
   const handleSearchedChange = (e) => {
     setSearched(e.target.value);
@@ -213,7 +216,12 @@ const MyTripsPage = () => {
       <Fields />
       <div id="trips-list">
         {filteredTrips?.map((trip, index) => (
-          <Trip key={index} trip={trip} setClickedBin={setClickedBin} />
+          <Trip
+            key={index}
+            trip={trip}
+            setClickedBin={setClickedBin}
+            setClickedShare={setClickedShare}
+          />
         ))}
       </div>
       {clickedBin != 0 && (
@@ -224,6 +232,13 @@ const MyTripsPage = () => {
           user={currentUser}
           setRotateMenu={setRotateMenu}
           currentPage="myTrips"
+        />
+      )}
+      {clickedShare != 0 && (
+        <FriendsWindow
+          user={currentUser}
+          clickedShare={clickedShare}
+          setClickedShare={setClickedShare}
         />
       )}
     </div>
