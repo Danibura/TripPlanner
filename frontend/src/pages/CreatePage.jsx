@@ -88,6 +88,9 @@ const CreatePage = () => {
       trips: currentUser.trips.includes(tripCode)
         ? currentUser.trips
         : [...currentUser.trips, tripCode],
+      invitations: currentUser.invitations.filter(
+        (invitation) => invitation != tripCode
+      ),
     };
     setCurrentUser(updatedUser);
     const res = await modifyUser(updatedUser);

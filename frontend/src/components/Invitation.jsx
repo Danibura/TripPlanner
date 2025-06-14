@@ -6,6 +6,7 @@ const Invitation = ({ tripCode }) => {
   const goTrip = () => {
     navigate(`/create/${tripCode}`);
   };
+
   return (
     <div id="invitation">
       You are invited to join a trip!
