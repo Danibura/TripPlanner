@@ -24,9 +24,10 @@ const Invitation = ({ invitation, user, fetchUser }) => {
     const updatedUser = {
       ...user,
       invitations: user.invitations.filter(
-        (invitation) => invitation.tripCode != tripCode
+        (i) => i.tripCode != invitation.tripCode
       ),
     };
+
     await modifyUser(updatedUser);
     await fetchUser();
   };

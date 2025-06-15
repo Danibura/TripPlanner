@@ -54,3 +54,65 @@
     border-radius: 10px;
     color: black;
 }
+
+@media (max-width: 600px){
+    #loginPage{
+        background-image:url("/images/sky.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100dvh;
+        max-width: 100%;
+        aspect-ratio: 9/16;
+        margin: 0px;
+        padding: 20px;
+        overflow: hidden;
+    }
+
+    #contentLog{
+        position: absolute;
+        top: 25%;
+        left: 7%;
+        color: white;
+        font-size: 26px;
+    }
+
+    #loginDiv{
+        border: 2px solid white;
+        font-size: 28px;
+        border-radius: 10px;
+        padding-top: 40px;
+        padding-left: 50px;
+        padding-bottom: 40px;
+        padding-right: 50px;
+        backdrop-filter: blur(8px);
+    }
+
+    #loginDiv input{
+        width: 250px;
+        height: 60px;
+        border-radius: 10px;
+        padding-left: 10px;
+        font-size: 26px;
+    }
+
+    #loginButton{
+        background-color: black;
+        color: white;
+        padding: 10px 20px;
+        font-size: 30px;
+        border: 2px solid white;
+        border-radius: 10px;
+    }
+
+    #dont{
+        background-color: white;
+        width: 340px;
+        font-size: 24px;
+        padding-left: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        box-shadow: 2px 2px 5px black;
+        border-radius: 10px;
+        color: black;
+    }
+}
