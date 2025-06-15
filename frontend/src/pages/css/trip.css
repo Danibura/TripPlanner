@@ -114,11 +114,13 @@
     #departureDate-line{
         width: 22%;
         margin-left: 30px;
-          font-size: 3vw;
+        font-size: 3vw;
+        transform: scale(1, 1.4);
     }
     #returnDate-line{
         width: 20%;
-          font-size: 3vw;
+        font-size: 3vw;
+        transform: scale(1, 1.4);
     }
 
     #bin{

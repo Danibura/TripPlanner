@@ -81,3 +81,89 @@
         width: 100%;
     }
 }
+
+@media(max-width:600px){
+    #menuWindow{
+        position: absolute;
+        top: 0px;
+        z-index: 9;
+        background:linear-gradient(rgb(0, 8, 83), rgb(0, 41, 153));
+        animation:appearMenu 0.4s ease-in-out;
+        height: 110%;
+        width: 100%;
+        overflow-y: auto;
+    }
+
+    #menuWindow ul {
+        position: absolute;
+        top: 10vh;
+        left: 10vw;
+        list-style-type: none;
+    }
+
+    #menuWindow ul li{
+        color: white;
+        font-size: 8vw;
+        margin-top: 6vh;
+        display:flex;
+        align-items: center;
+    }
+
+    #menuWindow ul li h4{
+        font-size: 8vw;
+        margin-right: 30px;
+        margin-left: 10px;
+    }
+
+    #profileLink{
+        text-decoration: none;
+    }
+
+    #myTripsLink{
+        text-decoration: none;
+    }
+
+    #publicTripsLink{
+        text-decoration: none;
+    }
+
+    #friendsLink{
+        text-decoration: none;
+    }
+
+    #notificationsLink{
+        text-decoration: none;
+    }
+
+    #bell{
+        position: relative;
+    }
+
+    #bell::after{
+        position: absolute;
+        box-sizing: border-box;
+        top: -0.5vw;
+        left: -0.5vw;
+        content:attr(data-after);
+        border-radius: 50%;
+        background-color: white;
+        color: black;
+        font-size: 3.5vw;
+        height: 4vw;
+        width: 4vw;
+        padding-left: 1vw;
+        padding-top: 0.25vw;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+    }
+    @keyframes appearMenu{
+        from{
+            opacity: 0;
+            width: 0%;
+        }
+        to{
+            opacity: 1;
+            width: 100%;
+        }
+    }
+}
