@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
     height: 60px;
+
 }
 
 #search{
@@ -32,6 +33,7 @@
 }
 
 #createButton{
+    margin-left:100px;
     background: rgb(19, 32, 107, 0.8);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
@@ -41,9 +43,6 @@
     color:rgb(226, 226, 226);
 }
 
-#create-link{
-    margin-left:100px;
-}
 
 #joinButton{
     margin-left:100px;
@@ -68,12 +67,6 @@
     filter:brightness(1.2)
 }
 
-
-#logoutLink{
-    position: absolute;
-    right: 40px;
-}
-
 #dropdown-filters-box{
     margin-left: 40px;
     position: relative;
@@ -84,7 +77,6 @@
     background-color: rgb(226, 226, 226);
     color: rgb(30,30,30);
     cursor: pointer;
-
 }
 
 #dropdown-filters-menu{
@@ -123,3 +115,127 @@
     cursor: pointer;
 }
 
+
+/*Phones */
+@media(max-width:600px){
+    #myTripsPage{
+        background-color: rgb(216, 223, 255);
+        height: 110vh;
+        height: 110dvh;
+        overflow-y: auto;
+        position: relative;
+        max-width: 100%;
+    }
+
+    #options-box-myTrips{
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        background: rgba(28, 57, 189, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 1vw 0px;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    #search{
+        border-radius: 20px;
+        background-color: aliceblue;
+        color: rgb(24, 23, 23);
+        margin-left: 5vw;
+        border: 0px;
+        box-shadow: 2px 2px 2px rgb(30,30,30);
+        width: 30vw;
+        height: 9vw;
+        padding-left: 10px;
+        font-size: 5vw;
+    }
+
+    #createButton{
+        margin-left:10vw;
+        background: rgb(19, 32, 107, 0.8);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 0px;
+        box-shadow: 2px 2px 2px rgb(30,30,30);;
+        color:rgb(226, 226, 226);
+        font-size: 5vw;
+        padding: 2vw;
+    }
+
+    #joinButton{
+        margin-left:3vw;
+        background: rgb(19, 32, 107, 0.8);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 0px;
+        box-shadow: 2px 2px 2px rgb(30,30,30);
+        color:rgb(226, 226, 226);
+        font-size: 5vw;
+        padding: 2vw;
+    }
+
+    #createButton:hover{
+        box-shadow: 2px 2px 2px rgb(226, 226, 226);
+        cursor:pointer;
+        filter:brightness(1.2)
+    }
+
+    #joinButton:hover{
+        box-shadow: 2px 2px 2px rgb(226, 226, 226);
+        cursor:pointer;
+        filter:brightness(1.2)
+    }
+
+    #dropdown-filters-box{
+        margin-left: 0px;
+        position: relative;
+        z-index: 2;
+    }    
+
+    #filters{
+        background-color: rgb(226, 226, 226);
+        color: rgb(30,30,30);
+        cursor: pointer;
+        font-size: 2vh;
+        margin-left: 2vw;
+        padding: 1vh;
+    }
+
+    #dropdown-filters-menu{
+        position: absolute;
+        top:30px;
+        left: -80px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 20px;
+        border: 0px;
+        transition: transform 0.5s ease, opacity 0.5s ease, width 0.5s ease;
+        width: 0px;
+        z-index: 3;
+        box-shadow: 0px 2px 2px rgb(30,30,30);
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    #dropdown-filters-menu.drop{
+        transform: translateY(25px);
+        opacity:1;
+        box-shadow: 0px 2px 2px rgb(30,30,30);
+        width: 230px;
+        visibility: visible;
+    }
+
+    #dropdown-filters-menu button{
+        background-color: transparent;
+        color: rgb(30,30,30);
+        display: flex;
+        font-size: 26px;
+        border: 0px;
+    }
+
+    #dropdown-filters-menu button:hover{
+        color: rgb(26, 138, 230);
+        cursor: pointer;
+    }
+}

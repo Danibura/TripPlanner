@@ -27,3 +27,35 @@
 #returnDateTitle{
     width: 15%;
 }
+
+@media(max-width:600px){
+    #fields{
+        width: 100%;
+        background: rgba(36, 36, 36, 0.1);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        display: flex;
+    }
+
+    #fields div{
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        font-size: 3vw;
+        color: white;
+        font-style: italic;
+        font-weight: 500;
+    }
+    #destinationTitle{
+        margin-left: 4%;
+        width: 20%;
+    }
+    #departureDateTitle{
+        width: 22%;
+    }
+    #returnDateTitle{
+        width: 20%;
+    }
+
+}

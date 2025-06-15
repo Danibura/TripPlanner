@@ -13,3 +13,18 @@
 #menu.rotated{
     transform: rotate(-90deg);
 }
+
+@media(max-width: 600px){
+    #menu{
+        position: absolute;
+        top:min(4vh, 35px);
+        left: 8vw;
+        color: white;
+        font-size: min(6vh, 50px);
+        background-color: transparent;
+        border: 0px;
+        z-index:10;
+        transition: transform 0.2s ease-in-out;
+        padding: 0px;
+    }
+}
