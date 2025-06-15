@@ -29,6 +29,7 @@ const ProfileTab = ({
   };
 
   const handleFriend = async () => {
+    if (!actualUser || !secondUserVar) return;
     let updatedActualUser = actualUser,
       updatedSecondUser = secondUserVar;
     if (friendState == "Stranger") {
@@ -90,13 +91,14 @@ const ProfileTab = ({
       findOthers();
     }
     const newUser = await getUpdatedUser();
-    setCurrentUser(newUser);
-    setShowProfile(user);
+    setCurrentUser(updatedSecondUser);
+    console.log("Updating showProfile:", updatedActualUser);
+    setShowProfile(updatedActualUser);
   };
 
   useEffect(() => {
     if (!actualUser || !secondUserVar) return;
-
+    console.log(actualUser);
     if (actualUser.friends.includes(secondUserVar.email)) {
       setFriendState("Friend");
     } else if (actualUser.requests.includes(secondUserVar.email)) {
@@ -106,7 +108,7 @@ const ProfileTab = ({
     } else {
       setFriendState("Stranger");
     }
-  }, [actualUser.email, secondUserVar.email]);
+  }, [actualUser?.email, secondUserVar?.email]);
 
   return (
     <div id="profileTab" className={hide ? "hidden" : ""}>
@@ -155,7 +157,7 @@ const ProfileTab = ({
             </button>
           </div>
         )}
-      {user.email != secondUser.email && (
+      {secondUser && user.email != secondUser.email && (
         <button id="friendButton" onClick={handleFriend}>
           {friendState == "Stranger"
             ? "Add friend"

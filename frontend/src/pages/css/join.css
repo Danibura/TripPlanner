@@ -47,6 +47,10 @@
     border: 0px;
     text-align: center;
 }
+
+#code:focus{
+    outline: none;
+}
 #go{
     border-radius: 0px;
     border-top-right-radius: 50%;

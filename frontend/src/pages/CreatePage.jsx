@@ -42,6 +42,7 @@ const CreatePage = () => {
   const [showProfile, setShowProfile] = useState(null);
   const [userRole, setUserRole] = useState("visitor");
   const [selectedCountry, setSelectedCountry] = useState("International");
+  const [animateTab, setAnimateTab] = useState(false);
 
   //Update or create trip
   const handleSaveTrip = async () => {
@@ -272,6 +273,10 @@ const CreatePage = () => {
     fetchAllOrganizers();
   }, [newTrip.organizers]);
 
+  useEffect(() => {
+    if (showProfile) setAnimateTab(true);
+  });
+
   return (
     <div id="createPage">
       <HomeLink />
@@ -425,8 +430,9 @@ const CreatePage = () => {
           setShowProfile={setShowProfile}
         />
       )}
-      {showProfile && (
+      {showProfile && currentUser && (
         <ProfileTab
+          key={showProfile._id + JSON.stringify(showProfile.requests)}
           user={showProfile}
           setShowProfile={setShowProfile}
           userRole={userRole}
@@ -434,6 +440,9 @@ const CreatePage = () => {
           participants={participants}
           handleKickOut={handleKickOut}
           secondUser={currentUser}
+          setCurrentUser={setCurrentUser}
+          animateTab={animateTab}
+          setAnimateTab={setAnimateTab}
         />
       )}
     </div>
