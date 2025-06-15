@@ -1,5 +1,5 @@
 import React from "react";
-
+import "../pages/css/countrySelector.css";
 const CountrySelector = ({
   handleSelectCountry,
   selectedCountry,
@@ -212,11 +212,6 @@ const CountrySelector = ({
         id="countriesSelect"
         value={selectedCountry}
         onChange={(e) => handleSelectCountry(e.target.value)}
-        style={{
-          height: "30px",
-          borderRadius: "10px",
-          fontSize: "20px",
-        }}
         disabled={userRole != "organizer"}
       >
         {all && <option value="All">All</option>}

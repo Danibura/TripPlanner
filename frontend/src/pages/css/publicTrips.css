@@ -45,3 +45,54 @@
     box-shadow: 2px 2px 2px rgb(226, 226, 226);
     filter:brightness(1.2)
 }
+
+@media(max-width:600px){
+    #publicTripsPage{
+        background-color: rgb(216, 231, 255);
+        height: 110vh;
+        height: 110dvh;
+        overflow-y: auto;
+        position: relative;
+    }
+
+    #options-box-publicTrips{
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        background: rgba(28, 103, 189, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        padding: 1vw 0px;
+    }
+
+
+    #participantsCountryFilter{
+        margin-left: 4vw;
+    }
+
+    #participantsCountryFilter label{
+        font-family:"Edu NSW ACT Hand Pre", cursive;
+        font-size:3vw;
+        color: white;
+    }
+
+    #luckyButton{
+        margin-left: 10vw;
+        background: rgb(19, 32, 107, 0.8);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 0px;
+        box-shadow: 2px 2px 2px rgb(30,30,30);
+        color:rgb(226, 226, 226);
+        cursor: pointer;
+        font-size: 3vw;
+        padding: 1vw;
+        width: 12vw;
+    }
+
+    #luckyButton:hover{
+        box-shadow: 2px 2px 2px rgb(226, 226, 226);
+        filter:brightness(1.2)
+    }
+}
