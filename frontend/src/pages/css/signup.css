@@ -80,9 +80,109 @@ button{
 
 #accept-policy{
     font-size: 20px;
+            padding-top: clamp(10px, 1.5vh, 20px);
+        padding-bottom: clamp(10px, 1.5vh, 20px);
 }
 
 #accept{
     height: 20px;
     width: 20px;
+}
+
+@media (max-width:600px){
+    #signupPage{
+        background-image:url("/images/boat.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100vh;
+        margin: 0px;
+        padding: 20px;
+    }
+
+    #contentSign{
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        color: rgb(0, 0, 0);
+        font-size: 26px;
+        width: 80%;
+    }
+
+    #signupDiv{
+        backdrop-filter: blur(8px);
+        border: 2px solid rgb(255, 255, 255);
+        font-size: min(6vw, 28px);
+        font-weight: bolder;
+        border-radius: 10px;
+        padding-top: clamp(20px, 3vh, 40px);
+        padding-left: 5%;
+        padding-bottom: clamp(20px, 3vh, 40px);
+        padding-right: 5%;
+        box-shadow: 2px 2px 5px black;
+    }
+
+    #signupName{
+        width: 90%;
+        height: 5vh;
+        border-radius: 10px;
+        padding-left: 10px;
+        font-size: min(24px, 5vw);
+    }
+
+    #signupBirthday{
+        width: 90%;
+       height: 5vh;
+        border-radius: 10px;
+        padding-left: 10px;
+        font-size: min(24px, 5vw);
+    }
+    #signupEmail{
+        width: 90%;
+        height: 5vh;
+        border-radius: 10px;
+        padding-left: 10px;
+        font-size: min(24px, 5vw);
+    }
+    #signupPassword{
+        width: 90%;
+        height: 5vh;
+        border-radius: 10px;
+        padding-left: 10px;
+        font-size: min(24px, 5vw);
+    }
+
+
+    #signupButton{
+        background-color: rgb(0, 0, 0);
+        color: white;
+        padding: 1vh 4vw;
+        font-size: 30px;
+        border: 2px solid white;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: min(24px, 3vh);
+    }
+
+    #already{
+        background-color: white;
+        width: min(90%, 300px);
+        font-size: min(22px, 5vw);
+        padding-left: 20px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        box-shadow: 2px 2px 5px black;
+        border-radius: 10px;
+    }
+
+    #accept-policy{
+        padding-top: clamp(10px, 1.5vh, 20px);
+        padding-bottom: clamp(10px, 1.5vh, 20px);
+        font-size: min(18px, 3.5vw);
+        color: rgb(255, 255, 255);
+    }
+
+    #accept{
+        height: 2vh;
+        width: 2vh;
+    }
 }

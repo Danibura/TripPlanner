@@ -70,20 +70,20 @@
 
     #contentLog{
         position: absolute;
-        top: 20%;
+        top: 15%;
         left: 10%;
         color: white;
-        font-size: min(20px, 7vw);
         width: 80%;
+        height: 70%;
     }
 
     #loginDiv{
         border: 2px solid white;
         font-size: min(28px, 7vw);
         border-radius: 10px;
-        padding-top: 40px;
+        padding-top: clamp(20px, 3vh, 40px);
         padding-left: 5%;
-        padding-bottom: 40px;
+        padding-bottom: clamp(20px, 3vh, 40px);
         padding-right: 5%;
         backdrop-filter: blur(8px);
     }
@@ -107,7 +107,7 @@
 
     #dont{
         background-color: white;
-        width: 90%;
+        width: min(90%, 300px);
         font-size: min(22px, 5vw);
         padding-left: 20px;
         padding-top: 5px;
