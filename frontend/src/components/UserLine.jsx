@@ -10,6 +10,7 @@ const UserLine = ({
   currentPage = "friendsPage",
   handleSend = () => {},
   clickedShare = null,
+  setHideTab = () => {},
 }) => {
   const [invited, setInvited] = useState(false);
   const checkInvited = () => {
@@ -24,11 +25,14 @@ const UserLine = ({
   useEffect(() => {
     checkInvited();
   }, [user, clickedShare]);
-
+  const handleShowProfile = () => {
+    setShowProfile(user);
+    setHideTab(false);
+  };
   return (
     <div
       id="userLine"
-      onClick={() => setShowProfile(user)}
+      onClick={() => handleShowProfile()}
       className={currentPage == "friendsPage" ? "greenLine" : "blueLine"}
     >
       <Pfp size={50} user={user} left={50} />

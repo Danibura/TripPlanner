@@ -25,6 +25,7 @@ const FriendsPage = () => {
   const [filteredFriends, setFilteredFriends] = useState([]);
   const [showProfile, setShowProfile] = useState(null);
   const [currentPage, setCurrentPage] = useState("myFriends");
+  const [hideTab, setHideTab] = useState(true);
 
   const handleSearchedChange = (e) => {
     const newSearched = e.target.value;
@@ -109,10 +110,11 @@ const FriendsPage = () => {
               user={friend}
               key={friend.email}
               setShowProfile={setShowProfile}
+              setHideTab={setHideTab}
             />
           ))}
       </div>
-      {showProfile && (
+      {!hideTab && showProfile && (
         <ProfileTab
           user={showProfile}
           setShowProfile={setShowProfile}
@@ -122,6 +124,7 @@ const FriendsPage = () => {
           getUpdatedUser={getUpdatedUser}
           setCurrentUser={setCurrentUser}
           findOthers={findOthers}
+          setHideTab={setHideTab}
         />
       )}
       {rotateMenu && (

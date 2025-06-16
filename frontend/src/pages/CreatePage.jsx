@@ -43,7 +43,7 @@ const CreatePage = () => {
   const [showProfile, setShowProfile] = useState(null);
   const [userRole, setUserRole] = useState("visitor");
   const [selectedCountry, setSelectedCountry] = useState("International");
-  const [animateTab, setAnimateTab] = useState(false);
+  const [hideTab, setHideTab] = useState(true);
 
   //Update or create trip
   const handleSaveTrip = async () => {
@@ -212,8 +212,7 @@ const CreatePage = () => {
     fetchUser();
   }, []);
 
-  //Fill fields and map with the info of the trip
-  useEffect(() => {
+  const loadTrip = () => {
     if (!currentUser) return;
     const match = trips.find((trip) => trip.accessCode === tripCode);
     if (match) {
@@ -238,6 +237,10 @@ const CreatePage = () => {
       }));
       setUserRole("organizer");
     }
+  };
+  //Fill fields and map with the info of the trip
+  useEffect(() => {
+    loadTrip();
   }, [trips, tripCode, currentUser]);
 
   //Fetch trips and set access code
@@ -273,10 +276,6 @@ const CreatePage = () => {
     };
     fetchAllOrganizers();
   }, [newTrip.organizers]);
-
-  useEffect(() => {
-    if (showProfile) setAnimateTab(true);
-  });
 
   return (
     <div id="createPage">
@@ -430,11 +429,16 @@ const CreatePage = () => {
           setShowParticipants={setShowParticipants}
           setShowProfile={setShowProfile}
           isMobile={isMobile}
+          setHideTab={setHideTab}
         />
       )}
-      {showProfile && currentUser && (
+      {!hideTab && showProfile && currentUser && (
         <ProfileTab
-          key={showProfile._id + JSON.stringify(showProfile.requests)}
+          key={
+            showProfile._id +
+            JSON.stringify(showProfile.requests) +
+            JSON.stringify(showProfile.friends)
+          }
           user={showProfile}
           setShowProfile={setShowProfile}
           userRole={userRole}
@@ -443,8 +447,8 @@ const CreatePage = () => {
           handleKickOut={handleKickOut}
           secondUser={currentUser}
           setCurrentUser={setCurrentUser}
-          animateTab={animateTab}
-          setAnimateTab={setAnimateTab}
+          setHideTab={setHideTab}
+          loadTrip={loadTrip}
         />
       )}
     </div>

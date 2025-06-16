@@ -12,7 +12,13 @@ const Pfp = ({
   name = "",
   setShowProfile = () => {},
   isMobile,
+  setHideTab = () => {},
 }) => {
+  const handleShowProfile = () => {
+    console.log("CIao");
+    setShowProfile(user);
+    setHideTab(false);
+  };
   return (
     <div
       id="profileContainer"
@@ -38,9 +44,7 @@ const Pfp = ({
           justifyContent: "center",
           cursor: "pointer",
         }}
-        onClick={() => {
-          setShowProfile(user);
-        }}
+        onClick={() => handleShowProfile()}
       >
         <div
           id="pfp"

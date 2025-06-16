@@ -18,10 +18,6 @@
     transition: width 0.3s ease-in-out;
 }
 
-#profileTab.hidden{
-    width:0px;
-}
-
 @keyframes appearTab{
     from{
         width: 0px;

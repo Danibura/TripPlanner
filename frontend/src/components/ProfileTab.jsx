@@ -16,17 +16,13 @@ const ProfileTab = ({
   getUpdatedUser = () => {},
   setCurrentUser = () => {},
   findOthers = () => {},
+  setHideTab = () => {},
+  loadTrip = () => {},
 }) => {
-  const [hide, setHide] = useState(false);
   let [friendState, setFriendState] = useState("Stranger");
   const actualUser = user;
   const secondUserVar = secondUser;
   const { modifyUser } = useAuth();
-
-  const closeProfileTab = () => {
-    setHide(true);
-    setTimeout(() => setShowProfile(false), 300);
-  };
 
   const handleFriend = async () => {
     if (!actualUser || !secondUserVar) return;
@@ -94,9 +90,11 @@ const ProfileTab = ({
     setCurrentUser(updatedSecondUser);
     console.log("Updating showProfile:", updatedActualUser);
     setShowProfile(updatedActualUser);
+    loadTrip();
   };
 
   useEffect(() => {
+    console.log();
     if (!actualUser || !secondUserVar) return;
     console.log(actualUser);
     if (actualUser.friends.includes(secondUserVar.email)) {
@@ -108,14 +106,14 @@ const ProfileTab = ({
     } else {
       setFriendState("Stranger");
     }
-  }, [actualUser?.email, secondUserVar?.email]);
+  }, [actualUser, secondUserVar]);
 
   return (
-    <div id="profileTab" className={hide ? "hidden" : ""}>
+    <div id="profileTab">
       <button
         className="material-symbols-outlined"
         id="profileTab-close"
-        onClick={closeProfileTab}
+        onClick={() => setHideTab(true)}
       >
         close
       </button>
