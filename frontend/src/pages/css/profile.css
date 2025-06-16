@@ -8,6 +8,7 @@
 #profilePage{
     background:linear-gradient(rgb(33, 74, 255), rgb(33, 222, 255));
     height: 100vh;
+    max-width: 100%;
 }
 
 
@@ -47,7 +48,6 @@
 }
 
 #box-user-info input{
-    font-size: 30px;
     margin: 20px;
     border: 0px;
     box-shadow: 2px 2px 5px black;
@@ -93,6 +93,10 @@
     padding: 20px;
     border: 0px;
     box-shadow: 2px 2px 5px black;
+}
+
+#bio-div{
+    display: flex;
 }
 
 
@@ -163,4 +167,183 @@
 
 #arrowBack{
     cursor: pointer;
+}
+
+@media(max-width:600px){
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #profilePage{
+        background:linear-gradient(rgb(33, 74, 255), rgb(33, 222, 255));
+        height: 110vh;
+        height: 110dvh;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+
+    #logout{
+        background-color: rgb(73, 98, 180);
+        color: rgb(8, 27, 138);
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+        border: 0px;
+        cursor: pointer;
+        padding: 4vw;
+        font-size: 4vw;
+        position: absolute;
+        right: 3%;
+        top: 1%;
+    }
+
+    #box-user-info{
+        position: absolute;
+        left: 5%;
+        top: 10%;
+        width: 90%;
+        height: 85%;
+        padding: 5vw;
+        padding-top: 0%;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-sizing: border-box;
+    }
+
+    #box-user-info label{
+        font-size: 3vh;
+        margin: 0vh;
+        color: white;
+        font-family: "Edu VIC WA NT Hand", cursive;
+    }
+
+    #box-user-info input{
+        margin: 1vh;
+        margin-left: 2vh;
+        border: 0px;
+        box-shadow: 2px 2px 5px black;
+    }
+
+    #name{
+        width: 60%;
+        height: 6vh;
+        padding-left: 2vw;
+        font-size: min(26px, 5vw);
+        border-radius: 10px;
+    }
+
+    #birthday{
+        width: 50%;
+        height: 6vh;
+        padding-left: 2vw;
+        font-size: min(26px, 5vw);
+        border-radius: 10px;
+    }
+
+    #email{
+        width: 63%;
+        height: 6vh;
+        padding-left: 1vw;
+        font-size: min(26px, 4vw);
+        border-radius: 10px;
+    }
+
+    #location{
+        width: 55%;
+        height: 6vh;
+        padding-left: 2vw;
+        font-size: min(26px, 5vw);
+        border-radius: 10px;
+    }
+
+    #bio{
+        height: 10vh;
+        width: 65%;
+        border-radius: 20px;
+        padding-left: 2vw;
+        font-size: min(26px, 4vw);
+        border: 0px;
+        box-shadow: 2px 2px 5px black;
+        margin-top: 1vh;
+    }
+
+
+    #row1{
+        display: flex;
+        align-items: center;
+        margin-top: 5%;
+    }
+
+    #row2{
+        display: block;
+        align-items: flex-start;
+        margin-top: 3vh;
+    }
+
+    #column1{
+        margin-left: 0%;
+    }
+
+    #column2{
+        margin-left: 0%;
+        margin-top: 3vh;
+    }
+
+    #saveUserButton{
+        position: absolute;
+        bottom: 3%;
+        left: 5%;
+        padding: 1vh;
+        font-size: min(26px, 5vw);
+    }
+
+    #saveUserButton:active{
+        color: rgb(0, 0, 0);
+        background-color: white;
+        border: 2px solid black;
+    }
+
+    #yourProfileTitle{
+        color: white;
+        font-family: "Edu VIC WA NT Hand", cursive;
+        font-size: 8vw;
+        font-weight: bold;
+        margin-left: 0%;
+        margin-top: 0%;
+    }
+
+    #pfp{
+        width: 12vw;
+        height: 12vw;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 50%;
+        margin-left: 3vh;
+    }
+
+    #changePfpButton{
+        height: 30px;
+        width: 20px;
+        background-color: grey;
+        color: black;
+        font-size: 10px;
+        padding: 0px;
+        border: 0px;
+        box-shadow: 2px 2px 2px black;
+        margin-left: 5px;
+    }
+
+    #box-pfp{
+        width: fit-content;
+        display: flex;
+        align-items: center;
+    }
+
+    #arrowBack{
+        cursor: pointer;
+    }
 }

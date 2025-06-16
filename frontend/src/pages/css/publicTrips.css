@@ -53,6 +53,7 @@
         height: 110dvh;
         overflow-y: auto;
         position: relative;
+        box-sizing: border-box
     }
 
     #options-box-publicTrips{

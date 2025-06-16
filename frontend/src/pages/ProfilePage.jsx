@@ -138,7 +138,7 @@ const ProfilePage = () => {
                 )}
               </div>
               <div id="column2">
-                <label>Location</label>
+                <label>Location: </label>
                 <input
                   type="text"
                   name="location"
@@ -148,14 +148,15 @@ const ProfilePage = () => {
                 />
                 <br />
                 <br />
-                <label>Bio: </label>
-                <br />
-                <textarea
-                  name="bio"
-                  value={currentUser.bio}
-                  onChange={handleChange}
-                  id="bio"
-                />
+                <div id="bio-div">
+                  <label>Bio: </label>
+                  <textarea
+                    name="bio"
+                    value={currentUser.bio}
+                    onChange={handleChange}
+                    id="bio"
+                  />
+                </div>
               </div>
             </div>
           </div>

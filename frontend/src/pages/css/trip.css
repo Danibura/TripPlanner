@@ -116,11 +116,13 @@
         margin-left: 30px;
         font-size: 3vw;
         transform: scale(1, 1.4);
+        font-weight: bold;
     }
     #returnDate-line{
         width: 20%;
         font-size: 3vw;
         transform: scale(1, 1.4);
+        font-weight: bold;
     }
 
     #bin{
