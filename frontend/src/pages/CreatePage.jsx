@@ -29,6 +29,7 @@ const CreatePage = () => {
   });
 
   //States
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
   const [coords, setCoords] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const { createTrip, modifyTrip, fetchTrips, trips } = useTripStore();
@@ -277,6 +278,17 @@ const CreatePage = () => {
     if (showProfile) setAnimateTab(true);
   });
 
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth < 768);
+    }
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div id="createPage">
       <HomeLink />
@@ -387,7 +399,7 @@ const CreatePage = () => {
             {organizers.map((organizer) => (
               <Pfp
                 user={organizer}
-                size={50}
+                size={isMobile ? 30 : 50}
                 key={organizer.email}
                 left="-20px"
               />
@@ -395,7 +407,7 @@ const CreatePage = () => {
             {participants.map((participant) => (
               <Pfp
                 user={participant}
-                size={50}
+                size={isMobile ? 30 : 50}
                 key={participant.email}
                 left="-20px"
               />

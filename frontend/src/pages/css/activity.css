@@ -1,0 +1,17 @@
+#activity{
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 600px
+}
+
+@media(max-width: 600px){
+    #activity{
+        background-color: white;
+        border-radius: 10px;
+        padding: 1vw;
+        margin-bottom: 0.5vh;
+        width: 90%;
+    }
+}

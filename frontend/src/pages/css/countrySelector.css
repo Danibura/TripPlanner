@@ -8,6 +8,6 @@
     #countriesSelect{
         height: max(3vh, 25px);
         border-radius: 10px;
-        font-size: 1vh;
+        font-size: min(4vw, 16px);
     }
 }
