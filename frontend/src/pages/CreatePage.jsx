@@ -278,20 +278,9 @@ const CreatePage = () => {
     if (showProfile) setAnimateTab(true);
   });
 
-  useEffect(() => {
-    function handleResize() {
-      setIsMobile(window.innerWidth < 768);
-    }
-
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
     <div id="createPage">
-      <HomeLink />
+      {!isMobile && <HomeLink />}
       <div id="blur">
         <input
           id="destination"
@@ -440,6 +429,7 @@ const CreatePage = () => {
           organizers={organizers}
           setShowParticipants={setShowParticipants}
           setShowProfile={setShowProfile}
+          isMobile={isMobile}
         />
       )}
       {showProfile && currentUser && (

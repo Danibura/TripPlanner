@@ -11,6 +11,7 @@ const Pfp = ({
   color = "transparent",
   name = "",
   setShowProfile = () => {},
+  isMobile,
 }) => {
   return (
     <div
@@ -20,6 +21,7 @@ const Pfp = ({
         width: "min-content",
         marginTop: top,
         marginRight: right,
+        height: "fit-content",
       }}
     >
       <div
@@ -55,6 +57,8 @@ const Pfp = ({
       <figcaption
         style={{
           textAlign: "center",
+          fontSize: isMobile ? "3vw" : "",
+          lineHeight: isMobile ? "0.8rem" : "",
         }}
       >
         {name}

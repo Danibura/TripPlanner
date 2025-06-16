@@ -8,6 +8,7 @@ const ParticipantsWindow = ({
   participants,
   setShowParticipants,
   setShowProfile,
+  isMobile,
 }) => {
   const [hide, setHide] = useState(false);
   const closeParticipants = () => {
@@ -19,24 +20,26 @@ const ParticipantsWindow = ({
       {organizers.map((organizer) => (
         <Pfp
           user={organizer}
-          size={80}
-          left={40}
-          top={20}
+          size={isMobile ? 50 : 80}
+          left={isMobile ? 10 : 40}
+          top={isMobile ? 0 : 20}
           name={organizer.name}
           key={organizer.email}
           color="rgb(33, 136, 19)"
           setShowProfile={setShowProfile}
+          isMobile={isMobile}
         />
       ))}
       {participants.map((participant) => (
         <Pfp
           user={participant}
-          size={80}
-          left={40}
-          top={20}
+          size={isMobile ? 50 : 80}
+          left={isMobile ? 10 : 40}
+          top={isMobile ? 0 : 20}
           name={participant.name}
           key={participant.email}
           setShowProfile={setShowProfile}
+          isMobile={isMobile}
         />
       ))}
       <button
