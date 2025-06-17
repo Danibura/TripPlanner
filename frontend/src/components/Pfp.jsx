@@ -15,7 +15,6 @@ const Pfp = ({
   setHideTab = () => {},
 }) => {
   const handleShowProfile = () => {
-    console.log("CIao");
     setShowProfile(user);
     setHideTab(false);
   };

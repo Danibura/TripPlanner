@@ -24,9 +24,7 @@ const ParticipantsWindow = ({
   const loadOrganisers = async () => {
     const updatedOrganizers = await Promise.all(
       organizers.map(async (organizer) => {
-        console.log(organizer.email);
         const updatedUser = await findUser(organizer.email);
-        console.log("Trovato organizer", updatedUser);
         return updatedUser.data;
       })
     );
@@ -39,7 +37,6 @@ const ParticipantsWindow = ({
         return updatedUser.data;
       })
     );
-    console.log(updatedParticipants);
     setUParticipants(updatedParticipants);
   };
   useEffect(() => {

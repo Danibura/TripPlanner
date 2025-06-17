@@ -88,15 +88,12 @@ const ProfileTab = ({
     }
     const newUser = await getUpdatedUser();
     setCurrentUser(updatedSecondUser);
-    console.log("Updating showProfile:", updatedActualUser);
     setShowProfile(updatedActualUser);
     loadTrip();
   };
 
   useEffect(() => {
-    console.log();
     if (!actualUser || !secondUserVar) return;
-    console.log(actualUser);
     if (actualUser.friends.includes(secondUserVar.email)) {
       setFriendState("Friend");
     } else if (actualUser.requests.includes(secondUserVar.email)) {
