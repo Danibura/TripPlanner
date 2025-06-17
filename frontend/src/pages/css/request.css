@@ -46,3 +46,62 @@
   -webkit-text-fill-color: transparent;
   font-weight: 600;
 }
+
+@media(max-width:600px){
+    #request{
+        position: relative;
+        background: rgba(255, 255, 255, 0.568);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        display: flex;
+        font-size: 4vw;
+        align-items: center;
+        font-family: "Delius", cursive;
+        color: rgb(30,30,30);
+        z-index: 1;
+        animation: appear 0.5s ease-in-out;
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        padding-left: 3vw;
+        font-style: italic;
+    }
+
+    @keyframes appear{
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+    }
+
+    #accept-request{
+        margin-left: 3vw;
+        border: 2px solid rgb(255, 255, 255);
+        background: linear-gradient(to right,rgb(9, 94, 6), rgb(7, 185, 102));
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+        font-size: 4vw;
+        padding: 1vw;
+    }
+
+    #refuse-request{
+        margin-left: 2vw;
+        color: black;
+        background-color: transparent;
+        border: 2px solid rgb(255, 255, 255);
+        background: linear-gradient(to right,rgb(94, 6, 6), rgb(185, 72, 7));
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+        font-size: 4vw;
+        padding: 1vw;
+    }
+
+    #request-message{
+        width: 50%;
+    }
+}

@@ -59,7 +59,9 @@ const Request = ({ email, secondUser, fetchUser }) => {
 
   return (
     <div id="request">
-      {currentUser?.name} wants to become your friend!
+      <div id="request-message">
+        {currentUser?.name} wants to become your friend!
+      </div>
       <button id="accept-request" onClick={handleAccept}>
         Accept
       </button>

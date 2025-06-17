@@ -38,7 +38,9 @@ const Invitation = ({ invitation, user, fetchUser }) => {
 
   return (
     <div id="invitation">
-      {userInviting.name + " invited you to join a trip!"}
+      <div id="invitation-message">
+        {userInviting.name + " invited you to join a trip!"}
+      </div>
       <button
         id="goTrip"
         onClick={() => {

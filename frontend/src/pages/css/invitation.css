@@ -44,3 +44,51 @@
         opacity: 1;
     }
 }
+
+@media(max-width:600px){
+    #invitation{
+        position: relative;
+        background: rgba(255, 255, 255, 0.568);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        display: flex;
+        font-size: 4vw;
+        align-items: center;
+        font-family: "Delius", cursive;
+        color: rgb(30,30,30);
+        z-index: 1;
+        animation: appear 0.5s ease-in-out;
+        padding-top: 1vh;
+        padding-bottom: 1vh;
+        padding-left: 3vw;
+        font-style: italic;
+    }
+
+    #invitation-message{
+        width: 50%;
+    }
+
+    #goTrip{
+        margin-left: 3vw;
+        border: 2px solid rgb(0, 81, 255);
+        background: linear-gradient(to right,rgb(6, 27, 94), rgb(7, 179, 185));
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+        font-size: 4vw;
+        padding: 1vw 2vw;
+    }
+
+    #declineInvitation{
+        margin-left: 2vw;
+        border: 2px solid rgb(0, 0, 0);
+        background: linear-gradient(to right,rgb(0, 0, 0), rgb(65, 65, 65));
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 600;
+        font-size: 4vw;
+        padding: 1vw;
+    }
+}
