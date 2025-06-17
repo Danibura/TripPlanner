@@ -60,8 +60,7 @@
         background-image:url("/images/sky.jpg");
         background-repeat: no-repeat;
         background-size: cover;
-        height: 110vh;
-        height: 110dvh;
+        height: 100dvh;
         max-width: 100%;
         margin: 0px;
         padding: 20px;

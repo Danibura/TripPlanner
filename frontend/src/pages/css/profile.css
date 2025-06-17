@@ -177,8 +177,7 @@
 
     #profilePage{
         background:linear-gradient(rgb(33, 74, 255), rgb(33, 222, 255));
-        height: 110vh;
-        height: 110dvh;
+        height: 100dvh;
         max-width: 100%;
         box-sizing: border-box;
     }

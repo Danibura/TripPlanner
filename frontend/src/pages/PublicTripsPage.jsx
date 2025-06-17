@@ -174,6 +174,7 @@ const PublicTripsPage = () => {
             selectedCountry={selectedCountry}
             handleSelectCountry={handleSelectCountry}
             all={true}
+            page="public"
           />
         </div>
         <button id="luckyButton" onClick={handleLucky}>

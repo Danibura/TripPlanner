@@ -94,8 +94,7 @@ button{
         background-image:url("/images/boat.jpg");
         background-repeat: no-repeat;
         background-size: cover;
-        height: 110vh;
-        height: 110dvh;
+        height: 100dvh;
         margin: 0px;
         padding: 20px;
         box-sizing: border-box

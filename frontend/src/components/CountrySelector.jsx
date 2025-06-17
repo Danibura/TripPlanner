@@ -5,6 +5,7 @@ const CountrySelector = ({
   selectedCountry,
   userRole = "organizer",
   all = false,
+  page = "create",
 }) => {
   const countries = [
     "Afghanistan",
@@ -213,6 +214,7 @@ const CountrySelector = ({
         value={selectedCountry}
         onChange={(e) => handleSelectCountry(e.target.value)}
         disabled={userRole != "organizer"}
+        className={page == "create" ? "create" : "public"}
       >
         {all && <option value="All">All</option>}
         <option value="International">International</option>

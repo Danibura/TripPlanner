@@ -49,8 +49,7 @@
 @media(max-width:600px){
     #publicTripsPage{
         background-color: rgb(216, 231, 255);
-        height: 110vh;
-        height: 110dvh;
+        height: 100dvh;
         overflow-y: auto;
         position: relative;
         box-sizing: border-box
