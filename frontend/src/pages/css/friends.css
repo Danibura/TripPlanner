@@ -39,3 +39,46 @@
 #search-friends input:focus{
     outline: none;
 }
+
+@media(max-width:600px){
+    #friendsPage{
+        background-image:url("/images/forest.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100dvh;
+    }
+
+    #friends-option-box{
+        padding: min(2vh, 14px);
+        background: rgba(0, 255, 98, 0.4);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    #search-friends{
+        border-radius: 20px;
+        background-color: rgb(227, 255, 246);
+        margin-left: 4vw;
+        border: 0px;
+        box-shadow: 2px 2px 2px rgb(30,30,30);
+        width: 30vw;
+        height: 5vh;
+        padding-left: 3vw;
+    }
+
+    #search-friends input{
+        background: linear-gradient(to right,rgb(0, 78, 30), rgb(0, 185, 77));
+        background-clip: text;
+    -webkit-text-fill-color: transparent;
+        font-size: 3vh;
+        width: 240px;
+        border: 0px;
+        padding-top: 1vh;
+    }
+
+    #search-friends input:focus{
+        outline: none;
+    }
+}

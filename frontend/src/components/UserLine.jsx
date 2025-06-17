@@ -12,6 +12,7 @@ const UserLine = ({
   clickedShare = null,
   setHideTab = () => {},
 }) => {
+  const isMobile = window.innerWidth < 600;
   const [invited, setInvited] = useState(false);
   const checkInvited = () => {
     if (
@@ -35,7 +36,7 @@ const UserLine = ({
       onClick={() => handleShowProfile()}
       className={currentPage == "friendsPage" ? "greenLine" : "blueLine"}
     >
-      <Pfp size={50} user={user} left={50} />
+      <Pfp size={isMobile ? 40 : 50} user={user} left={isMobile ? 20 : 50} />
       <div
         id="userLine-name"
         className={currentPage == "friendsPage" ? "greenName" : "blueName"}

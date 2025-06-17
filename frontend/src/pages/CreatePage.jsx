@@ -29,7 +29,7 @@ const CreatePage = () => {
   });
 
   //States
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+  const isMobile = window.innerWidth < 600;
   const [coords, setCoords] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const { createTrip, modifyTrip, fetchTrips, trips } = useTripStore();

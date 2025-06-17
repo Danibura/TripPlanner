@@ -10,10 +10,18 @@
  }
  
  #friendsHeader div{
-    width: 50%;
+
     justify-content: center;
     display: flex;
     align-items: baseline;
+ }
+
+ #myFriends-div{
+    width: 40%;
+ }
+
+  #otherTravelers-div{
+    width: 50%;
  }
 
 #myFriends{
@@ -63,7 +71,7 @@
 
 @media(max-width:600px){
    #friendsHeader{
-      padding-top: 3vh;
+      padding-top: 4.5vh;
       padding-bottom: 4vh;
       background: linear-gradient(rgb(0, 194, 136), rgb(56, 255, 179));
       display: flex;
@@ -74,44 +82,62 @@
    }
    
    #friendsHeader div{
-      width: 50%;
       justify-content: center;
       display: flex;
       align-items: baseline;
+      
    }
 
+   #myFriends-div{
+      margin-left: 15%;
+      width: 35%;
+   }
    #myFriends{
+
       position: relative;
       color: white;
-      font-size: 50px;
+      font-size: 6vw;
       text-decoration: none;
       font-family: "Kenia", cursive;
       font-style: italic;
       border: 0px;
       background-color: transparent;
+      margin-left: 10%;
+      padding: 0px;
+      transform: scaleY(1.1);
    }
 
    #otherTravelers{
       position: relative;
       color: white;
-      font-size: 50px;
+      font-size: 6vw;
       text-decoration: none;
       font-family: "Kenia", cursive;
       font-style: italic;
       border: 0px;
       background-color: transparent;
+      padding: 0px;
+      transform: scaleY(1.1);
    }
 
    .underline::after{
       content: '';
       position: absolute;
-      bottom: 0px;
-      left: 0px;
+      bottom: -1vw;
+      left: 20%;
       height: 3px;
-      width: 100%;
+      width: 60%;
       background: linear-gradient(to right, rgb(0, 79, 153), rgb(111, 255, 255), rgb(0, 79, 153));
       border: 0px;
       border-radius: 30%;
       animation: underlineAppear 0.3s ease-in-out;
    }
+   @keyframes underlineAppear{
+      from{
+         width: 0%;
+      }
+      to{
+         width: 60%;
+      }
+}
 }

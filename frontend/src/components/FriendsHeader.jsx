@@ -11,7 +11,7 @@ const FriendsHeader = ({
   return (
     <div id="friendsHeader">
       <MenuButton rotateMenu={rotateMenu} setRotateMenu={setRotateMenu} />
-      <div>
+      <div id="myFriends-div">
         <button
           id="myFriends"
           className={currentPage == "myFriends" ? "underline" : ""}
@@ -20,7 +20,7 @@ const FriendsHeader = ({
           My friends
         </button>
       </div>
-      <div>
+      <div id="otherTravelers-div">
         <button
           id="otherTravelers"
           className={currentPage == "otherTravelers" ? "underline" : ""}
