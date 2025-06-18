@@ -55,6 +55,10 @@ const LoginPage = () => {
               placeholder="Password"
             />
             <br />
+            <Link to={"/forgot"} id="forgotPassword">
+              Forgot password?
+            </Link>
+            <br />
             <br />
             <button type="submit" disabled={isLoading} id="loginButton">
               {isLoading ? "Loading" : "Login"}

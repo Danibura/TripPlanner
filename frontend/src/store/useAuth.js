@@ -138,6 +138,22 @@ const useAuth = create((set) => ({
       return { success: false, message: error.message };
     }
   },
+
+  createResetToken: async (email) => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/users/forgotPassword`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      return { success: true, resetUrl: data.resetUrl };
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
+  },
 }));
 
 export default useAuth;

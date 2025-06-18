@@ -55,6 +55,11 @@
     color: black;
 }
 
+#forgotPassword{
+    color: white;
+    font-size: 24px;
+}
+
 @media (max-width: 1100px){
     #loginPage{
         background-image:url("/images/sky.jpg");
@@ -116,5 +121,9 @@
         box-shadow: 2px 2px 5px black;
         border-radius: 10px;
         color: black;
+    }
+
+    #forgotPassword{
+        font-size: min(22px, 5vw);
     }
 }

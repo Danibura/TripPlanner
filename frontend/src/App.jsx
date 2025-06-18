@@ -8,6 +8,7 @@ import MyTripsPage from "./pages/MyTripsPage";
 import PublicTripsPage from "./pages/PublicTripsPage";
 import FriendsPage from "./pages/FriendsPage";
 import NotificationsPage from "./pages/NotificationsPage";
+import ForgotPage from "./pages/ForgotPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/publicTrips" element={<PublicTripsPage />} />
       <Route path="/friends" element={<FriendsPage />}></Route>
       <Route path="/notifications" element={<NotificationsPage />}></Route>
+      <Route path="/forgot" element={<ForgotPage />}></Route>
     </Routes>
   );
 }

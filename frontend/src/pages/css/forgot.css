@@ -1,0 +1,33 @@
+#forgotPage{
+    background-color: rgb(183, 220, 255);
+    height: 100vh;
+}
+
+#forgot-content{
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    text-align: center;
+}
+
+#enter-email{
+    font-size: 50px;
+    color: white;
+    margin-top: 20px;
+}
+
+#forgot-email{
+    font-size: 30px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+    width: 450px;
+}
+
+#submit-email{
+    color: white;
+    background-color: rgb(0, 81, 255);
+    border-radius: 40px;
+    margin-top: 20px;
+}
+

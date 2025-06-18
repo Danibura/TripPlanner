@@ -178,6 +178,17 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+
+  const resetToken = Math.random().toString(36).substring(2);
+  user.resetToken = resetToken;
+  await user.save();
+  const resetUrl = `https://trip-planner-rust-gamma.vercel.app/reset-password/${resetToken}`;
+  res.status(200).json({ resetUrl });
+};
+
 export {
   getUsers,
   getUserByEmail,
@@ -187,4 +198,5 @@ export {
   logout,
   updateUser,
   deleteUser,
+  forgotPassword,
 };
