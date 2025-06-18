@@ -123,6 +123,21 @@ const useAuth = create((set) => ({
       return { success: false, message: err.message };
     }
   },
+
+  deleteUser: async (email) => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/users/${email}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      return { success: true, message: "User deleted" };
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
+  },
 }));
 
 export default useAuth;

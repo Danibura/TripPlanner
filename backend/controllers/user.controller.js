@@ -168,6 +168,16 @@ const updateUser = async (req, res) => {
   }
 };
 
+const deleteUser = async (req, res) => {
+  const { email } = req.params;
+  try {
+    await User.findOneAndDelete({ email: email });
+    res.status(200).json({ success: true, message: "User deleted" });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 export {
   getUsers,
   getUserByEmail,
@@ -176,4 +186,5 @@ export {
   refToken,
   logout,
   updateUser,
+  deleteUser,
 };

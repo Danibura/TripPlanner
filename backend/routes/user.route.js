@@ -8,6 +8,7 @@ import {
   refToken,
   logout,
   updateUser,
+  deleteUser,
 } from "../controllers/user.controller.js";
 
 const router = express.Router();
@@ -25,4 +26,6 @@ router.post("/token", refToken);
 router.post("/logout", logout);
 
 router.put("/:email", updateUser);
+
+router.delete("/:email", deleteUser);
 export default router;

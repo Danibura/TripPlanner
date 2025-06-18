@@ -7,14 +7,24 @@ import { jwtDecode } from "jwt-decode";
 import { Link } from "react-router-dom";
 import MenuButton from "../components/MenuButton";
 import MenuWindow from "../components/MenuWindow";
-
+import { useNavigate } from "react-router-dom";
 const ProfilePage = () => {
-  const { findUser, modifyUser, logout } = useAuth();
+  const { findUser, modifyUser, logout, deleteUser } = useAuth();
   const [currentUser, setCurrentUser] = useState(null);
   const [modified, setModified] = useState(false);
   const [changePfp, setChangePfp] = useState(false);
   const [rotateMenu, setRotateMenu] = useState(false);
-
+  const navigate = useNavigate();
+  const handleDeleteUser = async () => {
+    try {
+      const res = await deleteUser(currentUser.email);
+      console.log(res.message);
+    } catch (error) {
+      console.log(error.message);
+    }
+    logout();
+    navigate("/");
+  };
   const handleLogout = async () => {
     logout();
   };
@@ -159,6 +169,9 @@ const ProfilePage = () => {
                 </div>
               </div>
             </div>
+            <button id="delete-profile" onClick={() => handleDeleteUser()}>
+              Delete profile
+            </button>
           </div>
         ) : (
           <h2>Loading...</h2>
