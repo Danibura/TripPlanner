@@ -24,7 +24,7 @@ function App() {
       <Route path="/friends" element={<FriendsPage />}></Route>
       <Route path="/notifications" element={<NotificationsPage />}></Route>
       <Route path="/forgot" element={<ForgotPage />}></Route>
-      <Route path="/reset/:resetToken" element={<ResetPage />}></Route>
+      <Route path="/reset-password/:resetToken" element={<ResetPage />}></Route>
     </Routes>
   );
 }
