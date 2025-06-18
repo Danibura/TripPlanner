@@ -165,8 +165,12 @@ const useAuth = create((set) => ({
         body: JSON.stringify({ resetToken, password }),
       });
       const data = await res.json();
-      if (!res.success) console.log("Error occurred changing password");
+      if (!data.success) {
+        console.log("Error occurred changing password");
+        return { success: false, message: data.message };
+      }
       console.log("Password changed successfully");
+      return { success: true, message: data.message };
     } catch (error) {
       return { success: false, message: error.message };
     }
