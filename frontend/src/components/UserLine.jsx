@@ -12,7 +12,7 @@ const UserLine = ({
   clickedShare = null,
   setHideTab = () => {},
 }) => {
-  const isMobile = window.innerWidth < 600;
+  const isMobile = window.innerWidth < 1100;
   const [invited, setInvited] = useState(false);
   const checkInvited = () => {
     if (

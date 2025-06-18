@@ -29,7 +29,7 @@ const CreatePage = () => {
   });
 
   //States
-  const isMobile = window.innerWidth < 600;
+  const isMobile = window.innerWidth < 1100;
   const [coords, setCoords] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
   const { createTrip, modifyTrip, fetchTrips, trips } = useTripStore();
@@ -44,6 +44,14 @@ const CreatePage = () => {
   const [userRole, setUserRole] = useState("visitor");
   const [selectedCountry, setSelectedCountry] = useState("International");
   const [hideTab, setHideTab] = useState(true);
+
+  const handleDeleteActivity = (activity) => {
+    const updatedTrip = {
+      ...newTrip,
+      activities: newTrip.activities.filter((a) => a != activity),
+    };
+    setNewTrip(updatedTrip);
+  };
 
   //Update or create trip
   const handleSaveTrip = async () => {
@@ -359,6 +367,7 @@ const CreatePage = () => {
                   updated[i] = newValue;
                   setNewTrip({ ...newTrip, activities: updated });
                 }}
+                handleDeleteActivity={handleDeleteActivity}
               />
             ))}
           <button

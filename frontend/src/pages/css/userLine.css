@@ -78,7 +78,7 @@
         opacity: 1;
     }
 }
-@media(max-width:600px){
+@media(max-width:1100px){
     #userLine{
         padding: 1vh;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);

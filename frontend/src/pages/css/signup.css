@@ -1,3 +1,4 @@
+
 #signupPage{
      background-image:url("/images/boat.jpg");
     background-repeat: no-repeat;
@@ -10,7 +11,7 @@
 #contentSign{
     position: absolute;
     top: 10%;
-    left: 37%;
+    left: 35%;
     color: rgb(0, 0, 0);
     font-size: 26px;
 }
@@ -89,7 +90,7 @@ button{
     width: 20px;
 }
 
-@media (max-width:600px){
+@media (max-width:1100px){
     #signupPage{
         background-image:url("/images/boat.jpg");
         background-repeat: no-repeat;

@@ -51,7 +51,7 @@
     }
 }
 
-@media(max-width:600px){
+@media(max-width:1100px){
     #participants-window{
         position: fixed;
         top: 35%;

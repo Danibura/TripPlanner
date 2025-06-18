@@ -4,7 +4,7 @@
     font-size: 20px;
 }
 
-@media(max-width:600px){
+@media(max-width:1100px){
     #countriesSelect{
         height: max(3vh, 25px);
         border-radius: 10px;

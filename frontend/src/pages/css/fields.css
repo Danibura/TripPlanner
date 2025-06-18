@@ -28,7 +28,7 @@
     width: 15%;
 }
 
-@media(max-width:600px){
+@media(max-width:1100px){
     #fields{
         width: 100%;
         background: rgba(36, 36, 36, 0.1);

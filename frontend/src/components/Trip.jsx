@@ -15,7 +15,7 @@ const Trip = ({
   const [showBin, setShowBin] = useState(false);
   const [showShare, setShowShare] = useState(false);
   const [hide, setHide] = useState(true);
-  const isMobile = window.innerWidth < 600;
+  const isMobile = window.innerWidth < 1100;
 
   const handleShow = () => {
     setSelectedDots(trip.accessCode);

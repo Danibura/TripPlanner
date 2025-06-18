@@ -321,7 +321,7 @@
     z-index: 7;
 }
 
-@media(max-width:600px){
+@media(max-width:1100px){
     #createPage{
         background-image:url("/images/world.jpg");
         background-repeat: no-repeat;

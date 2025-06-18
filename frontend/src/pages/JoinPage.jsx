@@ -4,7 +4,7 @@ import HomeLink from "../components/HomeLink";
 import "./css/join.css";
 const JoinPage = () => {
   var [tripCode, setTripCode] = useState();
-  const isMobile = window.innerWidth < 600;
+  const isMobile = window.innerWidth < 1100;
   return (
     <div id="joinPage">
       {!isMobile && <HomeLink />}

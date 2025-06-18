@@ -14,7 +14,7 @@
     transform: rotate(-90deg);
 }
 
-@media(max-width: 600px){
+@media(max-width: 1100px){
     #menu{
         position: absolute;
         top:min(4vh, 35px);

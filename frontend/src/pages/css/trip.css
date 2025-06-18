@@ -68,7 +68,7 @@
     animation: appear 0.5s ease-in-out;
 }
 
-@media(max-width:600px){
+@media(max-width:1100px){
     #link-trip{
         text-decoration: none;
 
