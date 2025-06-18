@@ -63,7 +63,7 @@
         margin-left: 4vw;
         border: 0px;
         box-shadow: 2px 2px 2px rgb(30,30,30);
-        width: 30vw;
+        width: 70vw;
         height: 5vh;
         padding-left: 3vw;
     }
@@ -73,7 +73,7 @@
         background-clip: text;
     -webkit-text-fill-color: transparent;
         font-size: 3vh;
-        width: 240px;
+        width: 95%;
         border: 0px;
         padding-top: 1vh;
     }

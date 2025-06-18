@@ -17,7 +17,6 @@
     align-items: center;
     font-family: "Delius", cursive;
     color: rgb(30,30,30);
-    z-index: 1;
     animation: appear 0.5s ease-in-out;
 }
 
@@ -34,12 +33,12 @@
     background: rgba(255, 255, 255, 0.8);
 }
 #trip-line div{
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 #destination-line{
     margin-left: 40px;
     width: 35%;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 #departureDate-line{
     width: 15%;
@@ -72,6 +71,7 @@
 @media(max-width:600px){
     #link-trip{
         text-decoration: none;
+
     }
 
     #trip-line{
@@ -89,6 +89,7 @@
         z-index: 1;
         animation: appear 0.5s ease-in-out;
         width: 100%;
+        box-sizing: border-box;
     }
 
     @keyframes appear{
@@ -104,12 +105,12 @@
         background: rgba(255, 255, 255, 0.8);
     }
     #trip-line div{
-        margin-top: 1vh;
-        margin-bottom: 1vh;
     }
     #destination-line{
         margin-left: 4%;
         width: 20%;
+        padding-top: 2vh;
+        padding-bottom: 2vh;
     }
     #departureDate-line{
         width: 22%;
@@ -144,4 +145,55 @@
         border: 0px;
         animation: appear 0.5s ease-in-out;
     }
+
+    #dots-box{
+        position: relative;
+        margin-left:15%;
+        box-sizing: border-box;
+    }
+    #dots{
+
+        background-color: transparent;
+        border: 0px;
+        border-radius: 50%;
+        width: 100%;
+        padding: 0% 5%;
+        width: 4vh;
+        height: 4vh;
+        border-radius: 50%;
+        background-color: rgb(112, 112, 112, 0.2);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    #dots.clicked{
+        transform: rotateZ(-90deg);
+        background-color: rgb(36, 36, 36, 0.6);
+    }
+    #dots-menu{
+        position: absolute;
+        top: 4vh;
+        right: 0vw;
+        opacity: 1;
+        transition: opacity 0.5s ease-in-out, width 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        backdrop-filter:none;
+        background-color: white;
+        border-radius: 10px;
+        padding: 1vw;
+        visibility: visible;
+    }
+
+    #dots-menu.hidden{
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    #dots-menu.hidden button{
+        font-size: 0vw;
+    }
+
+    #dots-menu button{
+        font-size: 4vw;
+        transition: font-size 0.5s ease-in-out;
+    }
+
 }

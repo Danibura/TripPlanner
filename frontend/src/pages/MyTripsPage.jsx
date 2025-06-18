@@ -31,6 +31,7 @@ const MyTripsPage = () => {
   const navigate = useNavigate();
   const [rotateMenu, setRotateMenu] = useState(false);
   const [clickedShare, setClickedShare] = useState(0);
+  const [selectedDots, setSelectedDots] = useState(null);
 
   const handleSearchedChange = (e) => {
     setSearched(e.target.value);
@@ -221,6 +222,8 @@ const MyTripsPage = () => {
             trip={trip}
             setClickedBin={setClickedBin}
             setClickedShare={setClickedShare}
+            selectedDots={selectedDots}
+            setSelectedDots={setSelectedDots}
           />
         ))}
       </div>

@@ -97,7 +97,6 @@
 #dropdown-filters-menu.drop{
     transform: translateY(25px);
     opacity:1;
-    box-shadow: 0px 2px 2px rgb(30,30,30);
     width: 230px;
     visibility: visible;
 }
@@ -118,6 +117,9 @@
 
 /*Phones */
 @media(max-width:600px){
+    *{
+        -webkit-tap-highlight-color: transparent;
+    }
     #myTripsPage{
         background-color: rgb(216, 223, 255);
         height: 100dvh;
@@ -223,7 +225,6 @@
     #dropdown-filters-menu.drop{
         transform: translateY(25px);
         opacity:1;
-        box-shadow: 0px 2px 2px rgb(30,30,30);
         width: 40vw;
         visibility: visible;
              

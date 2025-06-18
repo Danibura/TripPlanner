@@ -4,10 +4,10 @@ import HomeLink from "../components/HomeLink";
 import "./css/join.css";
 const JoinPage = () => {
   var [tripCode, setTripCode] = useState();
-
+  const isMobile = window.innerWidth < 600;
   return (
     <div id="joinPage">
-      <HomeLink />
+      {!isMobile && <HomeLink />}
       <div id="content">
         <div id="title"> Insert access code:</div>
         <div id="row">

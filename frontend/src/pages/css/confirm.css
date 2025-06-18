@@ -46,3 +46,48 @@
         opacity: 1;
     }
 }
+
+@media(max-width:600px){
+    #confirmWindow{
+        position: fixed;
+        top: 35%;
+        left: 5%;
+        width: 90%;
+        height: fit-content;
+        background-color: white;
+        border-radius: 20px;
+        z-index: 4;
+        padding: 2vh;
+        box-shadow: 2px 2px 2px black;
+        animation: appear 0.2s ease-in-out;
+        box-sizing: border-box;
+    }
+    #confirmWindow h3{
+        font-size: 4.5vw;
+        margin-bottom: 2vh;
+    }
+
+    #confirmWindow #yes-no-div{
+        padding-bottom: 20px;
+    }
+    #confirmWindow #yes{
+        background-color: rgb(223, 112, 112);
+        color: rgb(97, 0, 0);
+        border-radius: 20px;
+        cursor: pointer;
+        box-shadow: 0px 2px 2px rgb(30,30,30);
+        border: 0px;
+        font-size: 4vw;
+    }
+
+    #confirmWindow #no{
+        background-color: rgb(165, 165, 165);
+        color: rgb(36, 36, 36);
+        border-radius: 20px;
+        margin-left: 6vw;
+        cursor: pointer;
+        box-shadow: 0px 2px 2px rgb(30,30,30);
+        border: 0px;
+        font-size: 4vw;
+    }
+}

@@ -66,3 +66,74 @@
     border: 2px black solid;
 }
 
+@media(max-width:600px){
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #joinPage{
+        background:linear-gradient(rgb(18, 48, 184), rgb(26, 190, 202),rgb(19, 192, 126));
+        height: 100dvh;
+        width: 100%;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+    #content{
+        position: absolute;
+        top: 30%;
+        left: 5%;
+        width: 90%;
+    }
+    #title{
+        color: white;
+        font-family: "Pinyon Script", cursive;
+        font-size: 12vw;
+    }
+    #row{
+        margin-left: 0%;
+        display: flex; 
+        box-sizing: content-box;
+        align-items: center; 
+        width: 100%;
+    }
+    #codeArea{
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        width: 80%;
+        height: 8vh;
+        background-color: white;
+        overflow-y: hidden;
+    }
+
+    #code{
+        width: 100%;
+        font-size: 5vh;
+        padding-top: 1.5vh;
+        font-family: "Rubik Dirt", system-ui;
+        background: linear-gradient(to top,rgb(201, 172, 42), rgb(134, 6, 6));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        border: 0px;
+        text-align: center;
+    }
+
+    #code:focus{
+        outline: none;
+    }
+    #go{
+        border-radius: 0px;
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+        color: white;
+        background-color: rgb(6, 6, 78);
+        width: 8vh;
+        height: 8vh;
+        font-size: 4vh;
+        font-family: 'Gluten', cursive;
+        padding-top: 2vh;
+        padding-left: 0.5vh;
+        border: 2px black solid;
+    }
+
+}

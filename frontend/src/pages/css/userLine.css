@@ -16,7 +16,7 @@
 }
 
 #userLine-name{
-    font-size: 50px;
+
     background-clip: text;
   -webkit-text-fill-color: transparent;
     font-family: "Just Another Hand", cursive;
@@ -27,11 +27,13 @@
 
 .greenLine{
      background: rgba(210, 255, 225, 0.7);
-         cursor: pointer;
+    cursor: pointer;
+    animation: appear 0.5s ease-in-out;
 }
 
 .greenName{
-        background: linear-gradient(to right,rgb(0, 78, 30), rgb(0, 185, 77));
+        font-size: 50px;
+    background: linear-gradient(to right,rgb(0, 78, 30), rgb(0, 185, 77));
 }
 
 .blueLine{
@@ -40,6 +42,7 @@
 }
 
 .blueName{
+        font-size: 50px;
         background: linear-gradient(to right,rgb(0, 31, 78), rgb(0, 185, 185));
 }
 
@@ -67,6 +70,14 @@
     cursor: initial;
 }
 
+@keyframes appear{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
 @media(max-width:600px){
     #userLine{
         padding: 1vh;
@@ -84,7 +95,7 @@
     }
 
     #userLine-name{
-        font-size: 4.5vh;
+
         background-clip: text;
     -webkit-text-fill-color: transparent;
         font-family: "Just Another Hand", cursive;
@@ -99,6 +110,7 @@
     }
 
     .greenName{
+                font-size: 4.5vh;
             background: linear-gradient(to right,rgb(0, 78, 30), rgb(0, 185, 77));
     }
 
@@ -108,28 +120,31 @@
     }
 
     .blueName{
+                font-size: 3.5vh;
             background: linear-gradient(to right,rgb(0, 31, 78), rgb(0, 185, 185));
     }
 
     #send{
         border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        padding: 0px;
+        width: fit-content;
+        height: fit-content;
+        padding: 1vh;
+        font-size: 3vh;
         border: 0px;
         position: absolute;
-        right: 20px;
+        right: 2vh;
         box-shadow: 2px 2px 2px black;
     }
 
     #alreadySent{
         border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        padding: 0px;
+        width: fit-content;
+        height: fit-content;
+        padding: 1vh;
+        font-size: 3vh;
         border: 0px;
         position: absolute;
-        right: 20px;
+        right: 2vh;
         box-shadow: 2px 2px 2px white;
         background-color: rgb(11, 64, 100);
         cursor: initial;
