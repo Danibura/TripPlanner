@@ -10,7 +10,7 @@ const ResetPage = () => {
   const { resetPassword } = useAuth();
   const handleReset = async () => {
     console.log(resetToken);
-    console.log(password);
+    console.log(newPassword);
     await resetPassword(resetToken, newPassword);
   };
   return (
