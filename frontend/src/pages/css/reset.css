@@ -1,0 +1,25 @@
+#resetPage{
+    background-color: rgb(60, 108, 150);
+    height: 100vh;
+}
+
+#content-reset{
+    position: absolute;
+    left: 35%;
+    top: 20%;
+}
+
+#resetPage h2{
+    color: white;
+    font-size: 50px;
+    margin-top: 30px;
+}
+
+#resetPage input{
+    font-size: 30px;
+    width: 450px;
+    height: 50px;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 10px 20px;
+}

@@ -154,6 +154,23 @@ const useAuth = create((set) => ({
       return { success: false, message: error.message };
     }
   },
+
+  resetPassword: async (resetToken, password) => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/users/resetPassword`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ resetToken, password }),
+      });
+      const data = await res.json();
+      if (!res.success) console.log("Error occurred changing password");
+      console.log("Password changed successfully");
+    } catch (error) {
+      return { success: false, message: error.message };
+    }
+  },
 }));
 
 export default useAuth;
