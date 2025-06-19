@@ -3,18 +3,21 @@ import "./css/reset.css";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import useAuth from "../store/useAuth";
+import { useNavigate } from "react-router-dom";
 const ResetPage = () => {
+  const navigate = useNavigate();
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const resetToken = useParams();
   const { resetPassword } = useAuth();
   const handleReset = async () => {
     if (newPassword != confirmPassword) {
-      alert("The two password must be equal");
+      alert("The two passwords must be equal");
       return;
     }
     await resetPassword(resetToken.resetToken, newPassword);
     alert("Password changed successfully");
+    navigate("/");
   };
   return (
     <div id="resetPage">

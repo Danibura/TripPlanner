@@ -8,7 +8,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Trip from "../components/Trip";
 import ConfirmWindow from "../components/ConfirmWindow";
-import { useNavigate } from "react-router-dom";
 import MenuWindow from "../components/MenuWindow";
 import Header from "../components/Header";
 import Fields from "../components/Fields";
@@ -28,7 +27,6 @@ const MyTripsPage = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState(2);
   const [clickedBin, setClickedBin] = useState(0);
-  const navigate = useNavigate();
   const [rotateMenu, setRotateMenu] = useState(false);
   const [clickedShare, setClickedShare] = useState(0);
   const [selectedDots, setSelectedDots] = useState(null);

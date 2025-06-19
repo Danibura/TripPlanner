@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import useAuth from "../store/useAuth";
 import UserLine from "./UserLine";
+import emailjs from "@emailjs/browser";
+
 const FriendsWindow = ({ user, clickedShare, setClickedShare }) => {
   const [searched, setSearched] = useState("");
   const [friends, setFriends] = useState();
@@ -45,6 +47,19 @@ const FriendsWindow = ({ user, clickedShare, setClickedShare }) => {
       invitations: [...invitedUser.invitations, invitation],
     };
     await modifyUser(updatedUser);
+
+    const templateParams = {
+      fromUser: user.name,
+      toEmail: invitedUser.email,
+      tripUrl: `https://trip-planner-rust-gamma.vercel.app/create/${clickedShare}`,
+    };
+    await emailjs.send(
+      "service_a2rh57b",
+      "template_32fbstp",
+      templateParams,
+      "PFcVjibW4RPWoHJiX"
+    );
+    console.log(templateParams);
   };
 
   useEffect(() => {

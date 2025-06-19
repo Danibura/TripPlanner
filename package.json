@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@botpress/webchat": "^1.0.0",
     "@emailjs/browser": "^4.4.1",
     "cors": "^2.8.5",
     "emailjs-com": "^3.2.0",
