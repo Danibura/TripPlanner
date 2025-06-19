@@ -11,7 +11,7 @@ const ResetPage = () => {
   const handleReset = async () => {
     console.log(resetToken);
     console.log(newPassword);
-    await resetPassword(resetToken, newPassword);
+    await resetPassword(resetToken.resetToken, newPassword);
   };
   return (
     <div id="resetPage">
