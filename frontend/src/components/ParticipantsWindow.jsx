@@ -16,11 +16,13 @@ const ParticipantsWindow = ({
   const [hide, setHide] = useState(false);
   const [uOrganizers, setUOrganizers] = useState([]);
   const [uParticipants, setUParticipants] = useState([]);
+  const { findUser } = useAuth();
+
   const closeParticipants = () => {
     setHide(true);
     setTimeout(() => setShowParticipants(false), 500);
   };
-  const { findUser } = useAuth();
+
   const loadOrganisers = async () => {
     const updatedOrganizers = await Promise.all(
       organizers.map(async (organizer) => {
@@ -30,6 +32,7 @@ const ParticipantsWindow = ({
     );
     setUOrganizers(updatedOrganizers);
   };
+
   const loadParticipants = async () => {
     const updatedParticipants = await Promise.all(
       participants.map(async (participant) => {
@@ -39,6 +42,7 @@ const ParticipantsWindow = ({
     );
     setUParticipants(updatedParticipants);
   };
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       loadOrganisers();

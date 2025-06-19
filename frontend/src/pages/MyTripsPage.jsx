@@ -33,6 +33,11 @@ const MyTripsPage = () => {
   const [clickedShare, setClickedShare] = useState(0);
   const [selectedDots, setSelectedDots] = useState(null);
 
+  const handleYes = () => {
+    removeTrip();
+    setClickedBin(0);
+  };
+
   const handleSearchedChange = (e) => {
     setSearched(e.target.value);
     const fTrips = trips.filter(
@@ -228,7 +233,11 @@ const MyTripsPage = () => {
         ))}
       </div>
       {clickedBin != 0 && (
-        <ConfirmWindow removeTrip={removeTrip} setClickedBin={setClickedBin} />
+        <ConfirmWindow
+          message="Are you sure you want to leave the trip?"
+          handleYes={handleYes}
+          handleNo={() => setClickedBin(0)}
+        />
       )}
       {rotateMenu && (
         <MenuWindow

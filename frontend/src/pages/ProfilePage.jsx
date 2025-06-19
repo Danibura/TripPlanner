@@ -8,15 +8,34 @@ import { Link } from "react-router-dom";
 import MenuButton from "../components/MenuButton";
 import MenuWindow from "../components/MenuWindow";
 import { useNavigate } from "react-router-dom";
+import ConfirmWindow from "../components/ConfirmWindow";
 const ProfilePage = () => {
   const { findUser, modifyUser, logout, deleteUser } = useAuth();
   const [currentUser, setCurrentUser] = useState(null);
   const [modified, setModified] = useState(false);
   const [changePfp, setChangePfp] = useState(false);
   const [rotateMenu, setRotateMenu] = useState(false);
+  const [confirm, showConfirm] = useState(false);
   const navigate = useNavigate();
   const handleDeleteUser = async () => {
     try {
+      const userFriends = await Promise.all(
+        currentUser.friends.map(async (friendEmail) => {
+          const res = await findUser(friendEmail);
+          return res.data;
+        })
+      );
+
+      await Promise.all(
+        userFriends.map(async (friend) => {
+          const updatedFriend = {
+            ...friend,
+            friends: friend.friends.filter((f) => f != currentUser.email),
+          };
+          await modifyUser(updatedFriend);
+        })
+      );
+
       const res = await deleteUser(currentUser.email);
       console.log(res.message);
     } catch (error) {
@@ -169,9 +188,16 @@ const ProfilePage = () => {
                 </div>
               </div>
             </div>
-            <button id="delete-profile" onClick={() => handleDeleteUser()}>
+            <button id="delete-profile" onClick={() => showConfirm(true)}>
               Delete profile
             </button>
+            {confirm && (
+              <ConfirmWindow
+                message="Are you sure you want to delete the profile?"
+                handleYes={handleDeleteUser}
+                handleNo={() => showConfirm(false)}
+              />
+            )}
           </div>
         ) : (
           <h2>Loading...</h2>
