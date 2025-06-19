@@ -9,6 +9,8 @@ import MenuButton from "../components/MenuButton";
 import MenuWindow from "../components/MenuWindow";
 import { useNavigate } from "react-router-dom";
 import ConfirmWindow from "../components/ConfirmWindow";
+import { getTripByCode } from "../../../backend/controllers/trip.controller";
+import { useTripStore } from "../store/trip";
 const ProfilePage = () => {
   const { findUser, modifyUser, logout, deleteUser } = useAuth();
   const [currentUser, setCurrentUser] = useState(null);
@@ -16,6 +18,7 @@ const ProfilePage = () => {
   const [changePfp, setChangePfp] = useState(false);
   const [rotateMenu, setRotateMenu] = useState(false);
   const [confirm, showConfirm] = useState(false);
+  const { getTripByCode, deleteTrip, modifyTrip } = useTripStore();
   const navigate = useNavigate();
   const handleDeleteUser = async () => {
     try {
@@ -33,6 +36,45 @@ const ProfilePage = () => {
             friends: friend.friends.filter((f) => f != currentUser.email),
           };
           await modifyUser(updatedFriend);
+        })
+      );
+
+      const trips = await Promise.all(
+        currentUser.trips.map(async (tripCode) => {
+          const res = await getTripByCode(tripCode);
+          return res.data;
+        })
+      );
+
+      await Promise.all(
+        trips.map(async (trip) => {
+          let updatedTrip = {
+            ...trip,
+            organizers: trip.organizers.filter(
+              (organizer) => organizer != currentUser.email
+            ),
+            participants: trip.participants.filter(
+              (participant) => participant != currentUser.email
+            ),
+          };
+          if (
+            updatedTrip.organizers.length == 0 &&
+            updatedTrip.participants.length == 0
+          )
+            await deleteTrip();
+          else {
+            if (updatedTrip.organizers.length == 0) {
+              updatedTrip = {
+                ...updatedTrip,
+                organizers: [
+                  ...updatedTrip.organizers,
+                  updatedTrip.participants[0],
+                ],
+                participants: updatedTrip.participants.slice(1),
+              };
+            }
+            await modifyTrip(updatedTrip);
+          }
         })
       );
 
