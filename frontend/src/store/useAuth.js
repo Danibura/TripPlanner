@@ -149,6 +149,8 @@ const useAuth = create((set) => ({
         body: JSON.stringify({ email }),
       });
       const data = await res.json();
+      if (!data.success)
+        return { success: false, message: "Couldn't find user" };
       return { success: true, resetUrl: data.resetUrl };
     } catch (error) {
       return { success: false, message: error.message };

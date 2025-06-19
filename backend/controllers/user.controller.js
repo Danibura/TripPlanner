@@ -179,19 +179,26 @@ const deleteUser = async (req, res) => {
 };
 
 const forgotPassword = async (req, res) => {
-  const { email } = req.body;
-  const user = await User.findOne({ email });
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (!user)
+      return res
+        .status(404)
+        .json({ success: false, message: "Email not found" });
 
-  const resetToken = Math.random().toString(36).substring(2);
-  user.resetToken = resetToken;
-  await user.save();
-  const resetUrl = `https://trip-planner-rust-gamma.vercel.app/reset-password/${resetToken}`;
-  res.status(200).json({ resetUrl });
+    const resetToken = Math.random().toString(36).substring(2);
+    user.resetToken = resetToken;
+    await user.save();
+    const resetUrl = `https://trip-planner-rust-gamma.vercel.app/reset-password/${resetToken}`;
+    res.status(200).json({ success: true, resetUrl });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "USER NOT FOUND" });
+  }
 };
 
 const resetPassword = async (req, res) => {
   try {
-    console.log("TESTTTT");
     const { resetToken, password } = req.body;
     if (!resetToken || !password) {
       return res

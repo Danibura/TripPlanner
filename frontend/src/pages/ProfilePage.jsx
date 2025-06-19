@@ -30,6 +30,9 @@ const ProfilePage = () => {
             ...user,
             friends: user.friends.filter((f) => f != currentUser.email),
             requests: user.requests.filter((r) => r != currentUser.email),
+            invitations: user.invitations.filter(
+              (i) => i.fromEmail != currentUser.email
+            ),
           };
           await modifyUser(updatedUser);
         })

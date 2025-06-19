@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
 #forgotPage{
     background-color: rgb(183, 220, 255);
     height: 100vh;
+        text-align: center;
+        font-family: "Roboto Flex", system-ui;
 }
 
 #forgot-content{
@@ -8,6 +12,13 @@
     top: 20%;
     left: 35%;
     text-align: center;
+    background: rgba(179, 179, 179, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 30px;
 }
 
 #enter-email{
@@ -29,5 +40,71 @@
     background-color: rgb(0, 81, 255);
     border-radius: 40px;
     margin-top: 20px;
+    font-family: "Roboto Flex", system-ui;
 }
 
+#weSent{
+    font-size: 50px;
+    position: absolute;
+    top:30%;
+    left: 20%;
+}
+
+@media(max-width:1200px){
+    #forgotPage{
+        background-color: rgb(183, 220, 255);
+        height: 100vh;
+        text-align: center;
+        font-family: "Roboto Flex", system-ui;
+        box-sizing: border-box;
+        max-width: 100%;
+    }
+
+    #forgot-content{
+        position: absolute;
+        top: 20%;
+        left: 5%;
+        text-align: center;
+        background: rgba(179, 179, 179, 0.1);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 3vw;
+        width: 85%;
+        box-sizing: border-box;
+    }
+
+    #enter-email{
+        font-size: 8vw;
+        color: white;
+        margin-top: 0px
+    }
+
+    #forgot-email{
+        font-size: 4vw;
+        padding: 10px 20px;
+        border-radius: 20px;
+        margin-top: 2vh;
+        width: 85%;
+
+    }
+
+    #submit-email{
+        color: white;
+        background-color: rgb(0, 81, 255);
+        border-radius: 40px;
+        margin-top: 20px;
+        font-family: "Roboto Flex", system-ui;
+        font-size: 6vw;
+        padding: 2vw 4vw;
+    }
+
+    #weSent{
+        font-size: 50px;
+        position: absolute;
+        top:30%;
+        left: 20%;
+    }
+}

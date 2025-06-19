@@ -16,14 +16,14 @@ const ResetPage = () => {
   return (
     <div id="resetPage">
       <div id="content-reset">
-        <h2>Enter new password:</h2>
+        <h2 id="enterPassword-title">Enter new password:</h2>
         <input
           type="password"
           id="newPassword"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
         />
-        <h2>Confirm password:</h2>
+        <h2 id="confirmPassword-title">Confirm password:</h2>
         <input
           type="password"
           id="confirmPassword"
