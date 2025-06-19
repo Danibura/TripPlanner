@@ -9,10 +9,9 @@ import MenuButton from "../components/MenuButton";
 import MenuWindow from "../components/MenuWindow";
 import { useNavigate } from "react-router-dom";
 import ConfirmWindow from "../components/ConfirmWindow";
-import { getTripByCode } from "../../../backend/controllers/trip.controller";
 import { useTripStore } from "../store/trip";
 const ProfilePage = () => {
-  const { findUser, modifyUser, logout, deleteUser } = useAuth();
+  const { findUser, modifyUser, logout, deleteUser, fetchUsers } = useAuth();
   const [currentUser, setCurrentUser] = useState(null);
   const [modified, setModified] = useState(false);
   const [changePfp, setChangePfp] = useState(false);
@@ -22,20 +21,17 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const handleDeleteUser = async () => {
     try {
-      const userFriends = await Promise.all(
-        currentUser.friends.map(async (friendEmail) => {
-          const res = await findUser(friendEmail);
-          return res.data;
-        })
-      );
+      const resUsers = await fetchUsers();
+      const users = resUsers.data;
 
       await Promise.all(
-        userFriends.map(async (friend) => {
-          const updatedFriend = {
-            ...friend,
-            friends: friend.friends.filter((f) => f != currentUser.email),
+        users.map(async (user) => {
+          const updatedUser = {
+            ...user,
+            friends: user.friends.filter((f) => f != currentUser.email),
+            requests: user.requests.filter((r) => r != currentUser.email),
           };
-          await modifyUser(updatedFriend);
+          await modifyUser(updatedUser);
         })
       );
 
@@ -61,7 +57,7 @@ const ProfilePage = () => {
             updatedTrip.organizers.length == 0 &&
             updatedTrip.participants.length == 0
           )
-            await deleteTrip();
+            await deleteTrip(updatedTrip);
           else {
             if (updatedTrip.organizers.length == 0) {
               updatedTrip = {
