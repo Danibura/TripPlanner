@@ -9,9 +9,12 @@ const ResetPage = () => {
   const resetToken = useParams();
   const { resetPassword } = useAuth();
   const handleReset = async () => {
-    console.log(resetToken);
-    console.log(newPassword);
+    if (newPassword != confirmPassword) {
+      alert("The two password must be equal");
+      return;
+    }
     await resetPassword(resetToken.resetToken, newPassword);
+    alert("Password changed successfully");
   };
   return (
     <div id="resetPage">
