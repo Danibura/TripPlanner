@@ -157,6 +157,7 @@ const useAuth = create((set) => ({
 
   resetPassword: async (resetToken, password) => {
     try {
+      console.log("Sending to backend:", { resetToken, password });
       const res = await fetch(`${API_BASE_URL}/api/users/resetPassword`, {
         method: "POST",
         headers: {

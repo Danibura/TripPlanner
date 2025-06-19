@@ -191,7 +191,13 @@ const forgotPassword = async (req, res) => {
 
 const resetPassword = async (req, res) => {
   try {
+    console.log("TESTTTT");
     const { resetToken, password } = req.body;
+    if (!resetToken || !password) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Missing fields" });
+    }
     const user = await User.findOne({ resetToken });
     if (!user)
       return res
@@ -202,7 +208,7 @@ const resetPassword = async (req, res) => {
     await user.save();
     res.status(200).json({ success: true, message: "Password changed" });
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
     res.status(500).json({ success: false, message: error.message });
   }
 };
