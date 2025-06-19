@@ -16,7 +16,7 @@ const Trip = ({
   const [showShare, setShowShare] = useState(false);
   const [hide, setHide] = useState(true);
   const isMobile = window.innerWidth < 1100;
-
+  const finished = new Date(trip.returnDate) < new Date();
   const handleShow = () => {
     setSelectedDots(trip.accessCode);
     setHide((prev) => !prev);
@@ -36,6 +36,7 @@ const Trip = ({
     >
       <div
         id="trip-line"
+        className={finished ? "finished" : "not-finished"}
         style={{
           zIndex: !hide && selectedDots == trip.accessCode ? "14" : "1",
         }}

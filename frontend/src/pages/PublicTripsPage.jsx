@@ -57,6 +57,7 @@ const PublicTripsPage = () => {
     const newSearched = newSearchedParam ?? searched;
     const newFilter = selectedFilterParam ?? selectedFilter;
     var fTrips = trips
+      .filter((trip) => new Date(trip.returnDate) > new Date())
       .filter((trip) => trip.country != "private")
       .filter((trip) => !trip.destination.indexOf(newSearched));
 
@@ -99,6 +100,7 @@ const PublicTripsPage = () => {
   useEffect(() => {
     setFilteredTrips(
       trips
+        .filter((trip) => new Date(trip.returnDate) > new Date())
         .filter((trip) => trip.country != "private")
         .filter((trip) => !trip.destination.indexOf(searched))
         .sort((a, b) => new Date(a.departureDate) - new Date(b.departureDate))

@@ -102,9 +102,10 @@
     }
 
     #weSent{
-        font-size: 50px;
+        font-size: 8vw;
         position: absolute;
         top:30%;
-        left: 20%;
+        padding: 5%;
+        left: 0%;
     }
 }

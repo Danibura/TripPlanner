@@ -7,7 +7,6 @@
 
 #trip-line{
     position: relative;
-    background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
@@ -20,6 +19,13 @@
     animation: appear 0.5s ease-in-out;
 }
 
+#trip-line.finished{
+    background: rgba(86, 83, 124, 0.5);
+}
+
+#trip-line.not-inished{
+    background: rgba(255, 255, 255, 0.2);
+}
 @keyframes appear{
     from{
         opacity: 0;
@@ -30,7 +36,7 @@
 }
 
 #trip-line:hover{
-    background: rgba(255, 255, 255, 0.8);
+    filter: brightness(1.1);
 }
 #trip-line div{
 }
