@@ -116,6 +116,12 @@
     background-color: transparent;
 }
 
+#viewCalendar{
+    color: rgb(4, 37, 80);
+    background-color: aliceblue;
+    margin-top: 40px;
+}
+
 @media(max-width:1100px){
 
     #profileTab{

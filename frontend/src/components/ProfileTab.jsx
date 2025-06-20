@@ -3,6 +3,8 @@ import Pfp from "./Pfp";
 import "../pages/css/profileTab.css";
 import { useState } from "react";
 import useAuth from "../store/useAuth";
+import { Link } from "react-router-dom";
+
 const ProfileTab = ({
   user,
   setShowProfile,
@@ -152,6 +154,13 @@ const ProfileTab = ({
             </button>
           </div>
         )}
+      {currentPage == "myFriends" && user.showCalendar && (
+        <div>
+          <Link to={`/calendar/${user.calendarCode}`}>
+            <button id="viewCalendar">View calendar</button>
+          </Link>
+        </div>
+      )}
       {secondUser && user.email != secondUser.email && (
         <button id="friendButton" onClick={handleFriend}>
           {friendState == "Stranger"

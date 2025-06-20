@@ -178,6 +178,19 @@ const useAuth = create((set) => ({
       return { success: false, message: error.message };
     }
   },
+
+  findUserByCalendar: async (calendarCode) => {
+    try {
+      const res = await fetch(
+        `${API_BASE_URL}/api/users/calendar/${encodeURIComponent(calendarCode)}`
+      );
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "User not found");
+      return { success: true, data: data.user };
+    } catch (err) {
+      return { success: false, message: err.message };
+    }
+  },
 }));
 
 export default useAuth;

@@ -10,17 +10,15 @@ import useAuth from "../store/useAuth";
 import { useTripStore } from "../store/trip";
 import { jwtDecode } from "jwt-decode";
 import HomeLink from "../components/HomeLink";
+import { useParams } from "react-router-dom";
 
 const CalendarPage = () => {
-  const token = localStorage.getItem("accessToken");
-  const decoded = jwtDecode(token);
-  const email = decoded.email;
-
-  const { findUser } = useAuth();
+  const { calendarCode } = useParams();
+  const { findUserByCalendar } = useAuth();
   const { getTripByCode } = useTripStore();
   const [currentUser, setCurrentUser] = useState(null);
   const [trips, setTrips] = useState([]);
-
+  const isMobile = window.innerWidth < 1200;
   const fetchUserTrips = async (user) => {
     if (!user) return;
     const accessCodes = user.trips;
@@ -31,14 +29,13 @@ const CalendarPage = () => {
       newTrips = [...newTrips, trip];
     }
     setTrips(newTrips);
-    console.log(newTrips);
     return newTrips;
   };
 
   //Finds user
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await findUser(email);
+      const res = await findUserByCalendar(calendarCode);
       const user = res.data;
       setCurrentUser(user);
     };
@@ -60,7 +57,7 @@ const CalendarPage = () => {
 
   return (
     <div id="calendarPage">
-      <HomeLink />
+      {!isMobile && <HomeLink />}
       <div id="calendar-content">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
@@ -68,9 +65,9 @@ const CalendarPage = () => {
           events={tripEvents}
           height="auto"
           headerToolbar={{
-            left: "prev,next today",
+            left: !isMobile ? "prev,next today" : "prev,next",
             center: "title",
-            right: "dayGridMonth, timeGridWeek, timeGridDay",
+            right: !isMobile ? "dayGridMonth, timeGridWeek, timeGridDay" : "",
           }}
         />
       </div>

@@ -105,10 +105,11 @@ const CreatePage = () => {
     console.log(userTrips);
     userTrips.map((trip) => {
       if (
-        (new Date(trip.departureDate) < new Date(newTrip.departureDate) &&
+        trip.accessCode != newTrip.accessCode &&
+        ((new Date(trip.departureDate) < new Date(newTrip.departureDate) &&
           new Date(trip.returnDate) > new Date(newTrip.departureDate)) ||
-        (new Date(trip.departureDate) < new Date(newTrip.returnDate) &&
-          new Date(trip.returnDate) > new Date(newTrip.returnDate))
+          (new Date(trip.departureDate) < new Date(newTrip.returnDate) &&
+            new Date(trip.returnDate) > new Date(newTrip.returnDate)))
       )
         alert(`Be careful! You are already in ${trip.destination} those days`);
     });

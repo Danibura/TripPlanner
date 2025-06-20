@@ -19,6 +19,18 @@ const ProfilePage = () => {
   const [confirm, showConfirm] = useState(false);
   const { getTripByCode, deleteTrip, modifyTrip } = useTripStore();
   const navigate = useNavigate();
+  const [showCalendar, setShowCalendar] = useState(currentUser?.showCalendar);
+
+  const handleShowCalendar = (show) => {
+    setShowCalendar(show);
+    setCurrentUser((prev) => ({
+      ...prev,
+      showCalendar: show,
+      calendarCode: Math.floor(Math.random() * 100000000),
+    }));
+    setModified(true);
+  };
+
   const handleDeleteUser = async () => {
     try {
       const resUsers = await fetchUsers();
@@ -226,6 +238,17 @@ const ProfilePage = () => {
                     onChange={handleChange}
                     id="bio"
                   />
+                </div>
+                <div id="showCalendar-div">
+                  <div id="showCalendar">Calendar visible to friends</div>
+                  <label id="switchCalendar">
+                    <input
+                      type="checkbox"
+                      checked={currentUser?.showCalendar == true}
+                      onChange={(e) => handleShowCalendar(e.target.checked)}
+                    />
+                    <span id="sliderCalendar"></span>
+                  </label>
                 </div>
               </div>
             </div>

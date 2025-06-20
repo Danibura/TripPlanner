@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Hand:wght@400..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=New+Rocker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
     margin: 0px;
     padding: 0px;
@@ -181,6 +183,67 @@
     font-family: "New Rocker", system-ui;
 }
 
+#showCalendar-div{
+   align-items: center;
+   display: flex;
+   width: fit-content;
+    margin-top: 20px;
+}
+
+#showCalendar-div div{
+    font-family: "Noto Sans", sans-serif;
+    background: linear-gradient(to right,rgb(8, 22, 99), rgb(17, 82, 167));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-style: italic;
+    margin-right: 20px;
+    font-size: 32px;
+
+}
+
+#switchCalendar{
+    position: relative;
+    display: inline-block;
+    height: 2.5vh;
+    width: 4vh;
+
+}
+
+#switchCalendar input{
+    opacity: 0;
+    width: 0px;
+    height: 0px;
+}
+
+#sliderCalendar{
+    position: absolute;
+    cursor: pointer;
+    top:0; bottom:0; left:0; right:0;
+    background-color: gray;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+#sliderCalendar::before{
+    content:"";
+    height: 2.3vh;
+    width: 2.3vh;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    left: 0.1vh;
+    bottom: 0.1vh;
+    transition: 0.4s;
+}
+
+#switchCalendar input:checked + #sliderCalendar{
+    background: linear-gradient(to right,rgb(8, 22, 99), rgb(17, 82, 167));
+}
+
+#switchCalendar input:checked + #sliderCalendar::before{
+    transform: translateX(2vh);
+}
+
 @media(max-width:1100px){
     *{
         margin: 0px;
@@ -233,7 +296,7 @@
     }
 
     #box-user-info input{
-        margin: 1vh;
+        margin: 0.5vh;
         margin-left: 2vh;
         border: 0px;
         box-shadow: 2px 2px 5px black;
@@ -279,7 +342,7 @@
         font-size: min(26px, 4vw);
         border: 0px;
         box-shadow: 2px 2px 5px black;
-        margin-top: 1vh;
+        margin-top: 0vh;
     }
 
 
@@ -292,7 +355,7 @@
     #row2{
         display: block;
         align-items: flex-start;
-        margin-top: 3vh;
+        margin-top: 1vh;
     }
 
     #column1{
@@ -301,7 +364,7 @@
 
     #column2{
         margin-left: 0%;
-        margin-top: 3vh;
+        margin-top: 2vh;
     }
 
     #saveUserButton{
@@ -368,5 +431,23 @@
         font-family: "New Rocker", system-ui;
         font-size: 4vw;
         padding: 2vw;
+    }
+
+    #showCalendar-div{
+        align-items: center;
+        display: flex;
+        width: fit-content;
+        margin-top: 1vh;
+    }
+
+    #showCalendar-div div{
+        font-family: "Noto Sans", sans-serif;
+        background: linear-gradient(to right,rgb(8, 22, 99), rgb(17, 82, 167));
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-style: italic;
+        margin-right: 4vw;
+        font-size: 5vw;
+
     }
 }

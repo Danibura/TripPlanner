@@ -26,7 +26,7 @@ function App() {
       <Route path="/notifications" element={<NotificationsPage />}></Route>
       <Route path="/forgot" element={<ForgotPage />}></Route>
       <Route path="/reset-password/:resetToken" element={<ResetPage />}></Route>
-      <Route path="/calendar" element={<CalendarPage />}></Route>
+      <Route path="/calendar/:calendarCode" element={<CalendarPage />}></Route>
     </Routes>
   );
 }

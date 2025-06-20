@@ -215,7 +215,7 @@ const MyTripsPage = () => {
         <Link to={`/join`} id="join-link">
           <button id="joinButton">Join</button>
         </Link>
-        <Link to={`/calendar`} id="calendar-link">
+        <Link to={`/calendar/${currentUser?.calendarCode}`} id="calendar-link">
           <button className="material-symbols-outlined" id="calendarButton">
             calendar_month
           </button>
