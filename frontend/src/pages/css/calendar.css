@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap');
+
+#calendarPage{
+    background: linear-gradient(to bottom, rgb(143, 221, 221), azure) ;
+    height: 100vh;
+}
+
+#calendar-content{
+    max-width: 900px;
+    margin: 0 auto;
+    position: absolute;
+    top: 15%;
+    left: 24%;
+    padding: 40px;
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-family: "Noto Sans Mono", monospace;
+}
+

@@ -1,7 +1,7 @@
 #menuWindow{
     position: absolute;
     top: 0px;
-    z-index: 9;
+    z-index: 18;
     background:linear-gradient(rgb(0, 8, 83), rgb(0, 41, 153));
     animation:appearMenu 0.4s ease-in-out;
     height: 100%;
@@ -86,7 +86,7 @@
     #menuWindow{
         position: absolute;
         top: 0px;
-        z-index: 9;
+        z-index: 18;
         background:linear-gradient(rgb(0, 8, 83), rgb(0, 41, 153));
         animation:appearMenu 0.4s ease-in-out;
         height: 100dvh;

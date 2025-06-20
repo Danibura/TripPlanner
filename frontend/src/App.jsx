@@ -10,6 +10,7 @@ import FriendsPage from "./pages/FriendsPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import ForgotPage from "./pages/ForgotPage";
 import ResetPage from "./pages/ResetPage";
+import CalendarPage from "./pages/CalendarPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path="/notifications" element={<NotificationsPage />}></Route>
       <Route path="/forgot" element={<ForgotPage />}></Route>
       <Route path="/reset-password/:resetToken" element={<ResetPage />}></Route>
+      <Route path="/calendar" element={<CalendarPage />}></Route>
     </Routes>
   );
 }

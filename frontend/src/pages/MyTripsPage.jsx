@@ -209,12 +209,16 @@ const MyTripsPage = () => {
             </button>
           </div>
         </div>
-
         <Link to={`/create/ ${tripCode}`} id="create-link">
           <button id="createButton">Create</button>
         </Link>
-        <Link to={`/join`}>
+        <Link to={`/join`} id="join-link">
           <button id="joinButton">Join</button>
+        </Link>
+        <Link to={`/calendar`} id="calendar-link">
+          <button className="material-symbols-outlined" id="calendarButton">
+            calendar_month
+          </button>
         </Link>
       </div>
       <Fields />

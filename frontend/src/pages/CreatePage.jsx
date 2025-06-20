@@ -32,7 +32,8 @@ const CreatePage = () => {
   const isMobile = window.innerWidth < 1100;
   const [coords, setCoords] = useState(null);
   const [suggestions, setSuggestions] = useState([]);
-  const { createTrip, modifyTrip, fetchTrips, trips } = useTripStore();
+  const { createTrip, modifyTrip, fetchTrips, trips, getTripByCode } =
+    useTripStore();
   const [currentUser, setCurrentUser] = useState(null);
   const { findUser, modifyUser } = useAuth();
   const [participants, setParticipants] = useState([]);
@@ -44,6 +45,24 @@ const CreatePage = () => {
   const [userRole, setUserRole] = useState("visitor");
   const [selectedCountry, setSelectedCountry] = useState("International");
   const [hideTab, setHideTab] = useState(true);
+  const [userTrips, setUserTrips] = useState([]);
+
+  const fetchUserTrips = async (user) => {
+    if (!user) return;
+    const accessCodes = user.trips;
+    var newTrips = [];
+    for (let i = 0; i < accessCodes.length; i++) {
+      const res = await getTripByCode(accessCodes[i].trim());
+      const trip = res.data;
+      newTrips = [...newTrips, trip];
+    }
+    setUserTrips(newTrips);
+    return newTrips;
+  };
+
+  useEffect(() => {
+    fetchUserTrips(currentUser);
+  }, [currentUser]);
 
   const handleDeleteActivity = (activity) => {
     const updatedTrip = {
@@ -83,6 +102,17 @@ const CreatePage = () => {
           : [...newTrip.participants, currentUser.email],
     };
 
+    console.log(userTrips);
+    userTrips.map((trip) => {
+      if (
+        (new Date(trip.departureDate) < new Date(newTrip.departureDate) &&
+          new Date(trip.returnDate) > new Date(newTrip.departureDate)) ||
+        (new Date(trip.departureDate) < new Date(newTrip.returnDate) &&
+          new Date(trip.returnDate) > new Date(newTrip.returnDate))
+      )
+        alert(`Be careful! You are already in ${trip.destination} those days`);
+    });
+
     const existing = trips.find((t) => t.accessCode === newTrip.accessCode);
     if (existing) {
       const { success, message } = await modifyTrip(updatedTrip);
@@ -93,6 +123,7 @@ const CreatePage = () => {
     }
     console.log(updatedTrip);
     setNewTrip(updatedTrip);
+
     const updatedUser = {
       ...currentUser,
       trips: currentUser.trips.includes(tripCode)

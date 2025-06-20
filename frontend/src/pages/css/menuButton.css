@@ -6,7 +6,7 @@
     font-size: 60px;
     background-color: transparent;
     border: 0px;
-    z-index:10;
+    z-index:19;
     transition: transform 0.2s ease-in-out;
 }
 
@@ -23,7 +23,7 @@
         font-size: min(10vw, 50px);
         background-color: transparent;
         border: 0px;
-        z-index:10;
+        z-index:19;
         transition: transform 0.2s ease-in-out;
         padding: 0px;
     }
